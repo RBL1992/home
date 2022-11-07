@@ -19,12 +19,6 @@ const UserProfileSchema = new Schema({
         required: false,
         // match: ?
     },
-    homeItems: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'HomeItems'
-        }
-    ]
 });
 
 UserProfileSchema.pre('save', async function (next){
