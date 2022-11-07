@@ -22,7 +22,7 @@ const UserProfileSchema = new Schema({
     homeItems: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Home-Items'
+            ref: 'HomeItems'
         }
     ]
 });
