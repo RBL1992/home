@@ -1,5 +1,5 @@
 {
-  "name": "home-assistant",
+  "name": "move",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
