@@ -21,4 +21,8 @@ const homeItemSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
     }
-})
+});
+
+const HomeItem = model('HomeItem', homeItemSchema);
+
+module.exports = HomeItem;
