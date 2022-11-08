@@ -1,4 +1,4 @@
-const {Schema, model} = require('mogoose');
+const {Schema, model} = require('mongoose');
 
 const HomeSchema = new Schema({
     fridgeFilter: {

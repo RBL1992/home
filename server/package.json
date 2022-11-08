@@ -5,8 +5,7 @@
     "main": "server.js",
     "scripts": {
       "start": "node server.js",
-      "watch": "nodemon",
-      "seed": "node seeders/seed.js"
+      "watch": "nodemon"
     },
     "keywords": [],
     "author": "Roy, Devan, Jared, Jackson, Rob",
