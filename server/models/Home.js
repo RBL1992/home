@@ -1,7 +1,7 @@
 const {Schema, model} = require('mogoose');
 
 const HomeSchema = new Schema({
-    filter: {
+    fridgeFilter: {
         type: String,
         // changeCycle: every month
         rewardPoints: Number,

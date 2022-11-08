@@ -15,18 +15,19 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        <Header />
-        <Route path="/" component={LandingPage} exact />
-        <Route path="/home" component={() => <Home />} />
-        <Route path="/assistant" component={() => <Assistant />} />
-        <Route path="/friends" component={() => <Friends />} />
-        <Route path="/profile" component={() => <Profile />} />
-        <Route path="/rewards" component={() => <Rewards />} />
-        <Footer />
-      </div>
-    </ApolloProvider>
+    <div>Hello</div>
+    // <ApolloProvider client={client}>
+    //   <div className="flex-column justify-flex-start min-100-vh">
+    //     <Header />
+    //     <Route path="/" component={LandingPage} exact />
+    //     <Route path="/home" component={() => <Home />} />
+    //     <Route path="/assistant" component={() => <Assistant />} />
+    //     <Route path="/friends" component={() => <Friends />} />
+    //     <Route path="/profile" component={() => <Profile />} />
+    //     <Route path="/rewards" component={() => <Rewards />} />
+    //     <Footer />
+    //   </div>
+    // </ApolloProvider>
   );
 }
 

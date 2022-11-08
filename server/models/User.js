@@ -19,6 +19,9 @@ const UserProfileSchema = new Schema({
         required: false,
         // match: ?
     },
+    assistantLevel: {
+        
+    }
 });
 
 UserProfileSchema.pre('save', async function (next){
