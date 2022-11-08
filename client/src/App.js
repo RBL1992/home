@@ -10,7 +10,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="flex-column justify-flex-start min-100-vh">
-       
+       <h1>MEOW</h1>
       </div>
     </ApolloProvider>
   );
