@@ -4,10 +4,15 @@ const filterSchema = require('./Filter');
 const homeSchema = new Schema({
   filter: [filterSchema],
 
-  userid: {
+  userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
   },
+
+  homeName: {
+      type: String,
+      required: true
+  }
 });
 
 const HomeAssistant = model ('HomeAssistant', homeSchema);
