@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
+import FeatureModal from '../components/FeatureModal';
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { ALL_USER_FEATURES, QUERY_ME } from "../utils/queries";
@@ -28,7 +29,11 @@ console.log(data)
     return <div> Loading ... </div>;
   }
   return (
+
     <div>
+      <div className="feature-modal-btn">
+        <FeatureModal />
+      </div>
       <button style={styles.featureBtn} id="feature-btn">
         Add Feature
       </button>
