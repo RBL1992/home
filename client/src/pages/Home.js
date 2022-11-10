@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 
 const styles = {
@@ -12,9 +12,6 @@ const styles = {
 function Home() {
   return (
     <div>
-    <Link to={"/signup"}>
-          <button>signup</button> 
-          </Link>
       <button style={styles.featureBtn} id='feature-btn'>Add Feature</button>
 
       <div className="flex flex-row justify-center align-center">

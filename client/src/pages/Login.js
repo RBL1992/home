@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import {useMutation} from '@apollo/client';
-import {LOGIN_USER} from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
 const Login = (props) => {
-    const [formState, setFormState] = useState({email: '', password: ''});
-    const [login, {error, data}] = useMutation(LOGIN_USER);
+    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [login, { error, data }] = useMutation(LOGIN_USER);
 
     // update state based on form input changes
     const handleChange = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
 
         setFormState({
             ...formState,
@@ -25,12 +25,12 @@ const Login = (props) => {
         event.preventDefault();
         console.log(formState);
         try {
-            const {data} = await login({
-                variables: {...formState},
+            const { data } = await login({
+                variables: { ...formState },
             });
 
             Auth.login(data.login.token);
-        } catch(e) {
+        } catch (e) {
             console.error(e);
         }
 
@@ -53,9 +53,11 @@ const Login = (props) => {
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Login</h2>
                     <p className="mt-2 text-center text-sm text-gray-600">
                         Or{' '}
-                        <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
-                            Sign Up
-                        </a>
+                        <Link to={'/signup'}>
+                            <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                Sign Up
+                            </a>
+                        </Link>
                     </p>
                 </div>
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

@@ -2,13 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 // import Footer from './components/Footer/Footer';
-// import Header from './components/Header/Header';
+import Header from './components/Header/Header';
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Assistant from "./pages/Assistant";
 // import Friends from './pages/Friends';
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile.js";
 import Rewards from "./pages/Rewards.js";
 
 const client = new ApolloClient({
@@ -21,7 +21,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          {/* <Header /> */}
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
