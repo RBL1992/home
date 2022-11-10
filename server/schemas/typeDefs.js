@@ -33,6 +33,7 @@ const typeDefs = gql`
     getAllUsers: [User]
     allUserFeatures(userId: String!): [Home]
     getAllHomes: [Home]
+    me: Home
   }
 
   type Mutation {
@@ -52,6 +53,8 @@ const typeDefs = gql`
     ): Home
     addHome(userId: String!, homeName: String!): Home
   }
+
+
 `;
 
 module.exports = typeDefs;
