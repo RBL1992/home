@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import {useMutation} from '@apollo/client';
-import {ADD_USER} from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -13,11 +13,11 @@ const Signup = () => {
         email: '',
         password: '',
     });
-    const [addUser, {error, data}] = useMutation(ADD_USER);
+    const [addUser, { error, data }] = useMutation(ADD_USER);
 
     // update state based on form input changes
     const handleChange = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
 
         setFormState({
             ...formState,
@@ -31,12 +31,12 @@ const Signup = () => {
         console.log(formState);
 
         try {
-            const {data} = await addUser({
-                variables: {...formState},
+            const { data } = await addUser({
+                variables: { ...formState },
             });
 
             Auth.login(data.addUser.token);
-        } catch(e) {
+        } catch (e) {
             console.error(e);
         }
     };
@@ -53,9 +53,10 @@ const Signup = () => {
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign Up</h2>
                     <p className="mt-2 text-center text-sm text-gray-600">
                         Or{' '}
-                        <a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <Link to={'/login'}><a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
                             Log In
                         </a>
+                        </Link>
                     </p>
                 </div>
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -154,17 +155,17 @@ const Signup = () => {
                                 </button>
                             </div>
                         </form>
-                        
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
+
+                        {error && (
+                            <div className="my-3 p-3 bg-danger text-white">
+                                {error.message}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Signup;
