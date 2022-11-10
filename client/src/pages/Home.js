@@ -1,18 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
-
-const styles = {
-  featureBtn: {
-    padding: 12,
-    border: '1px solid black'
-  }
-};
+import FeatureModal from '../components/FeatureModal';
 
 function Home() {
   return (
+
     <div>
-      <button style={styles.featureBtn} id='feature-btn'>Add Feature</button>
+      <div className="feature-modal-btn">
+        <FeatureModal />
+      </div>
 
       <div className="flex flex-row justify-center align-center">
         <Card
