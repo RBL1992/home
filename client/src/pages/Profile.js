@@ -1,9 +1,16 @@
 import React from "react";
 
 function Profile() {
-    return (
-      <h1>Hello Team</h1>
-    )
+  return (
+    <div className="flex flex-row justify-center align-center">
+      <div className="flex flex-col justify-center align-center">
+
+      </div>
+      <div>
+
+      </div>
+    </div>
+  );
 }
 
 export default Profile;
