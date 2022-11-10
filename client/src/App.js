@@ -41,12 +41,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
+         <Header />
+            <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
@@ -55,7 +57,8 @@ function App() {
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
-          {/* <Footer /> */}
+          </div>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
