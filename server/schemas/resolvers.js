@@ -30,11 +30,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { firstName, lastName, email, password }, context) => {
-      // console.log(context.user._id);
+    addUser: async (parent, { firstName, lastName, email, password }) => {
       const user = await User.create({ firstName, lastName, email, password });
-      // Won't use the below line if I can add the addHome mutation to Signup.js
-      // const home = await HomeAssistant.create({ userId : user._id, homeName: homeName});
       const token = signToken(user);
       return { token, user };
     },
@@ -55,11 +52,9 @@ const resolvers = {
 
       return { token, user };
     },
-    addHome: async ( parent, { userId , homeName}, context) => {
-      console.log(homeName)
+    addHome: async ( parent, { userId , homeName}) => {
         const newHome = await HomeAssistant.create({userId , homeName})
         return newHome
-      
     },
     addFilterToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
         const filterInfo = {

@@ -1,5 +1,5 @@
 import React from "react";
-import UserInfo from '../components/UserInfo';
+import UserInfo from '../components/userInfo';
 import '../Profile.css';
 import { QUERY_PROFILE } from "../utils/queries";
 import { useQuery } from "@apollo/client";

@@ -43,7 +43,7 @@ const Signup = () => {
 
             console.log("userId: " + data.addUser.user._id + " homeName: " + formState.homeName)
             const home = await addHome({
-                variables: { userId: data.addUser.user._id, homeName: formState.homeName}
+                variables: { addHomeUserId: data.addUser.user._id, homeName: formState.homeName}
             })
 
             Auth.login(data.addUser.token);
