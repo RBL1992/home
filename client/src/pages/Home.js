@@ -17,6 +17,7 @@ const styles = {
 const Home = () => {
   const {loading, data} = useQuery(QUERY_ME);
 
+  
   const homeInfo = data ? [...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac] : [];
 
   if (loading) {
