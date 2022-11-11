@@ -1,16 +1,42 @@
 import React from 'react';
 
+const loginInfo = localStorage.getItem('id_token');
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 absolute bottom-0 left-0 right-0">
-    <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-      <div className="mt-8 md:order-1 md:mt-0">
-        
-        <p className="text-center text-base text-gray-50">&copy; 2022 HOME - All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+    <>
+      {
+        loginInfo ? (
+
+          <footer className="bg-gray-900 mt-auto">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:flex md:items-center justify-center lg:px-8">
+              <div className="mt-8 md:order-1 md:mt-0">
+                <ul className="flex flex-wrap justify-center text-sm text-gray-500 dark:text-gray-400">
+                  <li>
+                    <a href="/" className="mr-4 hover:underline md:mr-6 ">Home</a>
+                  </li>
+                  <li>
+                    <a href="/profile" className="mr-4 hover:underline md:mr-6">Profile</a>
+                  </li>
+                  <li>
+                    <a href="/rewards" className="mr-4 hover:underline md:mr-6">Rewards</a>
+                  </li>
+                </ul>
+                <p className="text-center text-base text-gray-50">&copy; 2022 HOME - All rights reserved.</p>
+              </div>
+            </div>
+          </footer>
+
+        ) :
+          <footer className="bg-gray-900 mt-auto">
+            <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 md:flex md:items-center justify-center lg:px-8">
+              <div className="mt-8 md:order-1 md:mt-0">
+                <p className="text-center text-base text-gray-50">&copy; 2022 HOME - All rights reserved.</p>
+              </div>
+            </div>
+          </footer>
+      }
+    </>
   )
 }
 
@@ -18,7 +44,7 @@ function Footer() {
 export default Footer;
 
 
- 
+
 
 
 {/* <footer className="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
