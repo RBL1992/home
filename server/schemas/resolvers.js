@@ -52,9 +52,9 @@ const resolvers = {
 
       return { token, user };
     },
-    addHome: async ( parent, args) => {
-      const newHome = HomeAssistant.create(args)
-      return newHome
+    addHome: async ( parent, { userId , homeName}) => {
+        const newHome = await HomeAssistant.create({userId , homeName})
+        return newHome
     },
     addFilterToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
         const filterInfo = {

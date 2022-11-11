@@ -17,7 +17,8 @@ const homeSchema = new Schema({
 
   homeName: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   }
 });
 

@@ -99,3 +99,11 @@ mutation EarnPoints($userId: ID!) {
     referralLink
   }
 }`;
+export const ADD_HOME = gql`
+mutation AddHome($addHomeUserId: String!, $homeName: String!) {
+  addHome(userId: $addHomeUserId, homeName: $homeName) {
+    homeName
+    userId
+  }
+}
+`
