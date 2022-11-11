@@ -51,7 +51,7 @@ function App() {
           <Header />
           <div className="container flex flex-col min-h-screen">
             <Routes>
-              <Route path="/landing" element={<Landingpage />} />
+              <Route path="/" element={<Landingpage />} />
               <Route path="/home" element={<Home />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
