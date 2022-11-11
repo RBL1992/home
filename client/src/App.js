@@ -16,7 +16,7 @@ import Login from "./pages/Login";
 // import Assistant from "./pages/Assistant";
 // import Friends from './pages/Friends';
 import Profile from "./pages/Profile.js";
-import Rewards from "./pages/Rewards.js";
+// import Rewards from "./pages/Rewards.js";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -56,7 +56,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               {/* <Route path="/assistant" element={<Assistant />} /> */}
-              <Route path="/rewards" element={<Rewards />} />
+              {/* <Route path="/rewards" element={<Rewards />} /> */}
               <Route path="/profile" element={<Profile />} />
             </Routes>
           </div>

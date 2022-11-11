@@ -26,7 +26,7 @@ const resolvers = {
         const userProfile = await User.findOne({ userId: context.user._id })
         return userProfile
       }
-    }
+    },
   },
 
   Mutation: {
