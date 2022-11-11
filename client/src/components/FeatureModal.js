@@ -10,7 +10,7 @@ import {QUERY_ME} from "../utils/queries";
 
 import Auth from '../utils/auth';
 
-const FeatureModal = () => {
+const FeatureModal = (props) => {
     // this is for tailwind modal ui
     const [open, setOpen] = useState(false);
     //setting the state of the currently input feature
@@ -62,8 +62,12 @@ const FeatureModal = () => {
                     const data = await addFilter({
                         variables: {userId, ...feature},
                     });
+                    console.log(data)
+                    if(data) {
+                        props.setFeatureList([...props.featureList, ...data.data.addFilterToHome.filter]);}
                     setFeatureState('');
                 } catch(err) {
+                    console.log(JSON.stringify(err))
                     console.error(err);
                 }
                 break;
@@ -72,6 +76,7 @@ const FeatureModal = () => {
                     const data = await addAlarm({
                         variables: {userId, ...feature},
                     });
+                    if(data) {props.setFeatureList(...props.featureList, data.data.addAlarmToHome.alarm);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
@@ -82,6 +87,8 @@ const FeatureModal = () => {
                     const data = await addHvac({
                         variables: {userId, ...feature},
                     });
+                    console.log(data)
+                    if(data) {props.setFeatureList(...props.featureList, data.data.addHvacToHome.hvac);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
@@ -92,6 +99,7 @@ const FeatureModal = () => {
                     const data = await addGutter({
                         variables: {userId, ...feature},
                     });
+                    if(data) {props.setFeatureList(...props.featureList, data.data.addGutterToHome.gutter);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);

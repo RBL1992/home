@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import FeatureModal from '../components/FeatureModal';
@@ -15,18 +15,24 @@ const styles = {
 };
 
 const Home = () => {
-  const {loading, data} = useQuery(QUERY_ME);
-console.log(data)
-  const homeInfo = data ? [...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac] : [];
+  const [featureList, setFeatureList] = useState([])
+  const {loading, data, error} = useQuery(QUERY_ME, {onCompleted: (data) => setFeatureList([...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac])});
 
   if (loading) {
     return <div> Loading ... </div>;
-  }
+  };
+  if(error) {
+    return "Error loading data!";
+  };
+  if(!data) {
+    return "No data available!";
+  };
+
   return (
 
     <div>
       <div className="feature-modal-btn">
-        <FeatureModal />
+        <FeatureModal featureList={featureList} setFeatureList={setFeatureList} />
       </div>
       <button style={styles.featureBtn} id="feature-btn">
         Add Feature
@@ -34,7 +40,7 @@ console.log(data)
 
       <div className="flex flex-row justify-center align-center">
         <Card
-        homeInfo = {homeInfo}
+          featureList={featureList}
         />
       </div>
     </div>
