@@ -40,11 +40,11 @@ const FeatureModal = (props) => {
 
     // querying the current user that is logged in
     const {loading, data} = useQuery(QUERY_ME);
+    const userId = data.me.userId;
 
     // when user submits the form, finds which feature was selected in drop down, and runs the proper mutation based on the switch statement
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const userId = data.me.userId;
 
         // user earns points when they submit a new feature
         try {
@@ -62,12 +62,13 @@ const FeatureModal = (props) => {
                     const data = await addFilter({
                         variables: {userId, ...feature},
                     });
-                    console.log(data)
+                    console.log(data);
                     if(data) {
-                        props.setFeatureList([...props.featureList, ...data.data.addFilterToHome.filter]);}
+                        props.setFeatureList([...props.featureList, ...data.data.addFilterToHome.filter]);
+                    }
                     setFeatureState('');
                 } catch(err) {
-                    console.log(JSON.stringify(err))
+                    console.log(JSON.stringify(err));
                     console.error(err);
                 }
                 break;
@@ -76,7 +77,7 @@ const FeatureModal = (props) => {
                     const data = await addAlarm({
                         variables: {userId, ...feature},
                     });
-                    if(data) {props.setFeatureList(...props.featureList, data.data.addAlarmToHome.alarm);}
+                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addAlarmToHome.alarm]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
@@ -87,8 +88,8 @@ const FeatureModal = (props) => {
                     const data = await addHvac({
                         variables: {userId, ...feature},
                     });
-                    console.log(data)
-                    if(data) {props.setFeatureList(...props.featureList, data.data.addHvacToHome.hvac);}
+                    console.log(data);
+                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addHvacToHome.hvac]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
@@ -99,7 +100,7 @@ const FeatureModal = (props) => {
                     const data = await addGutter({
                         variables: {userId, ...feature},
                     });
-                    if(data) {props.setFeatureList(...props.featureList, data.data.addGutterToHome.gutter);}
+                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addGutterToHome.gutter]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
