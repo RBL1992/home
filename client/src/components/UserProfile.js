@@ -21,7 +21,7 @@ const styles = {
   },
 };
 
-const UserInfo = (props) => {
+const UserProfile = (props) => {
   return (
     <div className="flex flex-row justify-center">
       <div style={styles.userCard}
@@ -35,4 +35,4 @@ const UserInfo = (props) => {
   );
 };
 
-export default UserInfo;
+export default UserProfile;
