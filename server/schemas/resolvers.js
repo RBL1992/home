@@ -24,8 +24,9 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { firstName, lastName, email, password }) => {
+    addUser: async (parent, { firstName, lastName, email, password, homeName }) => {
       const user = await User.create({ firstName, lastName, email, password });
+      const home = await HomeAssistant.create({ userId : user._id, homeName})
       const token = signToken(user);
       return { token, user };
     },
