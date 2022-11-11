@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import FeatureModal from '../components/FeatureModal';
-import { useParams } from "react-router-dom";
+
 import { useQuery } from "@apollo/client";
-import { ALL_USER_FEATURES, QUERY_ME } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 
 
 const styles = {
@@ -16,14 +16,8 @@ const styles = {
 
 const Home = () => {
   const {loading, data} = useQuery(QUERY_ME);
-console.log(data)
-  // const { loading, data } = useQuery(ALL_USER_FEATURES, {
-  //   variables: { userId: userId },
-  // });
 
-  const homeInfo = data?.me.filter || [];
-
-  console.log(homeInfo.length)
+  const homeInfo = data ? [...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac] : [];
 
   if (loading) {
     return <div> Loading ... </div>;

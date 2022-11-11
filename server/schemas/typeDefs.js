@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server-express");
+const {gql} = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
@@ -17,11 +17,32 @@ const typeDefs = gql`
     lastMaintenanceDate: String
     itemCategory: String
   }
+    type Gutter {
+    brandName: String
+    room: String
+    lastMaintenanceDate: String
+    itemCategory: String
+  }
+    type Alarm {
+    brandName: String
+    room: String
+    lastMaintenanceDate: String
+    itemCategory: String
+  }
+    type Hvac {
+    brandName: String
+    room: String
+    lastMaintenanceDate: String
+    itemCategory: String
+  }
 
   type Home {
     homeName: String
     userId: String
     filter: [Filter]
+    hvac: [Hvac]
+    alarm: [Alarm]
+    gutter: [Gutter]
   }
 
   type Auth {
@@ -44,7 +65,32 @@ const typeDefs = gql`
       password: String!
     ): Auth
     login(email: String!, password: String!): Auth
+
     addFilterToHome(
+      userId: String!
+      brandName: String
+      room: String!
+      lastMaintenanceDate: String!
+      itemCategory: String!
+    ): Home
+
+    addAlarmToHome(
+      userId: String!
+      brandName: String
+      room: String!
+      lastMaintenanceDate: String!
+      itemCategory: String!
+    ): Home
+
+    addGutterToHome(
+      userId: String!
+      brandName: String
+      room: String!
+      lastMaintenanceDate: String!
+      itemCategory: String!
+    ): Home
+
+    addHvacToHome(
       userId: String!
       brandName: String
       room: String!
