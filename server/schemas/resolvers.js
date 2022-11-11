@@ -114,6 +114,19 @@ const resolvers = {
       );
       return newHvac;
     },
+    earnPoints: async (_, {userId, homePointsEarned}) => {
+      const earnedPoints = 250;
+      const addPoints = User.findOneAndUpdate(
+        {userId},
+        {
+          $inc: {currentHomePoints: earnedPoints, lifetimeHomePoints: earnedPoints}
+        },
+        {
+          new: true,
+        }
+      );
+      return addPoints;
+    }
   },
 }
 

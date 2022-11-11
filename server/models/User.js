@@ -30,7 +30,11 @@ const UserProfileSchema = new Schema({
   referralLink: {
     type: String,
   },
-  homePoints: {
+  currentHomePoints: {
+    type: Number,
+    default: 0,
+  },
+  lifetimeHomePoints: {
     type: Number,
     default: 0,
   },
