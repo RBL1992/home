@@ -10,6 +10,7 @@ const Signup = () => {
     const [formState, setFormState] = useState({
         firstName: '',
         lastName: '',
+        homeName: '',
         email: '',
         password: '',
     });
@@ -89,6 +90,22 @@ const Signup = () => {
                                         type="lastName"
                                         required
                                         value={formState.lastName}
+                                        onChange={handleChange}
+                                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label htmlFor="homeName" className="block text-sm font-medium text-gray-700">
+                                    Home Name
+                                </label>
+                                <div className="mt-1">
+                                    <input
+                                        id="homeName"
+                                        name="homeName"
+                                        type="homeName"
+                                        required
+                                        value={formState.homeName}
                                         onChange={handleChange}
                                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     />
