@@ -12,7 +12,7 @@ import Header from './components/Header/Header';
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Assistant from "./pages/Assistant";
+// import Assistant from "./pages/Assistant";
 // import Friends from './pages/Friends';
 import Profile from "./pages/Profile.js";
 import Rewards from "./pages/Rewards.js";
@@ -53,7 +53,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/assistant" element={<Assistant />} />
+            {/* <Route path="/assistant" element={<Assistant />} /> */}
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
