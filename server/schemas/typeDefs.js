@@ -65,6 +65,7 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
+
     login(email: String!, password: String!): Auth
 
     addFilterToHome(
@@ -98,6 +99,7 @@ const typeDefs = gql`
       lastMaintenanceDate: String!
       itemCategory: String!
     ): Home
+
     addHome(userId: String!, homeName: String!): Home
   }
 

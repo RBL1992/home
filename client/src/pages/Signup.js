@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER, ADD_HOME } from '../utils/mutations';
+
+
 
 import Auth from '../utils/auth';
 
@@ -15,6 +17,9 @@ const Signup = () => {
         password: '',
     });
     const [addUser, { error, data }] = useMutation(ADD_USER);
+
+    // Attempting to add a home when a user is created
+    const [addHome, { e, homeData}] = useMutation(ADD_HOME);
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -35,6 +40,11 @@ const Signup = () => {
             const { data } = await addUser({
                 variables: { ...formState },
             });
+
+            console.log("userId: " + data.addUser.user._id + " homeName: " + formState.homeName)
+            const home = await addHome({
+                variables: { addHomeUserId: data.addUser.user._id, homeName: formState.homeName}
+            })
 
             Auth.login(data.addUser.token);
         } catch (e) {
