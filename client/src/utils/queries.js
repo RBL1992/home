@@ -47,3 +47,15 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_PROFILE = gql`
+  query Query {
+    profile {
+      email
+      firstName
+      lastName
+      phoneNumber
+      homePoints
+    }
+  }
+`;

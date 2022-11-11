@@ -20,6 +20,12 @@ const resolvers = {
         return homeAssistantData
       }
       throw new AuthenticationError("Not Logged In");
+    },
+    profile: async (parent, args, context) => {
+      if (context.user) {
+        const userProfile = await User.findOne({ userId: context.user._id })
+        return userProfile
+      }
     }
   },
 
