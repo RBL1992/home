@@ -9,7 +9,8 @@ const typeDefs = gql`
     password: String
     phoneNumber: String
     referralLink: String
-    homePoints: String
+    currentHomePoints: String
+    lifetimeHomePoints: String
   }
   type Filter {
     brandName: String
@@ -101,9 +102,10 @@ const typeDefs = gql`
     ): Home
 
     addHome(userId: String!, homeName: String!): Home
+    earnPoints(
+        userId: ID!
+    ): User
   }
-
-
 `;
 
 module.exports = typeDefs;

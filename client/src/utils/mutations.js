@@ -85,6 +85,20 @@ mutation AddGutterToHome($userId: String!, $room: String!, $lastMaintenanceDate:
 }
 `;
 
+export const EARN_POINTS = gql`
+mutation EarnPoints($userId: ID!) {
+  earnPoints(userId: $userId) {
+    _id
+    currentHomePoints
+    lifetimeHomePoints
+    firstName
+    email
+    lastName
+    password
+    phoneNumber
+    referralLink
+  }
+}`;
 export const ADD_HOME = gql`
 mutation AddHome($addHomeUserId: String!, $homeName: String!) {
   addHome(userId: $addHomeUserId, homeName: $homeName) {

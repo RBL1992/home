@@ -10,16 +10,14 @@ const styles = {
   },
 };
 
-const Card = (homeInformation) => {
-    const {homeInfo} = homeInformation
-    console.log(homeInfo)
-  if (!homeInfo.length) {
+const Card = ({featureList}) => {
+  if (!featureList.length) {
     return <h3> No Home Info recorded</h3>;
   } 
   return (
     <div>
-      {homeInfo &&
-        homeInfo.map((feature, i) => (
+      {featureList &&
+        featureList.map((feature, i) => (
           <div key={i}>
             <div
               style={styles.featureCard}
