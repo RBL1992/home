@@ -10,9 +10,10 @@ import { setContext } from "@apollo/client/link/context";
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from "./pages/Home";
+import Landingpage from "./pages/Landingpage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Assistant from "./pages/Assistant";
+// import Assistant from "./pages/Assistant";
 // import Friends from './pages/Friends';
 import Profile from "./pages/Profile.js";
 import Rewards from "./pages/Rewards.js";
@@ -46,23 +47,22 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex flex-col justify-start h-full">
-         <Header />
-            <div className="container">
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/assistant" element={<Assistant />} />
-            <Route path="/rewards" element={<Rewards />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
+        <div className="flex flex-col justify-center h-full">
+          <Header />
+          <div className="container flex flex-col min-h-screen">
+            <Routes>
+              <Route path="/landing" element={<Landingpage />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              {/* <Route path="/assistant" element={<Assistant />} /> */}
+              <Route path="/rewards" element={<Rewards />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
           </div>
-          
-         <Footer />
-         </div>
-         
-        
+        </div>
+        <Footer />
+
       </Router>
     </ApolloProvider>
   );

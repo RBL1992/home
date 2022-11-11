@@ -56,6 +56,7 @@ const typeDefs = gql`
     allUserFeatures(userId: String!): [Home]
     getAllHomes: [Home]
     me: Home
+    profile: User
   }
 
   type Mutation {
