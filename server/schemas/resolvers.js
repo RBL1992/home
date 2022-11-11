@@ -50,22 +50,70 @@ const resolvers = {
       const newHome = HomeAssistant.create(args)
       return newHome
     },
-    addFilterToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
-      const filterInfo = {
-        brandName, room, lastMaintenanceDate, itemCategory
-      }
+    addFilterToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
+        const filterInfo = {
+          brandName, room, lastMaintenanceDate, itemCategory
+        };
 
-      const newFilter = HomeAssistant.findOneAndUpdate(
-        { userId },
+        const newFilter = HomeAssistant.findOneAndUpdate(
+          {userId},
+          {
+            $addToSet: {filter: filterInfo},
+          },
+          {
+            new: true,
+          }
+        );
+        return newFilter;
+    },
+    addGutterToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
+      const gutterInfo = {
+        brandName, room, lastMaintenanceDate, itemCategory
+      };
+
+      const newGutter = HomeAssistant.findOneAndUpdate(
+        {userId},
         {
-          $addToSet: { filter: filterInfo },
+          $addToSet: {gutter: gutterInfo},
         },
         {
           new: true,
         }
       );
-      return newFilter
-    }
+      return newGutter;
+    },
+    addAlarmToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
+      const alarmInfo = {
+        brandName, room, lastMaintenanceDate, itemCategory
+      };
+
+      const newAlarm = HomeAssistant.findOneAndUpdate(
+        {userId},
+        {
+          $addToSet: {alarm: alarmInfo},
+        },
+        {
+          new: true,
+        }
+      );
+      return newAlarm;
+    },
+    addHvacToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
+      const hvacInfo = {
+        brandName, room, lastMaintenanceDate, itemCategory
+      };
+
+      const newHvac = HomeAssistant.findOneAndUpdate(
+        {userId},
+        {
+          $addToSet: {hvac: hvacInfo},
+        },
+        {
+          new: true,
+        }
+      );
+      return newHvac;
+    },
   },
 }
 

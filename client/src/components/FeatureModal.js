@@ -1,86 +1,193 @@
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { CheckIcon } from '@heroicons/react/24/outline';
+import React, {Fragment, useState} from 'react';
+import {Dialog, Transition} from '@headlessui/react';
+import {CheckIcon} from '@heroicons/react/24/outline';
 
+import {useMutation} from '@apollo/client';
+import {useQuery} from "@apollo/client";
 
-export default function FeatureModal() {
+import {ADD_FILTER, ADD_ALARM, ADD_GUTTER, ADD_HVAC} from '../utils/mutations';
+import {QUERY_ME} from "../utils/queries";
+
+import Auth from '../utils/auth';
+
+const FeatureModal = () => {
+    // this is for tailwind modal ui
     const [open, setOpen] = useState(false);
+    //setting the state of the currently input feature
+    const [feature, setFeatureState] = useState({
+        featureCategory: 'Filter',
+        itemCategory: '',
+        room: '',
+        lastMaintenanceDate: '',
+        brandName: '',
+    });
+    //these are the mutations that will run based on which feature is selected
+    const [addFilter, {error1}] = useMutation(ADD_FILTER);
+    const [addAlarm, {error2}] = useMutation(ADD_ALARM);
+    const [addHvac, {error3}] = useMutation(ADD_HVAC);
+    const [addGutter, {error4}] = useMutation(ADD_GUTTER);
 
-    return (
-        <div>
-            <button
-                type="button"
-                className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                id="feature-btn"
-                onClick={() => setOpen(true)}
-            >
-                Add Feature
-            </button>
-            <Transition.Root show={open} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={setOpen}>
-                    <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                    >
-                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                    </Transition.Child>
+    // this updates the state of the feature form when user is typing in active input field
+    const handleChange = (event) => {
+        const {name, value} = event.target;
 
-                    <div className="fixed inset-0 z-10 overflow-y-auto">
-                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                enterTo="opacity-100 translate-y-0 sm:scale-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                            >
-                                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
-                                    <div>
-                                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                                            <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
-                                        </div>
+        setFeatureState({
+            ...feature,
+            [name]: value,
+        });
+    };
+
+    // querying the current user that is logged in
+    const {loading, data} = useQuery(QUERY_ME);
+
+    // when user submits the form, finds which feature was selected in drop down, and runs the proper mutation based on the switch statement
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const userId = data.me.userId;
+
+            switch(feature.featureCategory) {
+                case "Filter":
+                    try {
+                        const data = await addFilter({
+                            variables: {userId, ...feature},
+                        });
+                        setFeatureState('');
+                    } catch(err) {
+                        console.error(err);
+                    }
+                case "Alarm":
+                    try {
+                        const data = await addAlarm({
+                            variables: {userId, ...feature},
+                        });
+
+                        setFeatureState('');
+                        return data;
+                    } catch(err) {
+                        console.error(err);
+                    }
+                case "Hvac":
+                    try {
+                        const data = await addHvac({
+                            variables: {userId, ...feature},
+                        });
+
+                        setFeatureState('');
+                        return data;
+                    } catch(err) {
+                        console.error(err);
+                    }
+                case "Gutter":
+                    try {
+                        const data = await addGutter({
+                            variables: {userId, ...feature},
+                        });
+
+                        setFeatureState('');
+                        return data;
+                    } catch(err) {
+                        console.error(err);
+                    }
+                default:
+                    break;
+            }
+
+        };
+
+        return (
+            <div>
+                <button
+                    type="button"
+                    className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    id="feature-btn"
+                    onClick={() => setOpen(true)}
+                >
+                    Add Feature
+                </button>
+                <Transition.Root show={open} as={Fragment}>
+                    <Dialog as="div" className="relative z-10" onClose={setOpen}>
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                        </Transition.Child>
+
+                        <div className="fixed inset-0 z-10 overflow-y-auto">
+                            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                <Transition.Child
+                                    as={Fragment}
+                                    enter="ease-out duration-300"
+                                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                    enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                    leave="ease-in duration-200"
+                                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                >
+                                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                                        <div>
+                                            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                                                <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
+                                            </div>
 
 
 
-                                        <div className="mt-3 text-center sm:mt-5">
-                                            <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                                                Add your Feature
-                                            </Dialog.Title>
-                                            <div className="mt-2">
-                                                <form>
-                                                    <label for="featureName">Feature Name:</label>
-                                                    <input type="text" id="featureName" required /><br />
-                                                    <label for="room">Room:</label>
-                                                    <input type="text" id="room" required /><br />
-                                                    <label for="room">Last Maintenance Date:</label>
-                                                    <input type="text" id="maintenance" required />
-                                                </form>
+                                            <div className="mt-3 text-center sm:mt-5">
+                                                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                                                    Add your Feature
+                                                </Dialog.Title>
+                                                <div className="mt-2">
+                                                    <form className="space-y-6" action="#" method="PUT" onSubmit={handleFormSubmit}>
+                                                        <label htmlFor="featureCategory">Feature</label>
+                                                        <select id="featureCategory" name="featureCategory" onChange={handleChange}>
+                                                            <option>Filter</option>
+                                                            <option>Alarm</option>
+                                                            <option>HVAC</option>
+                                                            <option>Gutter</option>
+                                                        </select><br />
+
+                                                        <label htmlFor="featureName">Feature Name:</label>
+                                                        <input type="text" id="featureName" name='itemCategory' onChange={handleChange} required /><br />
+
+                                                        <label htmlFor="room">Room:</label>
+                                                        <input type="text" id="room" name='room' onChange={handleChange} required /><br />
+
+                                                        <label htmlFor="maintenanceDate">Last Maintenance Date:</label>
+                                                        <input type="date" id="maintenance" name='lastMaintenanceDate' onChange={handleChange} required /><br />
+
+                                                        <label htmlFor="brandName">Brand Name:</label>
+                                                        <input type="text" id="brandName" name="brandName" onChange={handleChange} required /><br />
+                                                        <div className="mt-5 sm:mt-6">
+                                                            <button
+                                                                type="submit"
+                                                                className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                            onClick={() => setOpen(false)}
+                                                            >
+                                                                All Done
+                                                            </button>
+                                                        </div>
+                                                        {(error1 || error2 || error3 || error4) && (
+                                                            <div className="col-12 my-3 bg-danger text-white p-3">
+                                                                {error1.message} {error2.message} {error3.message} {error4.message}
+                                                            </div>
+                                                        )}
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="mt-5 sm:mt-6">
-                                        <button
-                                            type="button"
-                                            className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
-                                            id='feature-form-btn'
-                                            onClick={() => setOpen(false)}
-                                        >
-                                            All Done
-                                        </button>
-                                    </div>
-                                </Dialog.Panel>
-                            </Transition.Child>
+                                    </Dialog.Panel>
+                                </Transition.Child>
+                            </div>
                         </div>
-                    </div>
-                </Dialog>
-            </Transition.Root>
-        </div>
-    );
-}
+                    </Dialog>
+                </Transition.Root>
+            </div>
+        );
+    };
+
+    export default FeatureModal;

@@ -25,3 +25,62 @@ mutation Login($email: String!, $password: String!) {
   }
 }
 `;
+
+export const ADD_FILTER = gql`
+mutation AddFilterToHome($userId: String!, $room: String!, $lastMaintenanceDate: String!, $itemCategory: String!, $brandName: String) {
+  addFilterToHome(userId: $userId, room: $room, lastMaintenanceDate: $lastMaintenanceDate, itemCategory: $itemCategory, brandName: $brandName) {
+    userId
+    homeName
+    filter {
+      brandName
+      itemCategory
+      lastMaintenanceDate
+      room
+    }
+  }
+}
+`;
+export const ADD_ALARM = gql`
+mutation AddAlarmToHome($userId: String!, $room: String!, $lastMaintenanceDate: String!, $itemCategory: String!, $brandName: String) {
+  addAlarmToHome(userId: $userId, room: $room, lastMaintenanceDate: $lastMaintenanceDate, itemCategory: $itemCategory, brandName: $brandName) {
+    userId
+    homeName
+    alarm {
+      brandName
+      itemCategory
+      lastMaintenanceDate
+      room
+    }
+  }
+}
+`;
+
+export const ADD_HVAC = gql`
+mutation AddHvacToHome($userId: String!, $room: String!, $lastMaintenanceDate: String!, $itemCategory: String!, $brandName: String) {
+  addHvacToHome(userId: $userId, room: $room, lastMaintenanceDate: $lastMaintenanceDate, itemCategory: $itemCategory, brandName: $brandName) {
+    userId
+    homeName
+    hvac {
+      brandName
+      itemCategory
+      lastMaintenanceDate
+      room
+    }
+  }
+}
+`;
+
+export const ADD_GUTTER = gql`
+mutation AddGutterToHome($userId: String!, $room: String!, $lastMaintenanceDate: String!, $itemCategory: String!, $brandName: String) {
+  addGutterToHome(userId: $userId, room: $room, lastMaintenanceDate: $lastMaintenanceDate, itemCategory: $itemCategory, brandName: $brandName) {
+    userId
+    homeName
+    gutter {
+      brandName
+      itemCategory
+      lastMaintenanceDate
+      room
+    }
+  }
+}
+`;
