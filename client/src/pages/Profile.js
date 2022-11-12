@@ -11,10 +11,9 @@ const styles = {
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_PROFILE);
-  const {loadingRewards, dataRewards} = useQuery(QUERY_REWARDS);
   
   const profileInfo = data?.profile || {};
-  const rewardsInfo = data?.rewards || {}
+  const rewardsInfo = dataRewards?.rewards || {}
 
   console.log(profileInfo)
   if (loading) {
@@ -24,13 +23,11 @@ const Profile = () => {
   return (
     <div>
       <div>
-        <UserProfile
-          profileInfo={profileInfo}
+        <UserProfile profileInfo={profileInfo}
         />
       </div>
       <div>
-        <RewardCards
-        rewards={rewardsInfo} profileInfo={profileInfo}
+        <RewardCards profileInfo={profileInfo}
        />
       </div>
     </div>
