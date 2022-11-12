@@ -11,9 +11,10 @@ const styles = {
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_PROFILE);
-
+  
   const profileInfo = data?.profile || {};
 
+  console.log(profileInfo)
   if (loading) {
     return <div> Loading ... </div>;
   }
@@ -21,13 +22,11 @@ const Profile = () => {
   return (
     <div>
       <div>
-        <UserProfile
-          profileInfo={profileInfo}
+        <UserProfile profileInfo={profileInfo}
         />
       </div>
       <div>
-        <RewardCards
-        rewards={rewards}
+        <RewardCards profileInfo={profileInfo}
        />
       </div>
     </div>
