@@ -26,7 +26,7 @@ const resolvers = {
         const userProfile = await User.findOne({ userId: context.user._id })
         return userProfile
       }
-    },
+    }
   },
 
   Mutation: {
@@ -120,10 +120,10 @@ const resolvers = {
       );
       return newHvac;
     },
-    earnPoints: async (_, {userId, homePointsEarned}) => {
+    earnPoints: async (_, _, context) => {
       const earnedPoints = 250;
       const addPoints = User.findOneAndUpdate(
-        {userId},
+        {_id: context.user._id},
         {
           $inc: {currentHomePoints: earnedPoints, lifetimeHomePoints: earnedPoints}
         },
