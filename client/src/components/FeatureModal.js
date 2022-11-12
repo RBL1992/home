@@ -76,7 +76,7 @@ const FeatureModal = (props) => {
                     const data = await addAlarm({
                         variables: {userId, ...feature},
                     });
-                    if(data) {props.setFeatureList(...props.featureList, data.data.addAlarmToHome.alarm);}
+                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addAlarmToHome.alarm]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
@@ -88,7 +88,7 @@ const FeatureModal = (props) => {
                         variables: {userId, ...feature},
                     });
                     console.log(data)
-                    if(data) {props.setFeatureList(...props.featureList, data.data.addHvacToHome.hvac);}
+                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addHvacToHome.hvac]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
@@ -99,7 +99,7 @@ const FeatureModal = (props) => {
                     const data = await addGutter({
                         variables: {userId, ...feature},
                     });
-                    if(data) {props.setFeatureList(...props.featureList, data.data.addGutterToHome.gutter);}
+                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addGutterToHome.gutter]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
