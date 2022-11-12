@@ -88,7 +88,7 @@ const FeatureModal = (props) => {
                     const data = await addHvac({
                         variables: {userId, ...feature},
                     });
-                    console.log(data);
+                    console.log(data)
                     if(data) {props.setFeatureList([...props.featureList, ...data.data.addHvacToHome.hvac]);}
                     setFeatureState('');
                 } catch(err) {
