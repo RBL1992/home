@@ -27,9 +27,6 @@ const resolvers = {
         return userProfile
       }
     },
-    rewards: async (parent, context) => {
-      
-    }
   },
 
   Mutation: {
