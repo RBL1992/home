@@ -13,10 +13,10 @@ import Home from "./pages/Home";
 import Landingpage from "./pages/Landingpage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-// import Assistant from "./pages/Assistant";
 // import Friends from './pages/Friends';
 import Profile from "./pages/Profile.js";
 import Rewards from "./pages/Rewards.js";
+import RewardsMarket from "./pages/RewardsMarket"
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -55,14 +55,13 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
-              {/* <Route path="/assistant" element={<Assistant />} /> */}
               <Route path="/rewards" element={<Rewards />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/rewards-market" element={<RewardsMarket />} />
             </Routes>
           </div>
         </div>
         <Footer />
-
       </Router>
     </ApolloProvider>
   );

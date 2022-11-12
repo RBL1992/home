@@ -57,6 +57,7 @@ const typeDefs = gql`
     getAllHomes: [Home]
     me: Home
     profile: User
+    
   }
 
   type Mutation {
