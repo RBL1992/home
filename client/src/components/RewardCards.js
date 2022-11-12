@@ -23,11 +23,12 @@ const styles = {
 };
 
 const RewardCards = (props) => {
+  console.log(props)
     return (
       <div className="flex flex-row justify-center">
         <div style={styles.userCard}>
           <div>
-            <p style={styles.userDetail}>Usable Reward Points:  
+            <p style={styles.userDetail}>Usable Reward Points: 
               {props.profileInfo.currentHomePoints}
             </p>
             <p style={styles.userDetail}>Lifetime Reward Points: 

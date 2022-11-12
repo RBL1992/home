@@ -1,7 +1,7 @@
 import React from "react";
 import UserProfile from "../components/UserProfile";
 import '../Profile.css';
-import { QUERY_PROFILE } from "../utils/queries";
+import { QUERY_PROFILE, QUERY_REWARDS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import RewardCards from "../components/RewardCards";
 
@@ -11,9 +11,12 @@ const styles = {
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_PROFILE);
-
+  const {loadingRewards, dataRewards} = useQuery(QUERY_REWARDS);
+  
   const profileInfo = data?.profile || {};
+  const rewardsInfo = data?.rewards || {}
 
+  console.log(profileInfo)
   if (loading) {
     return <div> Loading ... </div>;
   }
@@ -27,7 +30,7 @@ const Profile = () => {
       </div>
       <div>
         <RewardCards
-        rewards={rewards}
+        rewards={rewardsInfo} profileInfo={profileInfo}
        />
       </div>
     </div>
