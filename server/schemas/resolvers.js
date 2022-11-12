@@ -13,7 +13,7 @@ const resolvers = {
     getAllHomes: async () => {
       return HomeAssistant.find({});
     },
-    me: async (parent, args, context) => {
+    me: async (parent, context) => {
       if (context.user) {
         // const userData = await User.findOne({_id: context.user._id}).select("-__v -password")
         const homeAssistantData = await HomeAssistant.findOne({userId: context.user._id}).populate('filter')
@@ -21,11 +21,14 @@ const resolvers = {
       }
       throw new AuthenticationError("Not Logged In");
     },
-    profile: async (parent, args, context) => {
+    profile: async (parent, context) => {
       if (context.user) {
         const userProfile = await User.findOne({ userId: context.user._id })
         return userProfile
       }
+    },
+    rewards: async (parent, context) => {
+      
     }
   },
 
