@@ -55,7 +55,8 @@ export const QUERY_PROFILE = gql`
       firstName
       lastName
       phoneNumber
-      homePoints
+      currentHomePoints
+      lifetimeHomePoints
     }
   }
 `;

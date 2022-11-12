@@ -3,6 +3,7 @@ import UserProfile from "../components/UserProfile";
 import '../Profile.css';
 import { QUERY_PROFILE } from "../utils/queries";
 import { useQuery } from "@apollo/client";
+import RewardCards from "../components/RewardCards";
 
 const styles = {
 
@@ -25,7 +26,9 @@ const Profile = () => {
         />
       </div>
       <div>
-        {/* Status bar and contstruction points total */}
+        <RewardCards
+        profileInfo={profileInfo}
+       />
       </div>
     </div>
   );
