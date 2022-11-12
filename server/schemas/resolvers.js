@@ -26,6 +26,9 @@ const resolvers = {
         const userProfile = await User.findOne({ userId: context.user._id })
         return userProfile
       }
+    },
+    rewards: async () => {
+      return Rewards.find({});
     }
   },
 
@@ -120,7 +123,7 @@ const resolvers = {
       );
       return newHvac;
     },
-    earnPoints: async (_, _, context) => {
+    earnPoints: async (_, __, context) => {
       const earnedPoints = 250;
       const addPoints = User.findOneAndUpdate(
         {_id: context.user._id},
