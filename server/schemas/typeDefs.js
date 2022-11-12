@@ -51,12 +51,15 @@ const typeDefs = gql`
     user: User
   }
 
+  type Rewards {rewardDescription: String
+    homePointsCost: Int}
   type Query {
     getAllUsers: [User]
     allUserFeatures(userId: String!): [Home]
     getAllHomes: [Home]
     me: Home
     profile: User
+    rewards: Rewards
   }
 
   type Mutation {
