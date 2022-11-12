@@ -1,7 +1,7 @@
 import React from "react";
 import UserProfile from "../components/UserProfile";
 import '../Profile.css';
-import { QUERY_PROFILE, QUERY_REWARDS } from "../utils/queries";
+import { QUERY_PROFILE } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import RewardCards from "../components/RewardCards";
 
@@ -13,7 +13,6 @@ const Profile = () => {
   const { loading, data } = useQuery(QUERY_PROFILE);
   
   const profileInfo = data?.profile || {};
-  const rewardsInfo = dataRewards?.rewards || {}
 
   console.log(profileInfo)
   if (loading) {
