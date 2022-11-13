@@ -47,7 +47,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex flex-col justify-center h-full">
+        <div className="flex flex-col justify-center h-full mx-48">
           <Header />
           <div className="container flex flex-col min-h-screen">
             <Routes>
@@ -60,8 +60,8 @@ function App() {
               <Route path="/profile" element={<Profile />} />
             </Routes>
           </div>
+          <Footer />
         </div>
-        <Footer />
 
       </Router>
     </ApolloProvider>

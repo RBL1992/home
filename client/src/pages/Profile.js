@@ -27,8 +27,8 @@ const Profile = () => {
       </div>
       <div>
         <RewardCards
-        profileInfo={profileInfo}
-       />
+          profileInfo={profileInfo}
+        />
       </div>
     </div>
   );
