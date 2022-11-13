@@ -22,22 +22,30 @@ const styles = {
   },
 };
 
-const RewardCards = (props) => {
-  console.log(props)
-    return (
-      <div className="flex flex-row justify-center">
-        <div style={styles.userCard}>
-          <div>
-            <p style={styles.userDetail}>Usable Reward Points: 
-              {props.profileInfo.currentHomePoints}
-            </p>
-            <p style={styles.userDetail}>Lifetime Reward Points: 
-              {props.profileInfo.lifetimeHomePoints}
-            </p>
+const RewardCards = ({rewardsList}) => {
+  if(!rewardsList.length) {
+  return <h3>No rewards availabile right now.</h3>
+  }
+
+  return (
+    <div>
+      {rewardsList &&
+        rewardsList.map((reward, i) => (
+          <div key={i}>
+            <div className="flex flex-row justify-center">
+              <div style={styles.userCard}>
+                <div>
+                  <p style={styles.userDetail}>Reward Details:  {reward.rewardDescription}
+                  </p>
+                  <p style={styles.userDetail}>Home Point Cost:  {reward.homePointsCost}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    );
+        ))}
+    </div>
+      );
 };
 
 export default RewardCards;

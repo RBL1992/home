@@ -62,7 +62,7 @@ export const QUERY_PROFILE = gql`
 `;
 
 export const QUERY_REWARDS = gql`
-  query Rewards {
+  query Query {
     rewards {
       rewardDescription
       homePointsCost

@@ -1,0 +1,22 @@
+[
+    {
+        "rewardDescription": "5% off your next Home Depot purchase",
+        "homePointsCost": 1000
+    },
+    {
+        "rewardDescription": "5% off your next Amazon purchase",
+        "homePointsCost": 1000
+    },
+    {
+        "rewardDescription": "5% off your next purchase of Kitchen Aid Fridge Filter",
+        "homePointsCost": 1000
+    },
+    {
+        "rewardDescription": "5% off Ned Steven's Gutter Cleaning Service",
+        "homePointsCost": 1000
+    },
+    {
+        "rewardDescription": "Convert your home points to cash and donate to charity!",
+        "homePointsCost": 1000
+    }
+]

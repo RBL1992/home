@@ -1,6 +1,7 @@
 import React from "react";
 import { QUERY_REWARDS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
+import RewardCards from "../components/RewardCards";
 
 const styles = {
   featureCard: {
@@ -14,21 +15,17 @@ const styles = {
 
 const RewardsMarket = () => {
 const { loading, data } = useQuery(QUERY_REWARDS);
-
   const rewards = data?.rewards || {};
-
     if (loading) {
       return <div> Loading ... </div>;
     }
 
   return (
     <div>
-      <div
-        style={styles.featureCard}
-        className="flex flex-row justify-between "
-      >
-        <h3>{rewards.rewardDescription}</h3>
-        <p>{rewards.homePointsCost}</p>
+      <div className="flex flex-row justify-center align-center">
+        <RewardCards
+          rewardsList={rewards}
+        />
       </div>
     </div>
   );
