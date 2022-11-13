@@ -18,5 +18,9 @@
     {
         "rewardDescription": "Convert your home points to cash and donate to charity!",
         "homePointsCost": 1000
+    },
+    {
+        "rewardDescription": "Testing Styles",
+        "homePointsCost": 200000
     }
 ]
