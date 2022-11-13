@@ -515,12 +515,14 @@ export default function Landingpage() {
                             </span>
                         </h2>
                         <div className="mt-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-5">
-                            <a
-                                href="/#"
-                                className="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
-                            >
-                                Learn more
-                            </a>
+                            <Link to={'/signup'}>
+                                <a
+                                    href="/signup"
+                                    className="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
+                                >
+                                    Learn more
+                                </a>
+                            </Link>
                             <Link to={'/signup'}>
                                 <a
                                     href="/signup"
@@ -594,47 +596,6 @@ export default function Landingpage() {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-12 xl:mt-0">
-                            <h3 className="text-base font-medium text-gray-900">Subscribe to our newsletter</h3>
-                            <p className="mt-4 text-base text-gray-500">
-                                The latest news, articles, and resources, sent to your inbox weekly.
-                            </p>
-                            <form className="mt-4 sm:flex sm:max-w-md">
-                                <label htmlFor="email-address" className="sr-only">
-                                    Email address
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email-address"
-                                    id="email-address"
-                                    autoComplete="email"
-                                    required
-                                    className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:placeholder-gray-400 focus:outline-none focus:ring-indigo-500"
-                                    placeholder="Enter your email"
-                                />
-                                <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                                    <button
-                                        type="submit"
-                                        className="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
-                                    >
-                                        Subscribe
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div className="mt-12 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between lg:mt-16">
-                        <div className="flex space-x-6 md:order-2">
-                            {footerNavigation.social.map((item) => (
-                                <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
-                                    <span className="sr-only">{item.name}</span>
-                                    <item.icon className="h-6 w-6" aria-hidden="true" />
-                                </a>
-                            ))}
-                        </div>
-                        <p className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
-                            &copy; 2020 Your Company, Inc. All rights reserved.
-                        </p>
                     </div>
                 </div>
             </footer>

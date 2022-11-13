@@ -7,7 +7,7 @@ const resolvers = {
     getAllUsers: async () => {
       return User.find({});
     },
-    allUserFeatures: async (parent, {userId}) => {
+    allUserFeatures: async (parent, { userId }) => {
       return HomeAssistant.find({ userId });
     },
     getAllHomes: async () => {
@@ -16,8 +16,8 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         // const userData = await User.findOne({_id: context.user._id}).select("-__v -password")
-        const homeAssistantData = await HomeAssistant.findOne({userId: context.user._id}).populate('filter')
-        return homeAssistantData
+        const homeAssistantData = await HomeAssistant.findOne({ userId: context.user._id }).populate('filter');
+        return homeAssistantData;
       }
       throw new AuthenticationError("Not Logged In");
     },
@@ -55,35 +55,35 @@ const resolvers = {
 
       return { token, user };
     },
-    addHome: async ( parent, { userId , homeName}) => {
-        const newHome = await HomeAssistant.create({userId , homeName})
-        return newHome
+    addHome: async (parent, { userId, homeName }) => {
+      const newHome = await HomeAssistant.create({ userId, homeName });
+      return newHome;
     },
-    addFilterToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
-        const filterInfo = {
-          brandName, room, lastMaintenanceDate, itemCategory
-        };
+    addFilterToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
+      const filterInfo = {
+        brandName, room, lastMaintenanceDate, itemCategory
+      };
 
-        const newFilter = HomeAssistant.findOneAndUpdate(
-          {userId},
-          {
-            $addToSet: {filter: filterInfo},
-          },
-          {
-            new: true,
-          }
-        );
-        return newFilter;
+      const newFilter = HomeAssistant.findOneAndUpdate(
+        { userId },
+        {
+          $addToSet: { filter: filterInfo },
+        },
+        {
+          new: true,
+        }
+      );
+      return newFilter;
     },
-    addGutterToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
+    addGutterToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const gutterInfo = {
         brandName, room, lastMaintenanceDate, itemCategory
       };
 
       const newGutter = HomeAssistant.findOneAndUpdate(
-        {userId},
+        { userId },
         {
-          $addToSet: {gutter: gutterInfo},
+          $addToSet: { gutter: gutterInfo },
         },
         {
           new: true,
@@ -91,15 +91,15 @@ const resolvers = {
       );
       return newGutter;
     },
-    addAlarmToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
+    addAlarmToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const alarmInfo = {
         brandName, room, lastMaintenanceDate, itemCategory
       };
 
       const newAlarm = HomeAssistant.findOneAndUpdate(
-        {userId},
+        { userId },
         {
-          $addToSet: {alarm: alarmInfo},
+          $addToSet: { alarm: alarmInfo },
         },
         {
           new: true,
@@ -107,15 +107,15 @@ const resolvers = {
       );
       return newAlarm;
     },
-    addHvacToHome: async (_, {userId, brandName, room, lastMaintenanceDate, itemCategory}) => {
+    addHvacToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const hvacInfo = {
         brandName, room, lastMaintenanceDate, itemCategory
       };
 
       const newHvac = HomeAssistant.findOneAndUpdate(
-        {userId},
+        { userId },
         {
-          $addToSet: {hvac: hvacInfo},
+          $addToSet: { hvac: hvacInfo },
         },
         {
           new: true,
@@ -126,9 +126,9 @@ const resolvers = {
     earnPoints: async (_, args, context) => {
       const earnedPoints = 250;
       const addPoints = User.findOneAndUpdate(
-        {_id: context.user._id},
+        { _id: context.user._id },
         {
-          $inc: {currentHomePoints: earnedPoints, lifetimeHomePoints: earnedPoints}
+          $inc: { currentHomePoints: earnedPoints, lifetimeHomePoints: earnedPoints }
         },
         {
           new: true,
@@ -137,6 +137,6 @@ const resolvers = {
       return addPoints;
     }
   },
-}
+};
 
 module.exports = resolvers;
