@@ -19,7 +19,7 @@ const Signup = () => {
     const [addUser, { error, data }] = useMutation(ADD_USER);
 
     // Attempting to add a home when a user is created
-    const [addHome, { e, homeData}] = useMutation(ADD_HOME);
+    const [addHome, { e, homeData }] = useMutation(ADD_HOME);
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -41,10 +41,10 @@ const Signup = () => {
                 variables: { ...formState },
             });
 
-            console.log("userId: " + data.addUser.user._id + " homeName: " + formState.homeName)
+            console.log("userId: " + data.addUser.user._id + " homeName: " + formState.homeName);
             const home = await addHome({
-                variables: { addHomeUserId: data.addUser.user._id, homeName: formState.homeName}
-            })
+                variables: { addHomeUserId: data.addUser.user._id, homeName: formState.homeName }
+            });
 
             Auth.login(data.addUser.token);
         } catch (e) {
@@ -153,24 +153,6 @@ const Signup = () => {
                                         onChange={handleChange}
                                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     />
-                                </div>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center">
-                                    <input
-                                        id="remember-me"
-                                        name="remember-me"
-                                        type="checkbox"
-                                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    />
-                                    <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                        Remember me
-                                    </label>
-                                </div>
-                                <div className="text-sm">
-                                    <a href="/#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                        Forgot your password?
-                                    </a>
                                 </div>
                             </div>
                             <div>
