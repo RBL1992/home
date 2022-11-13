@@ -6,12 +6,12 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Auth from '../../utils/auth';
 
 
-const navigation = [
-  { name: "Rewards Market", href: "/rewards-market", current: false },
-];
+const navigation = [];
 
 if (!Auth.loggedIn()) {
   navigation.push({ name: 'Sign Up or Log In', href: '/signup', current: false });
+} else {
+  navigation.push({ name: "Rewards Market", href: "/rewards-market", current: false })
 }
 
 function classNames(...classes) {
