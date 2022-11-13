@@ -7,7 +7,7 @@ import Auth from '../../utils/auth';
 
 
 const navigation = [
-  { name: 'Rewards', href: '/rewards', current: false },
+  { name: "Rewards Market", href: "/rewards-market", current: false },
 ];
 
 if (!Auth.loggedIn()) {

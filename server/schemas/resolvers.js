@@ -23,9 +23,12 @@ const resolvers = {
     },
     profile: async (parent, args, context) => {
       if (context.user) {
-        const userProfile = await User.findOne({ userId: context.user._id });
-        return userProfile;
+        const userProfile = await User.findOne({ _id: context.user._id })
+        return userProfile
       }
+    },
+    rewards: async () => {
+      return Rewards.find({});
     }
   },
 
