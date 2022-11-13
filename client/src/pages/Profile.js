@@ -5,16 +5,13 @@ import { QUERY_PROFILE } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import RewardCards from "../components/RewardCards";
 
-const styles = {
-
-};
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_PROFILE);
-  
+
   const profileInfo = data?.profile || {};
 
-  console.log(profileInfo)
+  console.log(profileInfo);
   if (loading) {
     return <div> Loading ... </div>;
   }
@@ -27,7 +24,7 @@ const Profile = () => {
       </div>
       <div>
         <RewardCards profileInfo={profileInfo}
-       />
+        />
       </div>
     </div>
   );
