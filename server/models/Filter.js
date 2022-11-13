@@ -1,4 +1,7 @@
-const { Schema, model } = require("mongoose");
+const {Schema, model} = require("mongoose");
+const dayjs = require('dayjs');
+var AdvancedFormat = require('dayjs/plugin/advancedFormat');
+dayjs.extend(AdvancedFormat); 
 
 const filterSchema = new Schema({
   brandName: {
@@ -11,6 +14,7 @@ const filterSchema = new Schema({
   lastMaintenanceDate: {
     type: Date,
     required: true,
+    get: (time) => dayjs(time).format("MMM Do, YYYY")
   },
   itemCategory: {
     type: String,
