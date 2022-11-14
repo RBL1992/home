@@ -4,6 +4,8 @@ import gutterIcon from "../images/gutter.svg";
 import alarmIcon from "../images/fireAlarm.svg";
 import hvacIcon from "../images/fan.svg";
 import deleteIcon from "../images/delete.svg";
+
+import EditModal from "./EditModal"
 import {useMutation} from '@apollo/client';
 import {useQuery} from "@apollo/client";
 import {REMOVE_FILTER, REMOVE_ALARM, REMOVE_HVAC, REMOVE_GUTTER} from '../utils/mutations';
@@ -136,8 +138,11 @@ export default function Card({featureList, setFeatureList}) {
               className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
             >
               <div className="flex flex-1 flex-col p-8">
-                <div className="flex flex-row-reverse">
-                  <button onClick={deleteFeature} ><img name={feature.__typename} data-id={feature._id} className="min-w-min h-5 w-5 flex-shrink-0 " src={deleteIcon} alt="" /></button></div>
+                <div className="flex justify-between">
+                  <EditModal feature={feature}/>
+                  <button onClick={deleteFeature} ><img name={feature.__typename} data-id={feature._id} className="min-w-min h-5 w-5 flex-shrink-0 " src={deleteIcon} alt="" />
+                  </button>
+                  </div>
                 <img className="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src={feature.image} alt="" />
                 <h3 className="mt-6 text-sm font-medium text-gray-900">Category: {feature.itemCategory}</h3>
                 <dl className="mt-1 flex flex-grow flex-col justify-between">

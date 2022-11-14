@@ -200,6 +200,71 @@ const resolvers = {
       );
       return removedHvac;
     },
+
+    editFilter: async (_, {_id, brandName, room, lastMaintenanceDate, itemCategory
+    }) => {
+      const filterInfo = {
+        brandName, room, lastMaintenanceDate, itemCategory
+      }
+      const editFilter = HomeAssistant.findOneAndUpdate(
+        {"filter._id":_id},
+        {
+          $set: {"filter.$": filterInfo}
+        },
+        {
+          new: true,
+        }
+      );
+      return editFilter;
+    },
+    editAlarm: async (_, {_id, brandName, room, lastMaintenanceDate, itemCategory
+    }) => {
+      const alarmInfo = {
+        brandName, room, lastMaintenanceDate, itemCategory
+      };
+      const editAlarm = HomeAssistant.findOneAndUpdate(
+        {"alarm._id": _id},
+        {
+          $set: {"alarm.$": alarmInfo}
+        },
+        {
+          new: true,
+        }
+      );
+      return editAlarm;
+    },
+    editGutter: async (_, {_id, brandName, room, lastMaintenanceDate, itemCategory
+    }) => {
+      const gutterInfo = {
+        brandName, room, lastMaintenanceDate, itemCategory
+      };
+      const editGutter = HomeAssistant.findOneAndUpdate(
+        {"gutter._id": _id},
+        {
+          $set: {"gutter.$": gutterInfo}
+        },
+        {
+          new: true,
+        }
+      );
+      return editGutter;
+    },
+    editHvac: async (_, {_id, brandName, room, lastMaintenanceDate, itemCategory
+    }) => {
+      const hvacInfo = {
+        brandName, room, lastMaintenanceDate, itemCategory
+      };
+      const editHvac = HomeAssistant.findOneAndUpdate(
+        {"hvac._id": _id},
+        {
+          $set: {"hvac.$": hvacInfo}
+        },
+        {
+          new: true,
+        }
+      );
+      return editHvac;
+    },
   },
 };
 
