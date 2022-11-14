@@ -17,7 +17,7 @@ import {
     UsersIcon,
     XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+// import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 const solutions = [
     {
@@ -330,7 +330,7 @@ export default function Landingpage() {
                 <div className="relative overflow-hidden pt-16 pb-32">
                     <div aria-hidden="true" className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-gray-100" />
                     <div className="relative">
-                        <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
+                        <div className="lg:mx-4 lg:grid lg:max-w-8xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-8 lg:px-8">
                             <div className="mx-auto max-w-xl px-4 sm:px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
                                 <div>
                                     <div>
@@ -383,7 +383,7 @@ export default function Landingpage() {
                                 </div>
                             </div>
                             <div className="mt-12 sm:mt-16 lg:mt-0">
-                                <div className="-mr-48 pl-4 sm:pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
+                                <div className=" px-4 sm:pl-6 lg:relative lg:m-0 lg:h-full lg:px-0">
                                     <img
                                         className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
                                         src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg"
@@ -394,8 +394,8 @@ export default function Landingpage() {
                         </div>
                     </div>
                     <div className="mt-24">
-                        <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
-                            <div className="mx-auto max-w-xl px-4 sm:px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-32 lg:px-0">
+                        <div className="2xl:mx-auto 2xl:grid 2xl:max-w-8xl 2xl:grid-flow-col-dense 2xl:grid-cols-2 2xl:gap-8 lg:px-8">
+                            <div className="mx-auto max-w-xl px-4 sm:px-6 2xl:col-start-2 2xl:mx-0 2xl:max-w-none 2xl:py-32 2xl:px-0">
                                 <div>
                                     <div>
                                         <span className="flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600">
@@ -424,10 +424,10 @@ export default function Landingpage() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-12 sm:mt-16 lg:col-start-1 lg:mt-0">
-                                <div className="-ml-48 pr-4 sm:pr-6 md:-ml-16 lg:relative lg:m-0 lg:h-full lg:px-0">
+                            <div className="mt-12 sm:mt-16 2xl:col-start-1 2xl:mt-0">
+                                <div className=" px-4 sm:pr-6  lg:relative  2xl:h-full 2xl:px-0">
                                     <img
-                                        className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
+                                        className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 2xl:absolute 2xl:right-0 2xl:h-full 2xl:w-auto lg:max-w-none"
                                         src="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg"
                                         alt="Customer profile user interface"
                                     />

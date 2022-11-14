@@ -46,9 +46,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex flex-col justify-center h-full mx-48">
+        <div className="flex flex-col justify-center h-full">
           <Header />
-          <div className="container flex flex-col min-h-screen">
+          <div className="container flex flex-col min-h-screen min-w-full">
             <Routes>
               <Route path="/" element={<Landingpage />} />
               <Route path="/home" element={<Home />} />

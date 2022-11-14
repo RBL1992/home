@@ -35,7 +35,7 @@ const Profile = () => {
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
 
-            <div className="py-6">
+            <div>
               <div className=" rounded-lg border-4 border-dashed border-gray-200  place-items-center">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 m-12">
                   {/* container 1 */}
@@ -44,12 +44,12 @@ const Profile = () => {
                   </div>
 
                   {/* container 2 */}
-                  <div className="h-32 rounded col-span-1 flex flex-col divide-y divide-gray-200 bg-white text-center drop-shadow-lg place-items-center">
+                  <div className="h-auto w-auto rounded col-span-1 flex flex-col bg-white text-center drop-shadow-lg place-items-center">
                     <RewardCards profileInfo={profileInfo} />
                     <a href="/rewards-market">
                       <button
                         type="button"
-                        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 "
+                        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-2 mb-4"
                         id="feature-btn">
                         See Rewards
                       </button>
