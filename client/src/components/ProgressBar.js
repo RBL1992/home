@@ -2,32 +2,36 @@ import React from "react";
 
 const ProgressBar = (props) => {
   const { bgcolor, completed } = props;
-  
+  let fillerVar = completed * .01
 
-  const containerStyles = {
-    height: 20,
+  const contStyle = {
+    maxHeight: 24,
     width: '100%',
     backgroundColor: "#e0e0de",
     borderRadius: 50,
   }
 
-  const fillerStyles = {
-    width: `${completed}points`,
+  const fillStyle = {
+    height: 24,
+    width: `${fillerVar}%`,
+    minWidth: '1%',
+    maxWidth: '100%',
     backgroundColor: bgcolor,
     borderRadius: 'inherit',
     textAlign: 'center'
   }
 
-  const labelStyles = {
-    padding: 5,
+  const labelStyle = {
     color: 'white',
     fontWeight: 'bold'
   }
 
+
+
   return (
-    <div style={containerStyles}>
-      <div style={fillerStyles}>
-        <span style={labelStyles}>{`${completed} points`}</span>
+    <div style={contStyle}>
+      <div style={fillStyle} id="bar">
+        <span style={labelStyle}>{`${completed} points`}</span>
       </div>
     </div>
   );
