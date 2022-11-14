@@ -26,9 +26,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.get("/*", (_, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
-});
+// app.get("/*", (_, res) => {
+//   res.sendFile(path.join(__dirname, "../public/index.html"));
+// });
 
 
 // Create a new instance of an Apollo server with the GraphQL schema

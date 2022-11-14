@@ -48,29 +48,29 @@ const Header = () => {
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                       <div className="flex flex-shrink-0 items-center">
                         <Link to={'/home'}>
-                          <a href='/home' alt='Logo'>
+                          {/* <a href='/home' alt='Logo'> */}
                             <img
                               className="block h-12 w-auto lg:hidden"
                               src={Logo}
                               alt="Your Company"
                             />
-                          </a>
+                          {/* </a> */}
                         </Link>
                         <Link to={'/home'}>
-                          <a href='/home' alt='Logo'>
+                          {/* <a href='/home' alt='Logo'> */}
                             <img
                               className="hidden h-14 w-auto lg:block"
                               src={Logo}
                               alt="Your Company"
                             />
-                          </a>
+                          {/* </a> */}
                         </Link>
                       </div>
                       <div className="hidden sm:ml-6 sm:inline-flex">
                         <div className="flex space-x-4">
                           {navigation.map((item) => (
                             <Link to={item.href} className="self-center">
-                              <a
+                              {/* <a
                                 key={item.name}
                                 href={item.href}
                                 className= {classNames(
@@ -78,9 +78,9 @@ const Header = () => {
                                   'px-3 py-2 rounded-md text-sm font-medium'
                                 )}
                                 aria-current={item.current ? 'page' : undefined}
-                              >
+                              > */}
                                 {item.name}
-                              </a>
+                              {/* </a> */}
                             </Link>
                           ))}
                         </div>
@@ -113,12 +113,12 @@ const Header = () => {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link to={'/profile'}>
-                                  <a
+                                  {/* <a
                                     href="/profile"
                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                  >
+                                  > */}
                                     Your Profile
-                                  </a>
+                                  {/* </a> */}
                                 </Link>
                               )}
                             </Menu.Item>
@@ -195,7 +195,7 @@ const Header = () => {
                       <div className="flex space-x-4">
                         {navigation.map((item) => (
                           <Link to={item.href}>
-                            <a
+                            {/* <a
                               key={item.name}
                               href={item.href}
                               className={classNames(
@@ -203,9 +203,9 @@ const Header = () => {
                                 'px-3 py-2 rounded-md text-sm font-medium'
                               )}
                               aria-current={item.current ? 'page' : undefined}
-                            >
+                            > */}
                               {item.name}
-                            </a>
+                            {/* </a> */}
                           </Link>
                         ))}
                       </div>
