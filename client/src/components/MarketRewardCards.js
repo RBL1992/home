@@ -1,6 +1,9 @@
 import React from "react";
-import { QUERY_PROFILE } from "../utils/queries";
-import { useQuery } from "@apollo/client";
+import {QUERY_PROFILE, QUERY_ME} from "../utils/queries";
+import {REDEEM_POINTS} from "../utils/mutations";
+import {useQuery} from "@apollo/client";
+import {useMutation} from '@apollo/client';
+import redeemIcon from "../images/redeem.svg";
 
 //styling for different card types NEEDS to be updateds
 const styles = {
@@ -16,41 +19,61 @@ const styles = {
     boxShadow: "0px 2px 5px 0px rgba(0,0,0,0.75)",
     padding: 20,
   },
+  redeemBtn: {
+    backgroundColor: "rgb(113 113 122)",
+  },
 };
 
-const MarketRewardCards = ({ rewardsList }) => {
-  const { loading, data, error } = useQuery(QUERY_PROFILE);
+const MarketRewardCards = ({rewardsList}) => {
+  const {loading, data, error} = useQuery(QUERY_PROFILE);
   const profileInfo = data?.profile || {};
+  const userId = profileInfo._id
+
+
   // getting the points for the current user
   const userPoints = profileInfo.currentHomePoints;
+
   // determining which style to apply based on the reward cost and user's points
   const cardStyle = (rewardCost) => {
-    if (userPoints >= rewardCost) {
+    if(userPoints >= rewardCost) {
       return styles.affordable;
-    } else { return styles.unaffordable; }
+    } else {return styles.unaffordable;}
   };
-  // mapping a new key value pair to each object in rewardsList to give back the right style
-  const newRewardsList = rewardsList.map(reward => ({ ...reward, styles: cardStyle(reward.homePointsCost) }));
+  const [redeemPoints, {error3}] = useMutation(REDEEM_POINTS);
 
-  if (!rewardsList.length) {
+  const spendPoints = async (event) => {
+    event.preventDefault();
+    const redeemedPoints = parseInt(event.target.parentNode.parentNode.firstChild.children[1].textContent)
+    // const clickedBtn = event.target.parentNode
+
+    try {
+      const data = await redeemPoints({
+        variables: {userId, redeemedPoints}
+      });
+      console.log(data);
+    } catch(err) {
+      console.error(err);
+    };
+  }
+
+  // mapping a new key value pair to each object in rewardsList to give back the right style
+  const newRewardsList = rewardsList.map(reward => ({...reward, styles: cardStyle(reward.homePointsCost)}));
+
+  if(!rewardsList.length) {
     return <h3>No rewards availabile right now.</h3>;
   }
   return (
-    <div className="">
+    <div>
       {rewardsList &&
         newRewardsList.map((reward, i) => (
-          <div key={i} className="flex flex-row justify-start align-center max-w-md">
-            <div className="my-6">
-              <div className="rounded-md" style={reward.styles}>
-                <div>
-                  <p>Reward Details:  {reward.rewardDescription}
-                  </p>
-                  <p>Home Point Cost:  {reward.homePointsCost}
-                  </p>
-                </div>
-              </div>
+          <div key={i} className="my-6 flex flex-column justify-center" >
+            <div className="flex justify-between items-center mx-3 w-4/5 rounded-md self-center" style={reward.styles}>
+                <p className="mx-5">{reward.rewardDescription}</p>
+                <p className="mx-5">{reward.homePointsCost}</p>
             </div>
-          </div>
+            <button onClick={spendPoints}> <img className="mx-auto h-12 w-12 flex-shrink-0 rounded-full" src={redeemIcon} alt="" />
+              </button>
+            </div>
         ))}
     </div>
   );

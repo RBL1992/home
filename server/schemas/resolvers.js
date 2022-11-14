@@ -135,7 +135,19 @@ const resolvers = {
         }
       );
       return addPoints;
-    }
+    },
+    redeemPoints: async (_, args, context) => {
+      const redeemPoints = User.findOneAndUpdate(
+        {_id: context.user._id},
+        {
+          $inc: {currentHomePoints: -args.redeemedPoints}
+        },
+        {
+          new: true,
+        }
+      );
+      return redeemPoints;
+    },
   },
 };
 

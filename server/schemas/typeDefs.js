@@ -112,8 +112,14 @@ const typeDefs = gql`
     ): Home
 
     addHome(userId: String!, homeName: String!): Home
+
     earnPoints(
         userId: ID!
+    ): User
+
+    redeemPoints(
+       userId: ID!
+       redeemedPoints: Int
     ): User
   }
 `;
