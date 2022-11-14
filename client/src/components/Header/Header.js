@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Auth from '../../utils/auth';
-import Logo from '../../images/home-logo-2.png'
+import Logo from '../../images/home-logo-2.png';
 
 
 const navigation = [];
@@ -199,13 +199,13 @@ const Header = () => {
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="flex flex-shrink-0 items-center">
                       <img
-                        className="block h-8 w-auto lg:hidden"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="block h-12 w-auto lg:hidden"
+                        src={Logo}
                         alt="Your Company"
                       />
                       <img
-                        className="hidden h-8 w-auto lg:block"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="hidden h-14 w-auto lg:block"
+                        src={Logo}
                         alt="Your Company"
                       />
                     </div>
