@@ -34,6 +34,7 @@ mutation AddFilterToHome($userId: String!, $room: String!, $lastMaintenanceDate:
     filter {
       brandName
       itemCategory
+      nextMaintenanceDate
       lastMaintenanceDate
       room
     }
@@ -48,6 +49,7 @@ mutation AddAlarmToHome($userId: String!, $room: String!, $lastMaintenanceDate: 
     alarm {
       brandName
       itemCategory
+      nextMaintenanceDate
       lastMaintenanceDate
       room
     }
@@ -63,6 +65,7 @@ mutation AddHvacToHome($userId: String!, $room: String!, $lastMaintenanceDate: S
     hvac {
       brandName
       itemCategory
+      nextMaintenanceDate
       lastMaintenanceDate
       room
     }
@@ -78,6 +81,7 @@ mutation AddGutterToHome($userId: String!, $room: String!, $lastMaintenanceDate:
     gutter {
       brandName
       itemCategory
+      nextMaintenanceDate
       lastMaintenanceDate
       room
     }
