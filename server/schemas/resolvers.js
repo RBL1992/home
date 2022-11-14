@@ -148,6 +148,58 @@ const resolvers = {
       );
       return redeemPoints;
     },
+
+    removeFilterFromHome: async (_, args) => {
+      const removedFilter = HomeAssistant.findOneAndUpdate(
+        {userId: args.userId},
+        {
+          $pull: {filter: {_id: args._id}},
+        },
+        {
+          new: true,
+        }
+      );
+      return removedFilter;
+    },
+
+    removeAlarmFromHome: async (_, args) => {
+      const removedAlarm = HomeAssistant.findOneAndUpdate(
+        {userId: args.userId},
+        {
+          $pull: {alarm: {_id: args._id}},
+        },
+        {
+          new: true,
+        }
+      );
+      return removedAlarm;
+    },
+
+    removeGutterFromHome: async (_, args) => {
+      const removedGutter = HomeAssistant.findOneAndUpdate(
+        {userId: args.userId},
+        {
+          $pull: {gutter: {_id: args._id}},
+        },
+        {
+          new: true,
+        }
+      );
+      return removedGutter;
+    },
+
+    removeHvacFromHome: async (_, args) => {
+      const removedHvac = HomeAssistant.findOneAndUpdate(
+        {userId: args.userId},
+        {
+          $pull: {hvac: {_id: args._id}},
+        },
+        {
+          new: true,
+        }
+      );
+      return removedHvac;
+    },
   },
 };
 

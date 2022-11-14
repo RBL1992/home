@@ -54,7 +54,7 @@ const Home = () => {
 
                 <div className="flex flex-row justify-center align-center my-5">
                   <Card
-                    featureList={featureList}
+                    featureList={featureList} setFeatureList={setFeatureList}
                   />
                 </div>
               </div>
