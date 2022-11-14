@@ -145,6 +145,38 @@ const typeDefs = gql`
       userId: ID!
       _id:ID!
     ): Home
+
+    editFilter(
+      _id:ID!
+      brandName: String
+      room: String
+      lastMaintenanceDate: String
+      itemCategory: String
+    ): Home
+
+    editAlarm(
+      _id:ID!
+      brandName: String
+      room: String
+      lastMaintenanceDate: String
+      itemCategory: String
+    ): Home
+
+    editGutter(
+      _id:ID!
+      brandName: String
+      room: String
+      lastMaintenanceDate: String
+      itemCategory: String
+    ): Home
+
+    editHvac(
+      _id:ID
+      brandName: String
+      room: String
+      lastMaintenanceDate: String
+      itemCategory: String
+    ): Home
   }
 `;
 
