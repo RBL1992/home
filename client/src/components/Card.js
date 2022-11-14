@@ -1,14 +1,17 @@
-import {typeFromAST} from "graphql";
 import React from "react";
+import filterIcon from "../images/filter.svg"
+import gutterIcon from "../images/gutter.svg";
+import alarmIcon from "../images/fireAlarm.svg";
+import hvacIcon from "../images/fan.svg";
 const dayjs = require('dayjs');
 var AdvancedFormat = require('dayjs/plugin/advancedFormat');
 dayjs.extend(AdvancedFormat);
 
 const icons = {
-  Filter: "test",
-  Gutter: "test2",
-  Alarm: "test3",
-  Hvac: "test4"
+  Filter: filterIcon,
+  Gutter: gutterIcon,
+  Alarm: alarmIcon,
+  Hvac: hvacIcon
 }
 
 const styles = {
@@ -44,18 +47,18 @@ export default function Card({featureList}) {
     }
   };
   const featureIcon = (typename) => {
-    if(typename = "Filter") {
-      return icons.Filter;
-    } else if (typename = 'Alarm'){
-      return icons.Alarm;
-    } else if(typename = 'Gutter') {
-      return icons.Gutter;
+    if(typename === "Filter") {
+      return icons.Filter
+    } else if (typename === 'Alarm'){
+      return icons.Alarm
+    } else if(typename === 'Gutter') {
+      return icons.Gutter
     } else {return icons.Hvac}
   }
 
   // mapping a new key value pair to each object in featureList to give back the right style
   const newFeatureList = featureList.map(feature => ({...feature, styles: cardStyle(feature.nextMaintenanceDate), image: featureIcon(feature.__typename)}));
-
+console.log(newFeatureList)
   if(!featureList.length) {
     return <h3> No Home Info recorded</h3>;
   }
