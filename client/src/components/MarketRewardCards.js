@@ -44,7 +44,7 @@ const MarketRewardCards = ({ rewardsList }) => {
   const spendPoints = async (event) => {
     event.preventDefault();
 
-    // The below variable finds the "#affordable" hidden div and takes it's style attribute value for the isAffordable comparison
+    // The below variable finds the ".affordable" hidden div and takes it's style attribute value for the isAffordable comparison
     const affordableCSS = document.querySelector(".affordable").getAttribute("style")
     const targetStyle = event.target.parentNode.parentNode.firstChild.getAttribute("style")
     const isAffordable = targetStyle === affordableCSS
