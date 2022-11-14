@@ -103,6 +103,7 @@ mutation EarnPoints($userId: ID!) {
     referralLink
   }
 }`;
+
 export const ADD_HOME = gql`
 mutation AddHome($addHomeUserId: String!, $homeName: String!) {
   addHome(userId: $addHomeUserId, homeName: $homeName) {
@@ -110,4 +111,19 @@ mutation AddHome($addHomeUserId: String!, $homeName: String!) {
     userId
   }
 }
-`
+`;
+
+export const REDEEM_POINTS = gql`
+mutation RedeemPoints($userId: ID!, $redeemedPoints: Int) {
+  redeemPoints(userId: $userId, redeemedPoints: $redeemedPoints) {
+    _id
+    currentHomePoints
+    lifetimeHomePoints
+    firstName
+    email
+    lastName
+    password
+    phoneNumber
+    referralLink
+  }
+}`;

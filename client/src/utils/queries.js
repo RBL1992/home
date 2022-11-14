@@ -55,6 +55,7 @@ export const QUERY_ME = gql`
 export const QUERY_PROFILE = gql`
   query Query {
     profile {
+      _id
       email
       firstName
       lastName

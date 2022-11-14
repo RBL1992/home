@@ -14,7 +14,7 @@ const RewardsMarket = () => {
 
   return (
     <div className="flex flex-row justify-center align-center">
-      <div>
+      <div className="w-full">
         <MarketRewardCards
           rewardsList={rewards} />
       </div>
