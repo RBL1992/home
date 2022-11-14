@@ -19,6 +19,7 @@ const FeatureModal = (props) => {
         itemCategory: '',
         room: '',
         lastMaintenanceDate: '',
+        nextMaintenanceDate:'',
         brandName: '',
     });
     //these are the mutations that will run based on which feature is selected
@@ -64,7 +65,7 @@ const FeatureModal = (props) => {
                     });
                     console.log(data);
                     if(data) {
-                        props.setFeatureList([...props.featureList, ...data.data.addFilterToHome.filter]);
+                        props.setFeatureList([...props.featureList, data.data.addFilterToHome.filter.pop()]);
                     }
                     setFeatureState('');
                 } catch(err) {
@@ -77,7 +78,7 @@ const FeatureModal = (props) => {
                     const data = await addAlarm({
                         variables: {userId, ...feature},
                     });
-                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addAlarmToHome.alarm]);}
+                    if(data) {props.setFeatureList([...props.featureList, data.data.addAlarmToHome.alarm.pop()]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
@@ -89,7 +90,7 @@ const FeatureModal = (props) => {
                         variables: {userId, ...feature},
                     });
                     console.log(data)
-                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addHvacToHome.hvac]);}
+                    if(data) {props.setFeatureList([...props.featureList, data.data.addHvacToHome.hvac.pop()]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);
@@ -100,7 +101,7 @@ const FeatureModal = (props) => {
                     const data = await addGutter({
                         variables: {userId, ...feature},
                     });
-                    if(data) {props.setFeatureList([...props.featureList, ...data.data.addGutterToHome.gutter]);}
+                    if(data) {props.setFeatureList([...props.featureList, data.data.addGutterToHome.gutter.pop()]);}
                     setFeatureState('');
                 } catch(err) {
                     console.error(err);

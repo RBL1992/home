@@ -1,4 +1,26 @@
 import React from "react";
+const dayjs = require('dayjs');
+var AdvancedFormat = require('dayjs/plugin/advancedFormat');
+dayjs.extend(AdvancedFormat);
+
+const styles = {
+  oneMonth: {
+    backgroundColor: "yellow",
+    color: "black"
+  },
+  oneWeek: {
+    backgroundColor: "orange",
+    color: "black"
+  },
+  maintain: {
+    backgroundColor: "red",
+    color: "white"
+  },
+  normal: {
+    backgroundColor: "gray",
+    color: "white"
+  }
+};
 
 // < div >
 // { featureList &&
@@ -22,14 +44,30 @@ import React from "react";
 // ))}
 //   </ >
 
-export default function Card({ featureList }) {
-  if (!featureList.length) {
+export default function Card({featureList}) {
+  //function to determine which styles need to be applied to each feature maintenance date
+  const cardStyle = (dateMaintain) => {
+    if(dayjs() >= dayjs(dateMaintain).add(-7, 'day') && dayjs() <= dayjs(dateMaintain)) {
+      return styles.oneWeek;
+    } else if(dayjs() >= dayjs(dateMaintain).add(-30, 'day') && dayjs() <= dayjs(dateMaintain)) {
+      return styles.oneMonth;
+    } else if(dayjs() >= dayjs(dateMaintain)) {
+      return styles.maintain;
+    } else {
+      return styles.normal;
+    }
+  };
+
+  // mapping a new key value pair to each object in featureList to give back the right style
+  const newFeatureList = featureList.map(feature => ({...feature, styles: cardStyle(feature.nextMaintenanceDate)}));
+
+  if(!featureList.length) {
     return <h3> No Home Info recorded</h3>;
   }
   return (
     <div>
       <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {featureList && featureList.map((feature, i) => (
+        {featureList && newFeatureList.map((feature, i) => (
           <div key={i}>
             <li
               className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
@@ -43,8 +81,8 @@ export default function Card({ featureList }) {
                   <dd className="text-sm text-gray-500">Room: {feature.room}</dd>
                   <dt className="sr-only">Role</dt>
                   <dd className="mt-3">
-                    <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
-                      {feature.lastMaintenanceDate}
+                    <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800" style={feature.styles}>
+                      {feature.nextMaintenanceDate}
                     </span>
                   </dd>
                 </dl>

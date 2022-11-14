@@ -17,24 +17,28 @@ const typeDefs = gql`
     room: String
     lastMaintenanceDate: String
     itemCategory: String
+    nextMaintenanceDate: String
   }
     type Gutter {
     brandName: String
     room: String
     lastMaintenanceDate: String
     itemCategory: String
+    nextMaintenanceDate: String
   }
     type Alarm {
     brandName: String
     room: String
     lastMaintenanceDate: String
     itemCategory: String
+    nextMaintenanceDate: String
   }
     type Hvac {
     brandName: String
     room: String
     lastMaintenanceDate: String
     itemCategory: String
+    nextMaintenanceDate: String
   }
 
   type Home {
@@ -51,15 +55,18 @@ const typeDefs = gql`
     user: User
   }
 
-  type Rewards {rewardDescription: String
-    homePointsCost: Int}
+  type Rewards {
+    rewardDescription: String
+    homePointsCost: Int
+  }
+
   type Query {
     getAllUsers: [User]
     allUserFeatures(userId: String!): [Home]
     getAllHomes: [Home]
     me: Home
     profile: User
-    rewards: Rewards
+    rewards: [Rewards]
   }
 
   type Mutation {

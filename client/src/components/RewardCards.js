@@ -35,7 +35,6 @@ const RewardCards = (props) => {
             </p>
           </div>
         </div>
-      
     );
 };
 

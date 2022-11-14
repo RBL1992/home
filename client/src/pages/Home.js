@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import FeatureModal from '../components/FeatureModal';
 
-
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 
