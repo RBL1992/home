@@ -10,7 +10,8 @@ import { QUERY_ME } from "../utils/queries";
 const Home = () => {
 
   const [featureList, setFeatureList] = useState([]);
-  const { loading, data, error } = useQuery(QUERY_ME, { onCompleted: (data) => setFeatureList([...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac]) });
+  const {loading, data, error} = useQuery(QUERY_ME, {onCompleted: (data) => setFeatureList([...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac])});
+  console.log(featureList)
 
   if (loading) {
     return <div> Loading ... </div>;
