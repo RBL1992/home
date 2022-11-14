@@ -30,28 +30,6 @@ const styles = {
   }
 };
 
-// < div >
-// { featureList &&
-// featureList.map((feature, i) => (
-//   <div key={i}>
-//     <div
-//       style={styles.featureCard}
-//       className="flex flex-col justify-center align-center"
-//     >
-//       <h3>{feature.itemCategory}</h3>
-//       <img src={feature.image} alt="card img" />
-//       <p className="card-room">Room: {feature.room}</p>
-//       <p className="card-m-date">
-//         Last Maintenance: {feature.lastMaintenanceDate}
-//       </p>
-//       {feature.brandName && (
-//         <p>{feature.brandName}</p>
-//       )}
-//     </div>
-//   </div>
-// ))}
-//   </ >
-
 export default function Card({featureList}) {
   //function to determine which styles need to be applied to each feature maintenance date
   const cardStyle = (dateMaintain) => {
