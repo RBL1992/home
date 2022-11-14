@@ -265,18 +265,22 @@ export default function Landingpage() {
                                 </p>
                                 <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                                     <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
+                                        <Link to={'/signup'}>
                                         <a
                                             href="/#"
                                             className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-50 sm:px-8"
                                         >
                                             New here? Get started
                                         </a>
+                                        </Link>
+                                        <Link to={'/login'}>
                                         <a
                                             href="/#"
                                             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 bg-opacity-60 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-opacity-70 sm:px-8"
                                         >
                                             Log in
                                         </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -433,32 +437,6 @@ export default function Landingpage() {
                     </div>
                 </div>
 
-                {/* Gradient Feature Section */}
-                <div className="bg-gradient-to-r from-purple-800 to-indigo-700">
-                    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pt-24">
-                        <h2 className="text-3xl font-bold tracking-tight text-white">Inbox support built for efficiency</h2>
-                        <p className="mt-4 max-w-3xl text-lg text-purple-200">
-                            Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis. Blandit
-                            aliquam sit nisl euismod mattis in.
-                        </p>
-                        <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
-                            {features.map((feature) => (
-                                <div key={feature.name}>
-                                    <div>
-                                        <span className="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
-                                            <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
-                                        </span>
-                                    </div>
-                                    <div className="mt-6">
-                                        <h3 className="text-lg font-medium text-white">{feature.name}</h3>
-                                        <p className="mt-2 text-base text-purple-200">{feature.description}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
                 {/* Stats section */}
                 <div className="relative bg-gray-900">
                     <div className="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
@@ -535,70 +513,6 @@ export default function Landingpage() {
                     </div>
                 </div>
             </main>
-
-            <footer className="bg-gray-50" aria-labelledby="footer-heading">
-                <h2 id="footer-heading" className="sr-only">
-                    Footer
-                </h2>
-                <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24">
-                    <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-                        <div className="grid grid-cols-2 gap-8 xl:col-span-2">
-                            <div className="md:grid md:grid-cols-2 md:gap-8">
-                                <div>
-                                    <h3 className="text-base font-medium text-gray-900">Solutions</h3>
-                                    <ul role="list" className="mt-4 space-y-4">
-                                        {footerNavigation.solutions.map((item) => (
-                                            <li key={item.name}>
-                                                <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                                                    {item.name}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div className="mt-12 md:mt-0">
-                                    <h3 className="text-base font-medium text-gray-900">Support</h3>
-                                    <ul role="list" className="mt-4 space-y-4">
-                                        {footerNavigation.support.map((item) => (
-                                            <li key={item.name}>
-                                                <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                                                    {item.name}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="md:grid md:grid-cols-2 md:gap-8">
-                                <div>
-                                    <h3 className="text-base font-medium text-gray-900">Company</h3>
-                                    <ul role="list" className="mt-4 space-y-4">
-                                        {footerNavigation.company.map((item) => (
-                                            <li key={item.name}>
-                                                <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                                                    {item.name}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div className="mt-12 md:mt-0">
-                                    <h3 className="text-base font-medium text-gray-900">Legal</h3>
-                                    <ul role="list" className="mt-4 space-y-4">
-                                        {footerNavigation.legal.map((item) => (
-                                            <li key={item.name}>
-                                                <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                                                    {item.name}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     );
 }
