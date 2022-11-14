@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Auth from '../../utils/auth';
+import Logo from '../../images/home-logo-2.png'
 
 
 const navigation = [];
@@ -28,7 +29,7 @@ const Header = () => {
     <>
       {
         loginInfo ? (
-          <Disclosure as="nav" className="bg-gray-800">
+          <Disclosure as="nav" className="bg-gray-900">
             {({ open }) => (
               <>
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -49,8 +50,8 @@ const Header = () => {
                         <Link to={'/home'}>
                           <a href='/home' alt='Logo'>
                             <img
-                              className="block h-8 w-auto lg:hidden"
-                              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                              className="block h-12 w-auto lg:hidden"
+                              src={Logo}
                               alt="Your Company"
                             />
                           </a>
@@ -58,21 +59,21 @@ const Header = () => {
                         <Link to={'/home'}>
                           <a href='/home' alt='Logo'>
                             <img
-                              className="hidden h-8 w-auto lg:block"
-                              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                              className="hidden h-14 w-auto lg:block"
+                              src={Logo}
                               alt="Your Company"
                             />
                           </a>
                         </Link>
                       </div>
-                      <div className="hidden sm:ml-6 sm:block">
+                      <div className="hidden sm:ml-6 sm:inline-flex">
                         <div className="flex space-x-4">
                           {navigation.map((item) => (
-                            <Link to={item.href}>
+                            <Link to={item.href} className="self-center">
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className={classNames(
+                                className= {classNames(
                                   item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                   'px-3 py-2 rounded-md text-sm font-medium'
                                 )}
