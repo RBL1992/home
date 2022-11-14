@@ -37,8 +37,13 @@ const Home = () => {
 
 
         <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Home Features</h1>
+          <div className="flex mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 place-content-between">
+            <div className = "float-left">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900">Home Features</h1>
+            </div>
+                <div className="feature-modal-btn">
+                  <FeatureModal featureList={featureList} setFeatureList={setFeatureList} />
+                </div>
           </div>
         </header>
         <main>
@@ -46,11 +51,8 @@ const Home = () => {
 
             <div className="px-4 py-6 sm:px-0">
               <div className=" rounded-lg border-4 border-dashed border-gray-200">
-                <div className="feature-modal-btn">
-                  <FeatureModal featureList={featureList} setFeatureList={setFeatureList} />
-                </div>
 
-                <div className="flex flex-row justify-center align-center">
+                <div className="flex flex-row justify-center align-center my-5">
                   <Card
                     featureList={featureList}
                   />
