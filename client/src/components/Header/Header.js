@@ -181,17 +181,17 @@ const Header = () => {
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="flex flex-shrink-0 items-center">
                       <img
-                        className="block h-8 w-auto lg:hidden"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="block h-12 w-auto lg:hidden"
+                        src={Logo}
                         alt="Your Company"
                       />
                       <img
-                        className="hidden h-8 w-auto lg:block"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="hidden h-12 w-auto lg:block"
+                        src={Logo}
                         alt="Your Company"
                       />
                     </div>
-                    <div className="hidden sm:ml-6 sm:block">
+                    <div className="hidden sm:ml-6 sm:block self-center">
                       <div className="flex space-x-4">
                         {navigation.map((item) => (
                           <Link to={item.href}>
