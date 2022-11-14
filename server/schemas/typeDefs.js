@@ -17,24 +17,28 @@ const typeDefs = gql`
     room: String
     lastMaintenanceDate: String
     itemCategory: String
+    nextMaintenanceDate: String
   }
     type Gutter {
     brandName: String
     room: String
     lastMaintenanceDate: String
     itemCategory: String
+    nextMaintenanceDate: String
   }
     type Alarm {
     brandName: String
     room: String
     lastMaintenanceDate: String
     itemCategory: String
+    nextMaintenanceDate: String
   }
     type Hvac {
     brandName: String
     room: String
     lastMaintenanceDate: String
     itemCategory: String
+    nextMaintenanceDate: String
   }
 
   type Home {

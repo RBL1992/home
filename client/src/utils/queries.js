@@ -24,24 +24,28 @@ export const QUERY_ME = gql`
         brandName
         itemCategory
         lastMaintenanceDate
+        nextMaintenanceDate
         room
       }
       hvac {
         brandName
         itemCategory
         lastMaintenanceDate
+        nextMaintenanceDate
         room
       }
       alarm {
         brandName
         itemCategory
         lastMaintenanceDate
+        nextMaintenanceDate
         room
       }
       gutter {
         brandName
         itemCategory
         lastMaintenanceDate
+        nextMaintenanceDate
         room
       }
     }

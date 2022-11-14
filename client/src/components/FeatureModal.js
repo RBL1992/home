@@ -19,6 +19,7 @@ const FeatureModal = (props) => {
         itemCategory: '',
         room: '',
         lastMaintenanceDate: '',
+        nextMaintenanceDate:'',
         brandName: '',
     });
     //these are the mutations that will run based on which feature is selected
