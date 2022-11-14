@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import Logo from '../images/home-logo.png';
+
 
 import Auth from '../utils/auth';
 
@@ -47,7 +49,7 @@ const Login = (props) => {
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <img
                         className="mx-auto h-12 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src={Logo}
                         alt="Your Company"
                     />
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Login</h2>
