@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Logo2 from '../images/home-logo.png'
 import { useMutation } from '@apollo/client';
 import { ADD_USER, ADD_HOME } from '../utils/mutations';
 import Logo from '../images/home-logo.png';

@@ -209,7 +209,7 @@ const Header = () => {
                         alt="Your Company"
                       />
                     </div>
-                    <div className="hidden sm:ml-6 sm:block">
+                    <div className="hidden sm:ml-6 sm:block self-center">
                       <div className="flex space-x-4">
                         {navigation.map((item) => (
                           <Link to={item.href} key={item.name}

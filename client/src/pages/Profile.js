@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserProfile from "../components/UserProfile";
 import '../Profile.css';
 import { QUERY_PROFILE } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import RewardCards from "../components/RewardCards";
+import ProgressBar from "../components/ProgressBar";
 import { Link } from "react-router-dom";
 
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_PROFILE);
+  const [completed, setCompleted] = useState(0);
 
+  
   const profileInfo = data?.profile || {};
+  useEffect(()=>{
+    console.log(profileInfo);
+    setCompleted(profileInfo.lifetimeHomePoints)
+  })
 
-  console.log(profileInfo);
   if (loading) {
     return <div> Loading ... </div>;
   }
@@ -29,8 +35,12 @@ const Profile = () => {
     */}
       <div className="min-h-full">
         <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 grid grid-cols-2">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">Profile</h1>
+            <h2 className="pr-10 font-bold">Point Progress
+              <ProgressBar bgcolor={"#6a1b9a"} completed={profileInfo.lifetimeHomePoints}/>
+              
+            </h2>
           </div>
         </header>
         <main>
