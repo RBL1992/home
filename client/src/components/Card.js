@@ -1,8 +1,16 @@
 import React from "react";
-import filterIcon from "../images/filter.svg"
+import filterIcon from "../images/filter.svg";
 import gutterIcon from "../images/gutter.svg";
 import alarmIcon from "../images/fireAlarm.svg";
 import hvacIcon from "../images/fan.svg";
+import deleteIcon from "../images/delete.svg";
+
+import EditModal from "./EditModal"
+import {useMutation} from '@apollo/client';
+import {useQuery} from "@apollo/client";
+import {REMOVE_FILTER, REMOVE_ALARM, REMOVE_HVAC, REMOVE_GUTTER} from '../utils/mutations';
+import {QUERY_ME} from "../utils/queries";
+
 const dayjs = require('dayjs');
 var AdvancedFormat = require('dayjs/plugin/advancedFormat');
 dayjs.extend(AdvancedFormat);
@@ -12,7 +20,7 @@ const icons = {
   Gutter: gutterIcon,
   Alarm: alarmIcon,
   Hvac: hvacIcon
-}
+};
 
 const styles = {
   oneMonth: {
@@ -33,7 +41,15 @@ const styles = {
   }
 };
 
-export default function Card({featureList}) {
+export default function Card({featureList, setFeatureList}) {
+  const [removeFilter, {error1}] = useMutation(REMOVE_FILTER);
+  const [removeAlarm, {error2}] = useMutation(REMOVE_ALARM);
+  const [removeHvac, {error3}] = useMutation(REMOVE_HVAC);
+  const [removeGutter, {error4}] = useMutation(REMOVE_GUTTER);
+
+  // querying the current user that is logged in
+  const {loading, data} = useQuery(QUERY_ME);
+  const userId = data.me.userId;
   //function to determine which styles need to be applied to each feature maintenance date
   const cardStyle = (dateMaintain) => {
     if(dayjs() >= dayjs(dateMaintain).add(-7, 'day') && dayjs() <= dayjs(dateMaintain)) {
@@ -48,17 +64,68 @@ export default function Card({featureList}) {
   };
   const featureIcon = (typename) => {
     if(typename === "Filter") {
-      return icons.Filter
-    } else if (typename === 'Alarm'){
-      return icons.Alarm
+      return icons.Filter;
+    } else if(typename === 'Alarm') {
+      return icons.Alarm;
     } else if(typename === 'Gutter') {
-      return icons.Gutter
-    } else {return icons.Hvac}
-  }
+      return icons.Gutter;
+    } else {return icons.Hvac;}
+  };
+
+  const deleteFeature = async (event) => {
+    event.preventDefault();
+    const featureType = event.target.name;
+    const _id = event.target.getAttribute("data-id");
+
+    if(featureType === "Filter") {
+      try {
+        const data = await removeFilter({
+          variables: {userId, _id},
+        });
+        if(data) {
+          setFeatureList([...featureList.filter((feature) => {return feature._id !== _id})]);
+        }
+      } catch(err) {
+        console.error(err);
+      }
+    } else if(featureType === "Alarm") {
+      try {
+        const data = await removeAlarm({
+          variables: {userId, _id},
+        });
+        if(data) {
+          setFeatureList([...featureList.filter((feature) => {return feature._id !== _id;})]);
+        }
+      } catch(err) {
+        console.error(err);
+      }
+    } else if(featureType === "Gutter") {
+      try {
+        const data = await removeGutter({
+          variables: {userId, _id},
+        });
+        if(data) {
+          setFeatureList([...featureList.filter((feature) => {return feature._id !== _id;})]);
+        }
+      } catch(err) {
+        console.error(err);
+      }
+    } else {
+      try {
+        const data = await removeHvac({
+          variables: {userId, _id},
+        });
+        if(data) {
+          setFeatureList([...featureList.filter((feature) => {return feature._id !== _id;})]);
+        }
+      } catch(err) {
+        console.error(err);
+      }
+    }
+  };
 
   // mapping a new key value pair to each object in featureList to give back the right style
   const newFeatureList = featureList.map(feature => ({...feature, styles: cardStyle(feature.nextMaintenanceDate), image: featureIcon(feature.__typename)}));
-console.log(newFeatureList)
   if(!featureList.length) {
     return <h3> No Home Info recorded</h3>;
   }
@@ -71,6 +138,11 @@ console.log(newFeatureList)
               className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
             >
               <div className="flex flex-1 flex-col p-8">
+                <div className="flex justify-between">
+                  <EditModal feature={feature}/>
+                  <button onClick={deleteFeature} ><img name={feature.__typename} data-id={feature._id} className="min-w-min h-5 w-5 flex-shrink-0 " src={deleteIcon} alt="" />
+                  </button>
+                  </div>
                 <img className="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src={feature.image} alt="" />
                 <h3 className="mt-6 text-sm font-medium text-gray-900">Category: {feature.itemCategory}</h3>
                 <dl className="mt-1 flex flex-grow flex-col justify-between">

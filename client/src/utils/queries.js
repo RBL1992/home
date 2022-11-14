@@ -21,6 +21,7 @@ export const QUERY_ME = gql`
       homeName
       userId
       filter {
+        _id
         brandName
         itemCategory
         lastMaintenanceDate
@@ -28,6 +29,7 @@ export const QUERY_ME = gql`
         room
       }
       hvac {
+        _id
         brandName
         itemCategory
         lastMaintenanceDate
@@ -35,6 +37,7 @@ export const QUERY_ME = gql`
         room
       }
       alarm {
+        _id
         brandName
         itemCategory
         lastMaintenanceDate
@@ -42,6 +45,7 @@ export const QUERY_ME = gql`
         room
       }
       gutter {
+        _id
         brandName
         itemCategory
         lastMaintenanceDate

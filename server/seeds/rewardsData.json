@@ -9,18 +9,18 @@
     },
     {
         "rewardDescription": "5% off your next purchase of Kitchen Aid Fridge Filter",
-        "homePointsCost": 1000
+        "homePointsCost": 750
     },
     {
         "rewardDescription": "5% off Ned Steven's Gutter Cleaning Service",
-        "homePointsCost": 1000
+        "homePointsCost": 1250
+    },
+    {
+        "rewardDescription": "$10 off your next Chicago HVAC Repair Doctor service",
+        "homePointsCost": 500
     },
     {
         "rewardDescription": "Convert your home points to cash and donate to charity!",
         "homePointsCost": 1000
-    },
-    {
-        "rewardDescription": "Testing Styles",
-        "homePointsCost": 200000
     }
 ]

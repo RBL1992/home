@@ -32,6 +32,7 @@ mutation AddFilterToHome($userId: String!, $room: String!, $lastMaintenanceDate:
     userId
     homeName
     filter {
+      _id
       brandName
       itemCategory
       nextMaintenanceDate
@@ -47,6 +48,7 @@ mutation AddAlarmToHome($userId: String!, $room: String!, $lastMaintenanceDate: 
     userId
     homeName
     alarm {
+      _id
       brandName
       itemCategory
       nextMaintenanceDate
@@ -63,6 +65,7 @@ mutation AddHvacToHome($userId: String!, $room: String!, $lastMaintenanceDate: S
     userId
     homeName
     hvac {
+      _id
       brandName
       itemCategory
       nextMaintenanceDate
@@ -79,6 +82,7 @@ mutation AddGutterToHome($userId: String!, $room: String!, $lastMaintenanceDate:
     userId
     homeName
     gutter {
+      _id
       brandName
       itemCategory
       nextMaintenanceDate
@@ -127,3 +131,135 @@ mutation RedeemPoints($userId: ID!, $redeemedPoints: Int) {
     referralLink
   }
 }`;
+
+export const REMOVE_FILTER = gql`
+mutation RemoveFilterFromHome($_id: ID!, $userId: ID!) {
+  removeFilterFromHome(_id: $_id, userId: $userId) {
+    userId
+    homeName
+    filter {
+      brandName
+      itemCategory
+      lastMaintenanceDate
+      nextMaintenanceDate
+      room
+    }
+  }
+}
+`;
+
+export const REMOVE_GUTTER = gql`
+mutation RemoveGutterrFromHome($_id: ID!, $userId: ID!) {
+  removeGutterFromHome(_id: $_id, userId: $userId) {
+    userId
+    homeName
+    gutter {
+      brandName
+      itemCategory
+      lastMaintenanceDate
+      nextMaintenanceDate
+      room
+    }
+  }
+}
+`;
+
+export const REMOVE_ALARM = gql`
+mutation RemoveAlarmFromHome($_id: ID!, $userId: ID!) {
+  removeAlarmFromHome(_id: $_id, userId: $userId) {
+    userId
+    homeName
+    alarm {
+      brandName
+      itemCategory
+      lastMaintenanceDate
+      nextMaintenanceDate
+      room
+    }
+  }
+}
+`;
+
+export const REMOVE_HVAC = gql`
+mutation RemoveHvacFromHome($_id: ID!, $userId: ID!) {
+  removeHvacFromHome(_id: $_id, userId: $userId) {
+    userId
+    homeName
+    hvac {
+      brandName
+      itemCategory
+      lastMaintenanceDate
+      nextMaintenanceDate
+      room
+    }
+  }
+}
+`;
+
+export const EDIT_FILTER = gql`
+mutation EditFilter($_id: ID!, $lastMaintenanceDate: String, $brandName: String, $room: String, $itemCategory: String) {
+  editFilter(_id: $_id, lastMaintenanceDate: $lastMaintenanceDate, brandName: $brandName, room: $room, itemCategory: $itemCategory) {
+    filter {
+      _id
+      brandName
+      room
+      lastMaintenanceDate
+      itemCategory
+      nextMaintenanceDate
+    }
+    userId
+    homeName
+  }
+}
+`;
+
+export const EDIT_ALARM = gql`
+mutation EditAlarm($_id: ID!, $lastMaintenanceDate: String, $brandName: String, $room: String, $itemCategory: String) {
+  editAlarm(_id: $_id, lastMaintenanceDate: $lastMaintenanceDate, brandName: $brandName, room: $room, itemCategory: $itemCategory) {
+    alarm {
+      _id
+      brandName
+      room
+      lastMaintenanceDate
+      itemCategory
+      nextMaintenanceDate
+    }
+    userId
+    homeName
+  }
+}
+`;
+
+export const EDIT_GUTTER = gql`
+mutation EditGutter($_id: ID!, $lastMaintenanceDate: String, $brandName: String, $room: String, $itemCategory: String) {
+  editGutter(_id: $_id, lastMaintenanceDate: $lastMaintenanceDate, brandName: $brandName, room: $room, itemCategory: $itemCategory) {
+    gutter {
+      _id
+      brandName
+      room
+      lastMaintenanceDate
+      itemCategory
+      nextMaintenanceDate
+    }
+    userId
+    homeName
+  }
+}
+`;
+
+export const EDIT_HVAC = gql`
+mutation EditHvac($_id: ID!, $lastMaintenanceDate: String, $brandName: String, $room: String, $itemCategory: String) {
+  editHvac(_id: $_id, lastMaintenanceDate: $lastMaintenanceDate, brandName: $brandName, room: $room, itemCategory: $itemCategory) {
+    hvac {
+      _id
+      brandName
+      room
+      lastMaintenanceDate
+      itemCategory
+      nextMaintenanceDate
+    }
+    userId
+    homeName
+  }
+}
+`;
