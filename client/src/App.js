@@ -50,8 +50,11 @@ function App() {
           <Header />
           <div className="container min-h-screen self-center mx-12">
             <Routes>
-              <Route path="/" element={<Landingpage />} />
-              <Route path="/home" element={<Home />} />
+              {localStorage.getItem("id_token") ? (
+                <Route path="/" element={<Home />} />
+              ) : (
+                <Route path="/" element={<Landingpage />} />
+              )}
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
