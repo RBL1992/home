@@ -47,7 +47,7 @@ const Header = () => {
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                       <div className="flex flex-shrink-0 items-center">
-                        <Link to={'/home'}>
+                        <Link to={'/'}>
                           {/* <a href='/home' alt='Logo'> */}
                             <img
                               className="block h-12 w-auto lg:hidden"
@@ -56,7 +56,7 @@ const Header = () => {
                             />
                           {/* </a> */}
                         </Link>
-                        <Link to={'/home'}>
+                        <Link to={'/'}>
                           {/* <a href='/home' alt='Logo'> */}
                             <img
                               className="hidden h-14 w-auto lg:block"
