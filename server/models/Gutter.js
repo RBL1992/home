@@ -14,12 +14,25 @@ const gutterSchema = new Schema({
   lastMaintenanceDate: {
     type: Date,
     required: true,
-    get: (time) => dayjs(time).format("MMM Do, YYYY")
+    get: (time) => dayjs(time).format("MM/DD/YYYY")
   },
   itemCategory: {
     type: String,
     required: true,
-  },
+  }
+},
+  {
+    toJSON: {
+      virtuals: true,
+      getters: true,
+    },
+    id: false,
+  }
+);
+
+// Create a virtual property `nextMaintenanceDate` that gets date the thing needs to be maintained
+gutterSchema.virtual('nextMaintenanceDate').get(function () {
+  return dayjs(this.lastMaintenanceDate).add(120, 'day').format("MM/DD/YYYY");
 });
 
 module.exports = gutterSchema;

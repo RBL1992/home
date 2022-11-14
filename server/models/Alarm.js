@@ -14,12 +14,25 @@ const alarmSchema = new Schema({
   lastMaintenanceDate: {
     type: Date,
     required: true,
-    get: (time) => dayjs(time).format("MMM Do, YYYY")
+    get: (time) => dayjs(time).format("MM/DD/YYYY")
   },
   itemCategory: {
     type: String,
     required: true,
-  },
+  }
+},
+  {
+    toJSON: {
+      virtuals: true,
+      getters: true,
+    },
+    id: false,
+  }
+);
+
+// Create a virtual property `nextMaintenanceDate` that gets date the thing needs to be maintained
+alarmSchema.virtual('nextMaintenanceDate').get(function () {
+  return dayjs(this.lastMaintenanceDate).add(365, 'day').format("MM/DD/YYYY");
 });
 
 module.exports = alarmSchema;
