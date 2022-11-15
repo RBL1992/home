@@ -38,23 +38,23 @@ If by any chance you wish to deploy this app on your local machine, use the foll
 
 When the app is deployed you will begin on the landing page. Here you can see the navigation bar, an overview of our app, and a Sign up button and a Login button.
 
-![Gif of landing page]()
+![Gif of landing page](./assets/Gif%20of%20Landing%20Page.gif)
 
 Click the Login button or the Sign up button to enter. You are then taken to your "Home" page where you will see a list of the home features you have entered. Create your first home feature or add a new one by clicking the Add Feature button. This will bring up a modal where you can enter the relevant information for a feature. When you are All Done, you are returned to the Home page with your new home feature present. Note that the date displayed is a future date, calculated using the last maintenance date you provided and our expert home maintenance recommendation.
 
-To edit a feature, click the gear icon on the feature's card. To delete a feature, click the trash bin icon.
+![Gif of creating home page and creating a feature](./assets/Gif%20of%20Home%20page.gif)
 
-![Gif of creating a home feature]()
+To edit a feature, click the gear icon on the feature's card. To delete a feature, click the trash bin icon.
 
 Click the icon at the top right of the page so see a dropdown menu. You have options to see your Profile page or log out. Click the Your Profile button to go to the Profile page. In the left card you will see your user information. On the right card you will see your Usable Rewards Points that can be used to redeem rewards and your Lifetime Rewards Points which totals all of the points you have earned in as a user. 
 
-![Picture of Profile page]()
+![Gif of Profile page](./assets/Gif%20of%20Profile%20page.gif)
 
 To view the Rewards page, click the View Rewards button on the Profile page or click the Rewards Market button in the nav bar. Here you will see a list of all rewards available and their cost. If you have enough points to purchase a reward, the reward will be purple. If you can not yet afford a reward, it will be grey. To redeem a reward, click on the check mark to the right of it.
 
-![Gif of redeeming a reward]()
+![Gif of redeeming rewards](./assets/Git%20of%20redeeming%20rewards.gif)
 
-
+Enjoy the app!
 
 
 ## Credits
@@ -71,7 +71,7 @@ Brought to you by:
 
 MIT License
 
-Copyright (c) 2022 Couch Potato LLC
+Copyright (c) 2022 home LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
