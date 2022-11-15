@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-// import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import FeatureModal from '../components/FeatureModal';
 
@@ -11,7 +10,6 @@ const Home = () => {
 
   const [featureList, setFeatureList] = useState([]);
   const {loading, data, error} = useQuery(QUERY_ME, {onCompleted: (data) => setFeatureList([...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac])});
-  console.log(featureList)
 
   if (loading) {
     return <div> Loading ... </div>;
@@ -25,14 +23,6 @@ const Home = () => {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-full">
 
 
@@ -65,40 +55,5 @@ const Home = () => {
     </>
   );
 };
-
-
-
-// const Home = () => {
-//   const [featureList, setFeatureList] = useState([]);
-//   const { loading, data, error } = useQuery(QUERY_ME, { onCompleted: (data) => setFeatureList([...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac]) });
-
-//   if (loading) {
-//     return <div> Loading ... </div>;
-//   };
-//   if (error) {
-//     return "Error loading data!";
-//   };
-//   if (!data) {
-//     return "No data available!";
-//   };
-
-//   return (
-
-//     <div>
-//       <div className="feature-modal-btn">
-//         <FeatureModal featureList={featureList} setFeatureList={setFeatureList} />
-//       </div>
-//       <button style={styles.featureBtn} id="feature-btn">
-//         Add Feature
-//       </button>
-
-//       <div className="flex flex-row justify-center align-center">
-//         <Card
-//           featureList={featureList}
-//         />
-//       </div>
-//     </div>
-//   );
-// };
 
 export default Home;

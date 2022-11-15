@@ -8,6 +8,5 @@ db.once('open', async () => {
 
     const rewards = await Rewards.insertMany(rewardsData);
 
-    console.log('Rewards seeded!');
     process.exit(0);
 });

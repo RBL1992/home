@@ -35,14 +35,11 @@ const Signup = () => {
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
 
         try {
             const { data } = await addUser({
                 variables: { ...formState },
             });
-
-            console.log("userId: " + data.addUser.user._id + " homeName: " + formState.homeName);
             const home = await addHome({
                 variables: { addHomeUserId: data.addUser.user._id, homeName: formState.homeName }
             });

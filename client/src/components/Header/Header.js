@@ -53,22 +53,18 @@ const Header = () => {
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="flex flex-shrink-0 items-center">
                       <Link to={"/"}>
-                        {/* <a href='/home' alt='Logo'> */}
                         <img
                           className="block h-12 w-auto lg:hidden"
                           src={Logo}
                           alt="Your Company"
                         />
-                        {/* </a> */}
                       </Link>
                       <Link to={"/"}>
-                        {/* <a href='/home' alt='Logo'> */}
                         <img
                           className="hidden h-14 w-auto lg:block"
                           src={Logo}
                           alt="Your Company"
                         />
-                        {/* </a> */}
                       </Link>
                     </div>
                     <div className="hidden sm:ml-6 sm:inline-flex">

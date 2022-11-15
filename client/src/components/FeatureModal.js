@@ -52,7 +52,6 @@ const FeatureModal = (props) => {
             const data = await addPoints({
                 variables: {userId}
             });
-            console.log(data);
         } catch(err) {
             console.error(err);
         };
@@ -63,13 +62,11 @@ const FeatureModal = (props) => {
                     const data = await addFilter({
                         variables: {userId, ...feature},
                     });
-                    console.log(data);
                     if(data) {
                         props.setFeatureList([...props.featureList, data.data.addFilterToHome.filter.pop()]);
                     }
                     setFeatureState('');
                 } catch(err) {
-                    console.log(JSON.stringify(err));
                     console.error(err);
                 }
                 break;
@@ -89,7 +86,6 @@ const FeatureModal = (props) => {
                     const data = await addHvac({
                         variables: {userId, ...feature},
                     });
-                    console.log(data)
                     if(data) {props.setFeatureList([...props.featureList, data.data.addHvacToHome.hvac.pop()]);}
                     setFeatureState('');
                 } catch(err) {

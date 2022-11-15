@@ -52,7 +52,6 @@ const EditModal = (props) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const _id = event.target.getAttribute("data-id");
-        console.log(event.target);
 
         switch(event.target.name) {
             case "Filter":
@@ -61,7 +60,6 @@ const EditModal = (props) => {
                     const data = await editFilter({
                         variables: {_id, ...feature},
                     });
-                    console.log(data);
                     if(data) {
                         window.location.assign("/");
                     }
@@ -74,7 +72,6 @@ const EditModal = (props) => {
                     const data = await editAlarm({
                         variables: {_id, ...feature},
                     });
-                    console.log(data);
                     if(data) {
                         window.location.assign("/");
                     }
@@ -87,7 +84,6 @@ const EditModal = (props) => {
                     const data = await editHvac({
                         variables: {_id, ...feature},
                     });
-                    console.log(data);
                     if(data) {
                         window.location.assign("/");
                     }
@@ -100,7 +96,6 @@ const EditModal = (props) => {
                     const data = await editGutter({
                         variables: {_id, ...feature},
                     });
-                    console.log(data);
                     if(data) {
                         window.location.assign("/");
                     }
