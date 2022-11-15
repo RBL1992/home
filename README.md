@@ -36,7 +36,7 @@ If by any chance you wish to deploy this app on your local machine, use the foll
 
 ## Usage
 
-To see the following functionality live, head to the lnk above and log in with the following credentials:
+To see the following functionality live, head to the link above and log in with the following credentials:
 - email: test@example.com
 - password: 12345678
 
