@@ -50,7 +50,6 @@ const MarketRewardCards = ({ rewardsList }) => {
     const isAffordable = targetStyle === affordableCSS
 
     const redeemedPoints = parseInt(event.target.parentNode.parentNode.firstChild.children[1].textContent)
-    // const clickedBtn = event.target.parentNode
 
     // if the target reward is affordable, redeem the reward. If not, ignore the click.
     if (isAffordable) {
@@ -58,7 +57,6 @@ const MarketRewardCards = ({ rewardsList }) => {
         const data = await redeemPoints({
           variables: { userId, redeemedPoints }
         });
-        console.log(data);
       } catch (err) {
         console.error(err);
       }

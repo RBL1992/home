@@ -31,13 +31,16 @@ const resolvers = {
       return Rewards.find({});
     }
   },
-
+// all mutations to the databases
   Mutation: {
+    //sign up
     addUser: async (parent, { firstName, lastName, email, password }) => {
       const user = await User.create({ firstName, lastName, email, password });
       const token = signToken(user);
       return { token, user };
     },
+
+    // login
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -55,10 +58,14 @@ const resolvers = {
 
       return { token, user };
     },
+
+    //new home
     addHome: async (parent, { userId, homeName }) => {
       const newHome = await HomeAssistant.create({ userId, homeName });
       return newHome;
     },
+
+    //new filter
     addFilterToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const filterInfo = {
         brandName, room, lastMaintenanceDate, itemCategory
@@ -75,6 +82,8 @@ const resolvers = {
       );
       return newFilter;
     },
+
+    // new gutter
     addGutterToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const gutterInfo = {
         brandName, room, lastMaintenanceDate, itemCategory
@@ -91,6 +100,8 @@ const resolvers = {
       );
       return newGutter;
     },
+
+    // new alarm
     addAlarmToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const alarmInfo = {
         brandName, room, lastMaintenanceDate, itemCategory
@@ -107,6 +118,8 @@ const resolvers = {
       );
       return newAlarm;
     },
+
+    //new hvac
     addHvacToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const hvacInfo = {
         brandName, room, lastMaintenanceDate, itemCategory
@@ -123,6 +136,8 @@ const resolvers = {
       );
       return newHvac;
     },
+
+    // add points to user
     earnPoints: async (_, args, context) => {
       const earnedPoints = 250;
       const addPoints = User.findOneAndUpdate(
@@ -136,6 +151,8 @@ const resolvers = {
       );
       return addPoints;
     },
+    
+    // spend points on rewards
     redeemPoints: async (_, args, context) => {
       const redeemPoints = User.findOneAndUpdate(
         {_id: context.user._id},
@@ -149,6 +166,7 @@ const resolvers = {
       return redeemPoints;
     },
 
+    // delete filter from home
     removeFilterFromHome: async (_, args) => {
       const removedFilter = HomeAssistant.findOneAndUpdate(
         {userId: args.userId},
@@ -162,6 +180,7 @@ const resolvers = {
       return removedFilter;
     },
 
+    // delete alarm from home
     removeAlarmFromHome: async (_, args) => {
       const removedAlarm = HomeAssistant.findOneAndUpdate(
         {userId: args.userId},
@@ -175,6 +194,7 @@ const resolvers = {
       return removedAlarm;
     },
 
+    // delete gutter from home
     removeGutterFromHome: async (_, args) => {
       const removedGutter = HomeAssistant.findOneAndUpdate(
         {userId: args.userId},
@@ -188,6 +208,7 @@ const resolvers = {
       return removedGutter;
     },
 
+    // delete hvac from home
     removeHvacFromHome: async (_, args) => {
       const removedHvac = HomeAssistant.findOneAndUpdate(
         {userId: args.userId},
@@ -201,6 +222,7 @@ const resolvers = {
       return removedHvac;
     },
 
+    // change filter feature data
     editFilter: async (_, {_id, brandName, room, lastMaintenanceDate, itemCategory
     }) => {
       const filterInfo = {
@@ -217,6 +239,8 @@ const resolvers = {
       );
       return editFilter;
     },
+
+    // change alarm feature data
     editAlarm: async (_, {_id, brandName, room, lastMaintenanceDate, itemCategory
     }) => {
       const alarmInfo = {
@@ -233,6 +257,8 @@ const resolvers = {
       );
       return editAlarm;
     },
+
+    // change gutter feature data
     editGutter: async (_, {_id, brandName, room, lastMaintenanceDate, itemCategory
     }) => {
       const gutterInfo = {
@@ -249,6 +275,8 @@ const resolvers = {
       );
       return editGutter;
     },
+
+    // change hvac feature data
     editHvac: async (_, {_id, brandName, room, lastMaintenanceDate, itemCategory
     }) => {
       const hvacInfo = {
