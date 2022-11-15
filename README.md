@@ -36,6 +36,10 @@ If by any chance you wish to deploy this app on your local machine, use the foll
 
 ## Usage
 
+To see the following functionality live, head to the lnk above and log in with the following credentials:
+- email: test@example.com
+- password: 12345678
+
 When the app is deployed you will begin on the landing page. Here you can see the navigation bar, an overview of our app, and a Sign up button and a Login button.
 
 ![Gif of landing page](./assets/Gif%20of%20Landing%20Page.gif)
