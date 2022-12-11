@@ -65,6 +65,7 @@ const resolvers = {
       return newHome;
     },
 
+    //Add Appliance
     addApplianceToHome: async (_, { userId, featureCategory, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const applianceInfo = {
         brandName,
@@ -187,12 +188,13 @@ const resolvers = {
       return redeemPoints;
     },
 
-    // delete filter from home
-    removeFilterFromHome: async (_, args) => {
+    //Remove appliance
+    removeApplianceFromHome: async (_, { userId, _id, featureCategory }) => {
+      const lowCaseFeatureCategory = featureCategory.toLowerCase();
       const removedFilter = HomeAssistant.findOneAndUpdate(
-        { userId: args.userId },
+        { userId },
         {
-          $pull: { filter: { _id: args._id } },
+          $pull: { [lowCaseFeatureCategory]: { _id } },
         },
         {
           new: true,
@@ -201,47 +203,61 @@ const resolvers = {
       return removedFilter;
     },
 
-    // delete alarm from home
-    removeAlarmFromHome: async (_, args) => {
-      const removedAlarm = HomeAssistant.findOneAndUpdate(
-        { userId: args.userId },
-        {
-          $pull: { alarm: { _id: args._id } },
-        },
-        {
-          new: true,
-        }
-      );
-      return removedAlarm;
-    },
+    // delete filter from home
+    // removeFilterFromHome: async (_, args) => {
+    //   const removedFilter = HomeAssistant.findOneAndUpdate(
+    //     { userId: args.userId },
+    //     {
+    //       $pull: { filter: { _id: args._id } },
+    //     },
+    //     {
+    //       new: true,
+    //     }
+    //   );
+    //   return removedFilter;
+    // },
 
-    // delete gutter from home
-    removeGutterFromHome: async (_, args) => {
-      const removedGutter = HomeAssistant.findOneAndUpdate(
-        { userId: args.userId },
-        {
-          $pull: { gutter: { _id: args._id } },
-        },
-        {
-          new: true,
-        }
-      );
-      return removedGutter;
-    },
+    // // delete alarm from home
+    // removeAlarmFromHome: async (_, args) => {
+    //   const removedAlarm = HomeAssistant.findOneAndUpdate(
+    //     { userId: args.userId },
+    //     {
+    //       $pull: { alarm: { _id: args._id } },
+    //     },
+    //     {
+    //       new: true,
+    //     }
+    //   );
+    //   return removedAlarm;
+    // },
 
-    // delete hvac from home
-    removeHvacFromHome: async (_, args) => {
-      const removedHvac = HomeAssistant.findOneAndUpdate(
-        { userId: args.userId },
-        {
-          $pull: { hvac: { _id: args._id } },
-        },
-        {
-          new: true,
-        }
-      );
-      return removedHvac;
-    },
+    // // delete gutter from home
+    // removeGutterFromHome: async (_, args) => {
+    //   const removedGutter = HomeAssistant.findOneAndUpdate(
+    //     { userId: args.userId },
+    //     {
+    //       $pull: { gutter: { _id: args._id } },
+    //     },
+    //     {
+    //       new: true,
+    //     }
+    //   );
+    //   return removedGutter;
+    // },
+
+    // // delete hvac from home
+    // removeHvacFromHome: async (_, args) => {
+    //   const removedHvac = HomeAssistant.findOneAndUpdate(
+    //     { userId: args.userId },
+    //     {
+    //       $pull: { hvac: { _id: args._id } },
+    //     },
+    //     {
+    //       new: true,
+    //     }
+    //   );
+    //   return removedHvac;
+    // },
 
     // change filter feature data
     editFilter: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {

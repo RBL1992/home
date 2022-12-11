@@ -93,13 +93,7 @@ const typeDefs = gql`
 
     redeemPoints(userId: ID!, redeemedPoints: Int): User
 
-    removeFilterFromHome(userId: ID!, _id: ID!): Home
-
-    removeAlarmFromHome(userId: ID!, _id: ID!): Home
-
-    removeGutterFromHome(userId: ID!, _id: ID!): Home
-
-    removeHvacFromHome(userId: ID!, _id: ID!): Home
+    removeApplianceFromHome(userId: ID!, _id: ID!, featureCategory: String!): Home
 
     editFilter(_id: ID!, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
 
