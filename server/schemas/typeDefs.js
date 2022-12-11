@@ -1,4 +1,4 @@
-const {gql} = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type User {
@@ -20,7 +20,7 @@ const typeDefs = gql`
     itemCategory: String
     nextMaintenanceDate: String
   }
-    type Gutter {
+  type Gutter {
     _id: ID
     brandName: String
     room: String
@@ -28,7 +28,7 @@ const typeDefs = gql`
     itemCategory: String
     nextMaintenanceDate: String
   }
-    type Alarm {
+  type Alarm {
     _id: ID
     brandName: String
     room: String
@@ -36,8 +36,8 @@ const typeDefs = gql`
     itemCategory: String
     nextMaintenanceDate: String
   }
-    type Hvac {
-          _id: ID
+  type Hvac {
+    _id: ID
     brandName: String
     room: String
     lastMaintenanceDate: String
@@ -74,41 +74,13 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String!
-    ): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
 
     login(email: String!, password: String!): Auth
 
-    addFilterToHome(
+    addApplianceToHome(
       userId: String!
-      brandName: String
-      room: String!
-      lastMaintenanceDate: String!
-      itemCategory: String!
-    ): Home
-
-    addAlarmToHome(
-      userId: String!
-      brandName: String
-      room: String!
-      lastMaintenanceDate: String!
-      itemCategory: String!
-    ): Home
-
-    addGutterToHome(
-      userId: String!
-      brandName: String
-      room: String!
-      lastMaintenanceDate: String!
-      itemCategory: String!
-    ): Home
-
-    addHvacToHome(
-      userId: String!
+      featureCategory: String!
       brandName: String
       room: String!
       lastMaintenanceDate: String!
@@ -117,66 +89,25 @@ const typeDefs = gql`
 
     addHome(userId: String!, homeName: String!): Home
 
-    earnPoints(
-        userId: ID!
-    ): User
+    earnPoints(userId: ID!): User
 
-    redeemPoints(
-       userId: ID!
-       redeemedPoints: Int
-    ): User
+    redeemPoints(userId: ID!, redeemedPoints: Int): User
 
-    removeFilterFromHome(
-      userId: ID!
-      _id:ID!
-    ): Home
+    removeFilterFromHome(userId: ID!, _id: ID!): Home
 
-    removeAlarmFromHome(
-      userId: ID!
-      _id:ID!
-    ): Home
+    removeAlarmFromHome(userId: ID!, _id: ID!): Home
 
-    removeGutterFromHome(
-      userId: ID!
-      _id:ID!
-    ): Home
+    removeGutterFromHome(userId: ID!, _id: ID!): Home
 
-    removeHvacFromHome(
-      userId: ID!
-      _id:ID!
-    ): Home
+    removeHvacFromHome(userId: ID!, _id: ID!): Home
 
-    editFilter(
-      _id:ID!
-      brandName: String
-      room: String
-      lastMaintenanceDate: String
-      itemCategory: String
-    ): Home
+    editFilter(_id: ID!, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
 
-    editAlarm(
-      _id:ID!
-      brandName: String
-      room: String
-      lastMaintenanceDate: String
-      itemCategory: String
-    ): Home
+    editAlarm(_id: ID!, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
 
-    editGutter(
-      _id:ID!
-      brandName: String
-      room: String
-      lastMaintenanceDate: String
-      itemCategory: String
-    ): Home
+    editGutter(_id: ID!, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
 
-    editHvac(
-      _id:ID
-      brandName: String
-      room: String
-      lastMaintenanceDate: String
-      itemCategory: String
-    ): Home
+    editHvac(_id: ID, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
   }
 `;
 
