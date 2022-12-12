@@ -182,7 +182,11 @@ export default function Card({ featureList, setFeatureList }) {
               <li className='col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow'>
                 <div className='flex flex-1 flex-col p-8'>
                   <div className='flex justify-between'>
-                    <EditModal feature={feature} />
+                    <EditModal
+                      feature={feature}
+                      featureList={featureList}
+                      setFeatureList={setFeatureList}
+                    />
                     <button onClick={deleteFeature}>
                       <img
                         name={feature.__typename}

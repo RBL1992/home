@@ -163,21 +163,24 @@ export const REMOVE_FEATURE = gql`
   }
 `;
 
-export const EDIT_FILTER = gql`
-  mutation EditFilter(
+export const EDIT_FEATURE = gql`
+  mutation EditFeature(
     $_id: ID!
-    $lastMaintenanceDate: String
+    $featureCategory: String!
+    $itemCategory: String
     $brandName: String
     $room: String
-    $itemCategory: String
+    $lastMaintenanceDate: String
   ) {
-    editFilter(
+    editFeature(
       _id: $_id
-      lastMaintenanceDate: $lastMaintenanceDate
+      featureCategory: $featureCategory
+      itemCategory: $itemCategory
       brandName: $brandName
       room: $room
-      itemCategory: $itemCategory
+      lastMaintenanceDate: $lastMaintenanceDate
     ) {
+      userId
       filter {
         _id
         brandName
@@ -186,79 +189,6 @@ export const EDIT_FILTER = gql`
         itemCategory
         nextMaintenanceDate
       }
-      userId
-      homeName
-    }
-  }
-`;
-
-export const EDIT_ALARM = gql`
-  mutation EditAlarm(
-    $_id: ID!
-    $lastMaintenanceDate: String
-    $brandName: String
-    $room: String
-    $itemCategory: String
-  ) {
-    editAlarm(
-      _id: $_id
-      lastMaintenanceDate: $lastMaintenanceDate
-      brandName: $brandName
-      room: $room
-      itemCategory: $itemCategory
-    ) {
-      alarm {
-        _id
-        brandName
-        room
-        lastMaintenanceDate
-        itemCategory
-        nextMaintenanceDate
-      }
-      userId
-      homeName
-    }
-  }
-`;
-
-export const EDIT_GUTTER = gql`
-  mutation EditGutter(
-    $_id: ID!
-    $lastMaintenanceDate: String
-    $brandName: String
-    $room: String
-    $itemCategory: String
-  ) {
-    editGutter(
-      _id: $_id
-      lastMaintenanceDate: $lastMaintenanceDate
-      brandName: $brandName
-      room: $room
-      itemCategory: $itemCategory
-    ) {
-      gutter {
-        _id
-        brandName
-        room
-        lastMaintenanceDate
-        itemCategory
-        nextMaintenanceDate
-      }
-      userId
-      homeName
-    }
-  }
-`;
-
-export const EDIT_HVAC = gql`
-  mutation EditHvac($_id: ID!, $lastMaintenanceDate: String, $brandName: String, $room: String, $itemCategory: String) {
-    editHvac(
-      _id: $_id
-      lastMaintenanceDate: $lastMaintenanceDate
-      brandName: $brandName
-      room: $room
-      itemCategory: $itemCategory
-    ) {
       hvac {
         _id
         brandName
@@ -267,8 +197,22 @@ export const EDIT_HVAC = gql`
         itemCategory
         nextMaintenanceDate
       }
-      userId
-      homeName
+      alarm {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      gutter {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
     }
   }
 `;

@@ -64,10 +64,10 @@ const FeatureModal = (props) => {
       });
 
       if (data) {
-        const lowCaseFeatureCategory = feature.featureCategory.toLowerCase();
+        const featureCategory = feature.featureCategory.toLowerCase();
         // console.log(data);
         // console.log(lowCaseFeatureCategory);
-        props.setFeatureList([...props.featureList, data.data.addFeatureToHome[lowCaseFeatureCategory].pop()]);
+        props.setFeatureList([...props.featureList, data.data.addFeatureToHome[featureCategory].pop()]);
       }
       setFeatureState('');
     } catch (err) {
