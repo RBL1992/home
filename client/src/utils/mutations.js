@@ -122,65 +122,42 @@ export const REDEEM_POINTS = gql`
   }
 `;
 
-export const REMOVE_FILTER = gql`
-  mutation RemoveFilterFromHome($_id: ID!, $userId: ID!) {
-    removeFilterFromHome(_id: $_id, userId: $userId) {
-      userId
+export const REMOVE_FEATURE = gql`
+  mutation RemoveFeatureFromHome($userId: ID!, $_id: ID!, $featureCategory: String!) {
+    removeFeatureFromHome(userId: $userId, _id: $_id, featureCategory: $featureCategory) {
       homeName
+      userId
       filter {
+        _id
         brandName
-        itemCategory
-        lastMaintenanceDate
-        nextMaintenanceDate
         room
-      }
-    }
-  }
-`;
-
-export const REMOVE_GUTTER = gql`
-  mutation RemoveGutterrFromHome($_id: ID!, $userId: ID!) {
-    removeGutterFromHome(_id: $_id, userId: $userId) {
-      userId
-      homeName
-      gutter {
-        brandName
-        itemCategory
         lastMaintenanceDate
-        nextMaintenanceDate
-        room
-      }
-    }
-  }
-`;
-
-export const REMOVE_ALARM = gql`
-  mutation RemoveAlarmFromHome($_id: ID!, $userId: ID!) {
-    removeAlarmFromHome(_id: $_id, userId: $userId) {
-      userId
-      homeName
-      alarm {
-        brandName
         itemCategory
-        lastMaintenanceDate
         nextMaintenanceDate
-        room
       }
-    }
-  }
-`;
-
-export const REMOVE_HVAC = gql`
-  mutation RemoveHvacFromHome($_id: ID!, $userId: ID!) {
-    removeHvacFromHome(_id: $_id, userId: $userId) {
-      userId
-      homeName
       hvac {
+        _id
         brandName
-        itemCategory
-        lastMaintenanceDate
-        nextMaintenanceDate
         room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      alarm {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      gutter {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
       }
     }
   }
