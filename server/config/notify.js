@@ -3,7 +3,7 @@
 const NotifmeSdk = require('notifme-sdk').default;
 
 const notifmeSdk = new NotifmeSdk({
-  useNotificationCatcher: true // <= this sends all your notifications to the catcher running on port 1025. 
+  useNotificationCatcher: true // <= this sends all your notifications to the catcher running on port 1025. Use npm i to install notification-catcher then start the server by running 'notification-catcher' in the terminal. Notification-catcher will run at http://localhost:1080/#/ and display any notifications sent from your local machine
 })
 notifmeSdk
   .send({sms: {from: '+15000000000', to: '+15000000001', text: 'Hello, how are you?'}})
