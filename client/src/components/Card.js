@@ -64,17 +64,19 @@ export default function Card({ featureList, setFeatureList }) {
       return styles.normal;
     }
   };
-  const featureIcon = (typename) => {
-    if (typename === 'Filter') {
-      return icons.Filter;
-    } else if (typename === 'Alarm') {
-      return icons.Alarm;
-    } else if (typename === 'Gutter') {
-      return icons.Gutter;
-    } else {
-      return icons.Hvac;
-    }
-  };
+
+  const featureIcon = (typeName) => icons[typeName];
+  // const featureIcon = (typename) => {
+  //   if (typename === 'Filter') {
+  //     return icons.Filter;
+  //   } else if (typename === 'Alarm') {
+  //     return icons.Alarm;
+  //   } else if (typename === 'Gutter') {
+  //     return icons.Gutter;
+  //   } else {
+  //     return icons.Hvac;
+  //   }
+  // };
 
   const deleteFeature = async (event) => {
     event.preventDefault();
