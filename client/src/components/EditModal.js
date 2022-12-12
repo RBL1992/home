@@ -190,12 +190,13 @@ const EditModal = (props) => {
                           <select
                             id='featureCategory'
                             name='featureCategory'
-                            onChange={handleChange}>
-                            <option
+                            onChange={handleChange}
+                            defaultValue={dropdownOption(props.feature)}>
+                            {/* <option
                               selected
                               disabled>
                               {dropdownOption(props.feature)}
-                            </option>
+                            </option> */}
                             <option>Filter</option>
                             <option>Alarm</option>
                             <option>HVAC</option>
