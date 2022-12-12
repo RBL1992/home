@@ -186,23 +186,24 @@ const EditModal = (props) => {
                           action='#'
                           method='PUT'
                           onSubmit={handleFormSubmit}>
-                          <label htmlFor='featureCategory'>Feature</label>
+                          <h2 className='text-3xl font-semibold'>{dropdownOption(props.feature)}</h2>
+                          {/* <label htmlFor='featureCategory'>Feature</label>
                           <select
                             id='featureCategory'
                             name='featureCategory'
                             onChange={handleChange}
                             defaultValue={dropdownOption(props.feature)}>
-                            {/* <option
+                            <option
                               selected
                               disabled>
                               {dropdownOption(props.feature)}
-                            </option> */}
+                            </option>
                             <option>Filter</option>
                             <option>Alarm</option>
                             <option>HVAC</option>
                             <option>Gutter</option>
                           </select>
-                          <br />
+                          <br /> */}
 
                           <label htmlFor='featureName'>Feature Name:</label>
                           <input
