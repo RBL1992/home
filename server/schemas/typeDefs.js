@@ -78,7 +78,7 @@ const typeDefs = gql`
 
     login(email: String!, password: String!): Auth
 
-    addApplianceToHome(
+    addFeatureToHome(
       userId: String!
       featureCategory: String!
       brandName: String
@@ -93,7 +93,7 @@ const typeDefs = gql`
 
     redeemPoints(userId: ID!, redeemedPoints: Int): User
 
-    removeApplianceFromHome(userId: ID!, _id: ID!, featureCategory: String!): Home
+    removeFeatureFromHome(userId: ID!, _id: ID!, featureCategory: String!): Home
 
     editFilter(_id: ID!, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
 

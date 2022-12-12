@@ -66,7 +66,7 @@ const resolvers = {
     },
 
     //Add Appliance
-    addApplianceToHome: async (_, { userId, featureCategory, brandName, room, lastMaintenanceDate, itemCategory }) => {
+    addFeatureToHome: async (_, { userId, featureCategory, brandName, room, lastMaintenanceDate, itemCategory }) => {
       const applianceInfo = {
         brandName,
         room,
@@ -189,7 +189,7 @@ const resolvers = {
     },
 
     //Remove appliance
-    removeApplianceFromHome: async (_, { userId, _id, featureCategory }) => {
+    removeFeatureFromHome: async (_, { userId, _id, featureCategory }) => {
       const lowCaseFeatureCategory = featureCategory.toLowerCase();
       const removedFilter = HomeAssistant.findOneAndUpdate(
         { userId },
