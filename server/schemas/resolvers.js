@@ -65,9 +65,9 @@ const resolvers = {
       return newHome;
     },
 
-    //Add Appliance
+    // Add Feature
     addFeatureToHome: async (_, { userId, featureCategory, brandName, room, lastMaintenanceDate, itemCategory }) => {
-      const applianceInfo = {
+      const featureInfo = {
         brandName,
         room,
         lastMaintenanceDate,
@@ -75,16 +75,16 @@ const resolvers = {
       };
       const lowCaseFeatureCategory = featureCategory.toLowerCase();
 
-      const newAppliance = HomeAssistant.findOneAndUpdate(
+      const newFeature = HomeAssistant.findOneAndUpdate(
         { userId },
         {
-          $addToSet: { [lowCaseFeatureCategory]: applianceInfo },
+          $addToSet: { [lowCaseFeatureCategory]: featureInfo },
         },
         {
           new: true,
         }
       );
-      return newAppliance;
+      return newFeature;
     },
 
     //new filter
@@ -188,10 +188,10 @@ const resolvers = {
       return redeemPoints;
     },
 
-    //Remove appliance
+    // Remove Feature
     removeFeatureFromHome: async (_, { userId, _id, featureCategory }) => {
       const lowCaseFeatureCategory = featureCategory.toLowerCase();
-      const removedFilter = HomeAssistant.findOneAndUpdate(
+      const removedFeature = HomeAssistant.findOneAndUpdate(
         { userId },
         {
           $pull: { [lowCaseFeatureCategory]: { _id } },
@@ -200,7 +200,7 @@ const resolvers = {
           new: true,
         }
       );
-      return removedFilter;
+      return removedFeature;
     },
 
     // delete filter from home
@@ -259,86 +259,108 @@ const resolvers = {
     //   return removedHvac;
     // },
 
-    // change filter feature data
-    editFilter: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
-      const filterInfo = {
+    // Edit Feature
+    editFeature: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory, featureCategory }) => {
+      const lowCaseFeatureCategory = featureCategory.toLowerCase();
+      const featureInfo = {
         brandName,
         room,
         lastMaintenanceDate,
         itemCategory,
       };
-      const editFilter = HomeAssistant.findOneAndUpdate(
-        { 'filter._id': _id },
+      const editFeature = HomeAssistant.findOneAndUpdate(
+        { [`${lowCaseFeatureCategory}._id`]: _id },
         {
-          $set: { 'filter.$': filterInfo },
+          $set: { [`${lowCaseFeatureCategory}.$`]: { ...featureInfo } },
         },
         {
           new: true,
         }
       );
-      return editFilter;
-    },
-
-    // change alarm feature data
-    editAlarm: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
-      const alarmInfo = {
-        brandName,
-        room,
-        lastMaintenanceDate,
-        itemCategory,
-      };
-      const editAlarm = HomeAssistant.findOneAndUpdate(
-        { 'alarm._id': _id },
-        {
-          $set: { 'alarm.$': alarmInfo },
-        },
-        {
-          new: true,
-        }
-      );
-      return editAlarm;
-    },
-
-    // change gutter feature data
-    editGutter: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
-      const gutterInfo = {
-        brandName,
-        room,
-        lastMaintenanceDate,
-        itemCategory,
-      };
-      const editGutter = HomeAssistant.findOneAndUpdate(
-        { 'gutter._id': _id },
-        {
-          $set: { 'gutter.$': gutterInfo },
-        },
-        {
-          new: true,
-        }
-      );
-      return editGutter;
-    },
-
-    // change hvac feature data
-    editHvac: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
-      const hvacInfo = {
-        brandName,
-        room,
-        lastMaintenanceDate,
-        itemCategory,
-      };
-      const editHvac = HomeAssistant.findOneAndUpdate(
-        { 'hvac._id': _id },
-        {
-          $set: { 'hvac.$': hvacInfo },
-        },
-        {
-          new: true,
-        }
-      );
-      return editHvac;
+      return editFeature;
     },
   },
 };
+//     // change filter feature data
+//     editFilter: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
+//       const filterInfo = {
+//         brandName,
+//         room,
+//         lastMaintenanceDate,
+//         itemCategory,
+//       };
+//       const editFilter = HomeAssistant.findOneAndUpdate(
+//         { 'filter._id': _id },
+//         {
+//           $set: { 'filter.$': filterInfo },
+//         },
+//         {
+//           new: true,
+//         }
+//       );
+//       return editFilter;
+//     },
+
+//     // change alarm feature data
+//     editAlarm: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
+//       const alarmInfo = {
+//         brandName,
+//         room,
+//         lastMaintenanceDate,
+//         itemCategory,
+//       };
+//       const editAlarm = HomeAssistant.findOneAndUpdate(
+//         { 'alarm._id': _id },
+//         {
+//           $set: { 'alarm.$': alarmInfo },
+//         },
+//         {
+//           new: true,
+//         }
+//       );
+//       return editAlarm;
+//     },
+
+//     // change gutter feature data
+//     editGutter: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
+//       const gutterInfo = {
+//         brandName,
+//         room,
+//         lastMaintenanceDate,
+//         itemCategory,
+//       };
+//       const editGutter = HomeAssistant.findOneAndUpdate(
+//         { 'gutter._id': _id },
+//         {
+//           $set: { 'gutter.$': gutterInfo },
+//         },
+//         {
+//           new: true,
+//         }
+//       );
+//       return editGutter;
+//     },
+
+//     // change hvac feature data
+//     editHvac: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
+//       const hvacInfo = {
+//         brandName,
+//         room,
+//         lastMaintenanceDate,
+//         itemCategory,
+//       };
+//       const editHvac = HomeAssistant.findOneAndUpdate(
+//         { 'hvac._id': _id },
+//         {
+//           $set: { 'hvac.$': hvacInfo },
+//         },
+//         {
+//           new: true,
+//         }
+//       );
+//       return editHvac;
+//     },
+//   },
+// };
 
 module.exports = resolvers;

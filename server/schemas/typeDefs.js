@@ -95,13 +95,14 @@ const typeDefs = gql`
 
     removeFeatureFromHome(userId: ID!, _id: ID!, featureCategory: String!): Home
 
-    editFilter(_id: ID!, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
-
-    editAlarm(_id: ID!, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
-
-    editGutter(_id: ID!, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
-
-    editHvac(_id: ID, brandName: String, room: String, lastMaintenanceDate: String, itemCategory: String): Home
+    editFeature(
+      _id: ID!
+      brandName: String
+      room: String
+      lastMaintenanceDate: String
+      itemCategory: String
+      featureCategory: String!
+    ): Home
   }
 `;
 
