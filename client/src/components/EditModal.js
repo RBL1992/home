@@ -2,18 +2,17 @@ import React, { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import editIcon from '../images/edit.svg';
-import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
-
-// import {EDIT_FILTER, EDIT_ALARM, EDIT_GUTTER, EDIT_HVAC} from '../utils/mutations';
-import { EDIT_FEATURE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
+import { useMutation } from '@apollo/client';
+import { EDIT_FEATURE } from '../utils/mutations';
 
 import dayjs from 'dayjs';
 
 const EditModal = (props) => {
   // this is for tailwind modal ui
   const [open, setOpen] = useState(false);
+
   //setting the state of the currently input feature
   const [feature, setFeatureState] = useState({
     featureCategory: props.feature.__typename,
@@ -23,11 +22,8 @@ const EditModal = (props) => {
     nextMaintenanceDate: props.feature.nextMaintenanceDate,
     brandName: props.feature.brandName,
   });
-  //these are the mutations that will run based on which feature is selected
-  //   const [editFilter, { error1 }] = useMutation(EDIT_FILTER);
-  //   const [editAlarm, { error2 }] = useMutation(EDIT_ALARM);
-  //   const [editHvac, { error3 }] = useMutation(EDIT_HVAC);
-  //   const [editGutter, { error4 }] = useMutation(EDIT_GUTTER);
+
+  //this is the mutation that will run based on which feature is selected
   const [editFeature, { error }] = useMutation(EDIT_FEATURE);
 
   // this updates the state of the feature form when user is typing in active input field
@@ -52,6 +48,7 @@ const EditModal = (props) => {
       return featureItem.__typename;
     }
   };
+
   // when user submits the form, finds which feature was selected in drop down, and runs the proper mutation based on the switch statement
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -68,59 +65,6 @@ const EditModal = (props) => {
     } catch (err) {
       console.error(err);
     }
-    // switch (event.target.name) {
-    //   case 'Filter':
-    //     // when user submits edit feature button, findoneandUpdate function based on feature type
-    //     try {
-    //       const data = await editFilter({
-    //         variables: { _id, ...feature },
-    //       });
-    //       if (data) {
-    //         window.location.assign('/');
-    //       }
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //     break;
-    //   case 'Alarm':
-    //     try {
-    //       const data = await editAlarm({
-    //         variables: { _id, ...feature },
-    //       });
-    //       if (data) {
-    //         window.location.assign('/');
-    //       }
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //     break;
-    //   case 'Hvac':
-    //     try {
-    //       const data = await editHvac({
-    //         variables: { _id, ...feature },
-    //       });
-    //       if (data) {
-    //         window.location.assign('/');
-    //       }
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //     break;
-    //   case 'Gutter':
-    //     try {
-    //       const data = await editGutter({
-    //         variables: { _id, ...feature },
-    //       });
-    //       if (data) {
-    //         window.location.assign('/');
-    //       }
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //     break;
-    //   default:
-    //     break;
-    // }
   };
 
   return (
@@ -187,24 +131,6 @@ const EditModal = (props) => {
                           method='PUT'
                           onSubmit={handleFormSubmit}>
                           <h2 className='text-3xl font-semibold'>{dropdownOption(props.feature)}</h2>
-                          {/* <label htmlFor='featureCategory'>Feature</label>
-                          <select
-                            id='featureCategory'
-                            name='featureCategory'
-                            onChange={handleChange}
-                            defaultValue={dropdownOption(props.feature)}>
-                            <option
-                              selected
-                              disabled>
-                              {dropdownOption(props.feature)}
-                            </option>
-                            <option>Filter</option>
-                            <option>Alarm</option>
-                            <option>HVAC</option>
-                            <option>Gutter</option>
-                          </select>
-                          <br /> */}
-
                           <label htmlFor='featureName'>Feature Name:</label>
                           <input
                             type='text'

@@ -4,13 +4,11 @@ import gutterIcon from '../images/gutter.svg';
 import alarmIcon from '../images/fireAlarm.svg';
 import hvacIcon from '../images/fan.svg';
 import deleteIcon from '../images/delete.svg';
-
 import EditModal from './EditModal';
-import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
-// import { REMOVE_FILTER, REMOVE_ALARM, REMOVE_HVAC, REMOVE_GUTTER } from '../utils/mutations';
-import { REMOVE_FEATURE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
+import { useMutation } from '@apollo/client';
+import { REMOVE_FEATURE } from '../utils/mutations';
 
 const dayjs = require('dayjs');
 var AdvancedFormat = require('dayjs/plugin/advancedFormat');
@@ -43,15 +41,13 @@ const styles = {
 };
 
 export default function Card({ featureList, setFeatureList }) {
-  // const [removeFilter, { error1 }] = useMutation(REMOVE_FILTER);
-  // const [removeAlarm, { error2 }] = useMutation(REMOVE_ALARM);
-  // const [removeHvac, { error3 }] = useMutation(REMOVE_HVAC);
-  // const [removeGutter, { error4 }] = useMutation(REMOVE_GUTTER);
+  //this is the mutation that will run based on which feature is selected
   const [removeFeature, { error }] = useMutation(REMOVE_FEATURE);
 
   // querying the current user that is logged in
   const { loading, data } = useQuery(QUERY_ME);
   const userId = data.me.userId;
+
   //function to determine which styles need to be applied to each feature maintenance date
   const cardStyle = (dateMaintain) => {
     if (dayjs() >= dayjs(dateMaintain).add(-7, 'day') && dayjs() <= dayjs(dateMaintain)) {
@@ -65,18 +61,8 @@ export default function Card({ featureList, setFeatureList }) {
     }
   };
 
+  //create icons dynamically based on typeName
   const featureIcon = (typeName) => icons[typeName];
-  // const featureIcon = (typename) => {
-  //   if (typename === 'Filter') {
-  //     return icons.Filter;
-  //   } else if (typename === 'Alarm') {
-  //     return icons.Alarm;
-  //   } else if (typename === 'Gutter') {
-  //     return icons.Gutter;
-  //   } else {
-  //     return icons.Hvac;
-  //   }
-  // };
 
   const deleteFeature = async (event) => {
     event.preventDefault();
@@ -84,6 +70,7 @@ export default function Card({ featureList, setFeatureList }) {
     const _id = event.target.getAttribute('data-id');
     console.log(userId, _id, featureCategory);
 
+    //delete feature depending on which featureCategory is passed in argument
     try {
       const data = await removeFeature({
         variables: { userId, _id, featureCategory },
@@ -100,69 +87,6 @@ export default function Card({ featureList, setFeatureList }) {
       console.error(err);
     }
   };
-
-  //   if (featureType === 'Filter') {
-  //     try {
-  //       const data = await removeFilter({
-  //         variables: { userId, _id },
-  //       });
-  //       if (data) {
-  //         setFeatureList([
-  //           ...featureList.filter((feature) => {
-  //             return feature._id !== _id;
-  //           }),
-  //         ]);
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   } else if (featureType === 'Alarm') {
-  //     try {
-  //       const data = await removeAlarm({
-  //         variables: { userId, _id },
-  //       });
-  //       if (data) {
-  //         setFeatureList([
-  //           ...featureList.filter((feature) => {
-  //             return feature._id !== _id;
-  //           }),
-  //         ]);
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   } else if (featureType === 'Gutter') {
-  //     try {
-  //       const data = await removeGutter({
-  //         variables: { userId, _id },
-  //       });
-  //       if (data) {
-  //         setFeatureList([
-  //           ...featureList.filter((feature) => {
-  //             return feature._id !== _id;
-  //           }),
-  //         ]);
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   } else {
-  //     try {
-  //       const data = await removeHvac({
-  //         variables: { userId, _id },
-  //       });
-  //       if (data) {
-  //         setFeatureList([
-  //           ...featureList.filter((feature) => {
-  //             return feature._id !== _id;
-  //           }),
-  //         ]);
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  // };
 
   // mapping a new key value pair to each object in featureList to give back the right style
   const newFeatureList = featureList.map((feature) => ({

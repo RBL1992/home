@@ -87,77 +87,41 @@ const resolvers = {
       return newFeature;
     },
 
-    //new filter
-    // addFilterToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
-    //   const filterInfo = {
-    //     brandName, room, lastMaintenanceDate, itemCategory
-    //   };
+    // Edit Feature
+    editFeature: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory, featureCategory }) => {
+      const lowCaseFeatureCategory = featureCategory.toLowerCase();
+      const featureInfo = {
+        brandName,
+        room,
+        lastMaintenanceDate,
+        itemCategory,
+      };
+      const editFeature = HomeAssistant.findOneAndUpdate(
+        { [`${lowCaseFeatureCategory}._id`]: _id },
+        {
+          $set: { [`${lowCaseFeatureCategory}.$`]: { ...featureInfo } },
+        },
+        {
+          new: true,
+        }
+      );
+      return editFeature;
+    },
 
-    //   const newFilter = HomeAssistant.findOneAndUpdate(
-    //     { userId },
-    //     {
-    //       $addToSet: { filter: filterInfo },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   return newFilter;
-    // },
-
-    // // new gutter
-    // addGutterToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
-    //   const gutterInfo = {
-    //     brandName, room, lastMaintenanceDate, itemCategory
-    //   };
-
-    //   const newGutter = HomeAssistant.findOneAndUpdate(
-    //     { userId },
-    //     {
-    //       $addToSet: { gutter: gutterInfo },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   return newGutter;
-    // },
-
-    // // new alarm
-    // addAlarmToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
-    //   const alarmInfo = {
-    //     brandName, room, lastMaintenanceDate, itemCategory
-    //   };
-
-    //   const newAlarm = HomeAssistant.findOneAndUpdate(
-    //     { userId },
-    //     {
-    //       $addToSet: { alarm: alarmInfo },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   return newAlarm;
-    // },
-
-    // //new hvac
-    // addHvacToHome: async (_, { userId, brandName, room, lastMaintenanceDate, itemCategory }) => {
-    //   const hvacInfo = {
-    //     brandName, room, lastMaintenanceDate, itemCategory
-    //   };
-
-    //   const newHvac = HomeAssistant.findOneAndUpdate(
-    //     { userId },
-    //     {
-    //       $addToSet: { hvac: hvacInfo },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   return newHvac;
-    // },
+    // Remove Feature
+    removeFeatureFromHome: async (_, { userId, _id, featureCategory }) => {
+      const lowCaseFeatureCategory = featureCategory.toLowerCase();
+      const removedFeature = HomeAssistant.findOneAndUpdate(
+        { userId },
+        {
+          $pull: { [lowCaseFeatureCategory]: { _id } },
+        },
+        {
+          new: true,
+        }
+      );
+      return removedFeature;
+    },
 
     // add points to user
     earnPoints: async (_, args, context) => {
@@ -187,180 +151,7 @@ const resolvers = {
       );
       return redeemPoints;
     },
-
-    // Remove Feature
-    removeFeatureFromHome: async (_, { userId, _id, featureCategory }) => {
-      const lowCaseFeatureCategory = featureCategory.toLowerCase();
-      const removedFeature = HomeAssistant.findOneAndUpdate(
-        { userId },
-        {
-          $pull: { [lowCaseFeatureCategory]: { _id } },
-        },
-        {
-          new: true,
-        }
-      );
-      return removedFeature;
-    },
-
-    // delete filter from home
-    // removeFilterFromHome: async (_, args) => {
-    //   const removedFilter = HomeAssistant.findOneAndUpdate(
-    //     { userId: args.userId },
-    //     {
-    //       $pull: { filter: { _id: args._id } },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   return removedFilter;
-    // },
-
-    // // delete alarm from home
-    // removeAlarmFromHome: async (_, args) => {
-    //   const removedAlarm = HomeAssistant.findOneAndUpdate(
-    //     { userId: args.userId },
-    //     {
-    //       $pull: { alarm: { _id: args._id } },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   return removedAlarm;
-    // },
-
-    // // delete gutter from home
-    // removeGutterFromHome: async (_, args) => {
-    //   const removedGutter = HomeAssistant.findOneAndUpdate(
-    //     { userId: args.userId },
-    //     {
-    //       $pull: { gutter: { _id: args._id } },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   return removedGutter;
-    // },
-
-    // // delete hvac from home
-    // removeHvacFromHome: async (_, args) => {
-    //   const removedHvac = HomeAssistant.findOneAndUpdate(
-    //     { userId: args.userId },
-    //     {
-    //       $pull: { hvac: { _id: args._id } },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   return removedHvac;
-    // },
-
-    // Edit Feature
-    editFeature: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory, featureCategory }) => {
-      const lowCaseFeatureCategory = featureCategory.toLowerCase();
-      const featureInfo = {
-        brandName,
-        room,
-        lastMaintenanceDate,
-        itemCategory,
-      };
-      const editFeature = HomeAssistant.findOneAndUpdate(
-        { [`${lowCaseFeatureCategory}._id`]: _id },
-        {
-          $set: { [`${lowCaseFeatureCategory}.$`]: { ...featureInfo } },
-        },
-        {
-          new: true,
-        }
-      );
-      return editFeature;
-    },
   },
 };
-//     // change filter feature data
-//     editFilter: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
-//       const filterInfo = {
-//         brandName,
-//         room,
-//         lastMaintenanceDate,
-//         itemCategory,
-//       };
-//       const editFilter = HomeAssistant.findOneAndUpdate(
-//         { 'filter._id': _id },
-//         {
-//           $set: { 'filter.$': filterInfo },
-//         },
-//         {
-//           new: true,
-//         }
-//       );
-//       return editFilter;
-//     },
-
-//     // change alarm feature data
-//     editAlarm: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
-//       const alarmInfo = {
-//         brandName,
-//         room,
-//         lastMaintenanceDate,
-//         itemCategory,
-//       };
-//       const editAlarm = HomeAssistant.findOneAndUpdate(
-//         { 'alarm._id': _id },
-//         {
-//           $set: { 'alarm.$': alarmInfo },
-//         },
-//         {
-//           new: true,
-//         }
-//       );
-//       return editAlarm;
-//     },
-
-//     // change gutter feature data
-//     editGutter: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
-//       const gutterInfo = {
-//         brandName,
-//         room,
-//         lastMaintenanceDate,
-//         itemCategory,
-//       };
-//       const editGutter = HomeAssistant.findOneAndUpdate(
-//         { 'gutter._id': _id },
-//         {
-//           $set: { 'gutter.$': gutterInfo },
-//         },
-//         {
-//           new: true,
-//         }
-//       );
-//       return editGutter;
-//     },
-
-//     // change hvac feature data
-//     editHvac: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory }) => {
-//       const hvacInfo = {
-//         brandName,
-//         room,
-//         lastMaintenanceDate,
-//         itemCategory,
-//       };
-//       const editHvac = HomeAssistant.findOneAndUpdate(
-//         { 'hvac._id': _id },
-//         {
-//           $set: { 'hvac.$': hvacInfo },
-//         },
-//         {
-//           new: true,
-//         }
-//       );
-//       return editHvac;
-//     },
-//   },
-// };
 
 module.exports = resolvers;

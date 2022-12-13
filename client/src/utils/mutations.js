@@ -26,6 +26,15 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const ADD_HOME = gql`
+  mutation AddHome($addHomeUserId: String!, $homeName: String!) {
+    addHome(userId: $addHomeUserId, homeName: $homeName) {
+      homeName
+      userId
+    }
+  }
+`;
+
 export const ADD_FEATURE = gql`
   mutation AddFeatureToHome(
     $userId: String!
@@ -81,88 +90,6 @@ export const ADD_FEATURE = gql`
   }
 `;
 
-export const EARN_POINTS = gql`
-  mutation EarnPoints($userId: ID!) {
-    earnPoints(userId: $userId) {
-      _id
-      currentHomePoints
-      lifetimeHomePoints
-      firstName
-      email
-      lastName
-      password
-      phoneNumber
-      referralLink
-    }
-  }
-`;
-
-export const ADD_HOME = gql`
-  mutation AddHome($addHomeUserId: String!, $homeName: String!) {
-    addHome(userId: $addHomeUserId, homeName: $homeName) {
-      homeName
-      userId
-    }
-  }
-`;
-
-export const REDEEM_POINTS = gql`
-  mutation RedeemPoints($userId: ID!, $redeemedPoints: Int) {
-    redeemPoints(userId: $userId, redeemedPoints: $redeemedPoints) {
-      _id
-      currentHomePoints
-      lifetimeHomePoints
-      firstName
-      email
-      lastName
-      password
-      phoneNumber
-      referralLink
-    }
-  }
-`;
-
-export const REMOVE_FEATURE = gql`
-  mutation RemoveFeatureFromHome($userId: ID!, $_id: ID!, $featureCategory: String!) {
-    removeFeatureFromHome(userId: $userId, _id: $_id, featureCategory: $featureCategory) {
-      homeName
-      userId
-      filter {
-        _id
-        brandName
-        room
-        lastMaintenanceDate
-        itemCategory
-        nextMaintenanceDate
-      }
-      hvac {
-        _id
-        brandName
-        room
-        lastMaintenanceDate
-        itemCategory
-        nextMaintenanceDate
-      }
-      alarm {
-        _id
-        brandName
-        room
-        lastMaintenanceDate
-        itemCategory
-        nextMaintenanceDate
-      }
-      gutter {
-        _id
-        brandName
-        room
-        lastMaintenanceDate
-        itemCategory
-        nextMaintenanceDate
-      }
-    }
-  }
-`;
-
 export const EDIT_FEATURE = gql`
   mutation EditFeature(
     $_id: ID!
@@ -213,6 +140,79 @@ export const EDIT_FEATURE = gql`
         itemCategory
         nextMaintenanceDate
       }
+    }
+  }
+`;
+
+export const REMOVE_FEATURE = gql`
+  mutation RemoveFeatureFromHome($userId: ID!, $_id: ID!, $featureCategory: String!) {
+    removeFeatureFromHome(userId: $userId, _id: $_id, featureCategory: $featureCategory) {
+      homeName
+      userId
+      filter {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      hvac {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      alarm {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      gutter {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+    }
+  }
+`;
+
+export const EARN_POINTS = gql`
+  mutation EarnPoints($userId: ID!) {
+    earnPoints(userId: $userId) {
+      _id
+      currentHomePoints
+      lifetimeHomePoints
+      firstName
+      email
+      lastName
+      password
+      phoneNumber
+      referralLink
+    }
+  }
+`;
+
+export const REDEEM_POINTS = gql`
+  mutation RedeemPoints($userId: ID!, $redeemedPoints: Int) {
+    redeemPoints(userId: $userId, redeemedPoints: $redeemedPoints) {
+      _id
+      currentHomePoints
+      lifetimeHomePoints
+      firstName
+      email
+      lastName
+      password
+      phoneNumber
+      referralLink
     }
   }
 `;

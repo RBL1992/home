@@ -1,19 +1,20 @@
 import React, { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/24/outline';
-
-import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
-
-// import {ADD_FILTER, ADD_ALARM, ADD_GUTTER, ADD_HVAC, EARN_POINTS} from '../utils/mutations';
-import { ADD_FEATURE, EARN_POINTS } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import { ADD_FEATURE, EARN_POINTS } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
 const FeatureModal = (props) => {
+  // array of features for dropdown menu rendered in JSX - ADD NEW FEATURES DIRECTLY HERE
+  const featuresArr = ['Filter', 'Alarm', 'HVAC', 'Gutter'];
+
   // this is for tailwind modal ui
   const [open, setOpen] = useState(false);
+
   //setting the state of the currently input feature
   const [feature, setFeatureState] = useState({
     featureCategory: 'Filter',
@@ -23,12 +24,9 @@ const FeatureModal = (props) => {
     nextMaintenanceDate: '',
     brandName: '',
   });
+
   //these are the mutations that will run based on which feature is selected
-  //   const [addFilter, { error1 }] = useMutation(ADD_FILTER);
   const [addFeature, { error }] = useMutation(ADD_FEATURE);
-  //   const [addAlarm, { error2 }] = useMutation(ADD_ALARM);
-  //   const [addHvac, { error3 }] = useMutation(ADD_HVAC);
-  //   const [addGutter, { error4 }] = useMutation(ADD_GUTTER);
   const [addPoints, { error5 }] = useMutation(EARN_POINTS);
 
   // this updates the state of the feature form when user is typing in active input field
@@ -58,6 +56,7 @@ const FeatureModal = (props) => {
       console.error(err);
     }
 
+    // add feature depending on which feature category is selected
     try {
       const data = await addFeature({
         variables: { userId, ...feature },
@@ -65,70 +64,12 @@ const FeatureModal = (props) => {
 
       if (data) {
         const featureCategory = feature.featureCategory.toLowerCase();
-        // console.log(data);
-        // console.log(lowCaseFeatureCategory);
         props.setFeatureList([...props.featureList, data.data.addFeatureToHome[featureCategory].pop()]);
       }
       setFeatureState('');
     } catch (err) {
       console.error(err);
     }
-    // switch (feature.featureCategory) {
-    //   case 'Filter':
-    //     try {
-    //       const data = await addFilter({
-    //         variables: { userId, ...feature },
-    //       });
-    //       if (data) {
-    //         props.setFeatureList([...props.featureList, data.data.addFilterToHome.filter.pop()]);
-    //       }
-    //       setFeatureState('');
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //     break;
-    //   case 'Alarm':
-    //     try {
-    //       const data = await addAlarm({
-    //         variables: { userId, ...feature },
-    //       });
-    //       if (data) {
-    //         props.setFeatureList([...props.featureList, data.data.addAlarmToHome.alarm.pop()]);
-    //       }
-    //       setFeatureState('');
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //     break;
-    //   case 'HVAC':
-    //     try {
-    //       const data = await addHvac({
-    //         variables: { userId, ...feature },
-    //       });
-    //       if (data) {
-    //         props.setFeatureList([...props.featureList, data.data.addHvacToHome.hvac.pop()]);
-    //       }
-    //       setFeatureState('');
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //     break;
-    //   case 'Gutter':
-    //     try {
-    //       const data = await addGutter({
-    //         variables: { userId, ...feature },
-    //       });
-    //       if (data) {
-    //         props.setFeatureList([...props.featureList, data.data.addGutterToHome.gutter.pop()]);
-    //       }
-    //       setFeatureState('');
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //     break;
-    //   default:
-    //     break;
-    // }
   };
 
   return (
@@ -194,10 +135,9 @@ const FeatureModal = (props) => {
                             id='featureCategory'
                             name='featureCategory'
                             onChange={handleChange}>
-                            <option>Filter</option>
-                            <option>Alarm</option>
-                            <option>HVAC</option>
-                            <option>Gutter</option>
+                            {featuresArr.map((feature) => (
+                              <option>{feature}</option>
+                            ))}
                           </select>
                           <br />
 

@@ -78,6 +78,8 @@ const typeDefs = gql`
 
     login(email: String!, password: String!): Auth
 
+    addHome(userId: String!, homeName: String!): Home
+
     addFeatureToHome(
       userId: String!
       featureCategory: String!
@@ -87,14 +89,6 @@ const typeDefs = gql`
       itemCategory: String!
     ): Home
 
-    addHome(userId: String!, homeName: String!): Home
-
-    earnPoints(userId: ID!): User
-
-    redeemPoints(userId: ID!, redeemedPoints: Int): User
-
-    removeFeatureFromHome(userId: ID!, _id: ID!, featureCategory: String!): Home
-
     editFeature(
       _id: ID!
       brandName: String
@@ -103,6 +97,12 @@ const typeDefs = gql`
       itemCategory: String
       featureCategory: String!
     ): Home
+
+    removeFeatureFromHome(userId: ID!, _id: ID!, featureCategory: String!): Home
+
+    earnPoints(userId: ID!): User
+
+    redeemPoints(userId: ID!, redeemedPoints: Int): User
   }
 `;
 
