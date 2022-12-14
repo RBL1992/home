@@ -68,7 +68,6 @@ export default function Card({ featureList, setFeatureList }) {
     event.preventDefault();
     const featureCategory = event.target.name;
     const _id = event.target.getAttribute('data-id');
-    console.log(userId, _id, featureCategory);
 
     //delete feature depending on which featureCategory is passed in argument
     try {
@@ -104,7 +103,7 @@ export default function Card({ featureList, setFeatureList }) {
         className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {featureList &&
           newFeatureList.map((feature, i) => (
-            <div key={i}>
+            <div key={`feature-list: ${feature._id}`}>
               <li className='col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow'>
                 <div className='flex flex-1 flex-col p-8'>
                   <div className='flex justify-between'>

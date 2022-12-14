@@ -91,15 +91,16 @@ const resolvers = {
     editFeature: async (_, { _id, brandName, room, lastMaintenanceDate, itemCategory, featureCategory }) => {
       const lowCaseFeatureCategory = featureCategory.toLowerCase();
       const featureInfo = {
+        _id, //This fucking destroyed me; I struggled for 2 days because everytime I updated the db from the frontend the _id would change!!! THIS WAS THE MISSING PIECE cuz we weren't passing the _id in the data so MongoDB was creating a new ID
         brandName,
         room,
         lastMaintenanceDate,
         itemCategory,
       };
       const editFeature = HomeAssistant.findOneAndUpdate(
-        { [`${lowCaseFeatureCategory}._id`]: _id },
+        { [lowCaseFeatureCategory._id]: _id },
         {
-          $set: { [`${lowCaseFeatureCategory}.$`]: { ...featureInfo } },
+          $set: { [lowCaseFeatureCategory.$]: { ...featureInfo } },
         },
         {
           new: true,

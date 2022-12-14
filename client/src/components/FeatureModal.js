@@ -135,8 +135,8 @@ const FeatureModal = (props) => {
                             id='featureCategory'
                             name='featureCategory'
                             onChange={handleChange}>
-                            {featuresArr.map((feature) => (
-                              <option>{feature}</option>
+                            {featuresArr.map((feature, i) => (
+                              <option key={`feature-modal-id: ${feature._id}, ${i}`}>{feature}</option>
                             ))}
                           </select>
                           <br />

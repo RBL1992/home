@@ -54,13 +54,26 @@ const EditModal = (props) => {
     event.preventDefault();
     const _id = event.target.getAttribute('data-id');
     const featureCategory = event.target.name.toLowerCase();
+    console.log(_id);
 
     try {
       const data = await editFeature({
         variables: { _id, featureCategory, ...feature },
       });
+      console.log('props.featureList: ', { ...props.featureList });
+      console.log('feature: ', { ...feature });
+      console.log('updated data', data.data.editFeature[featureCategory]);
       if (data) {
-        window.location.assign('/');
+        props.setFeatureList(
+          props.featureList.map((obj) => {
+            if (obj._id === _id) {
+              return { ...obj, ...feature };
+            }
+            return obj;
+          })
+        );
+        // props.setFeatureList((prevState) => prevState.filter((feature) => feature._id !== _id));
+        // props.setFeatureList((prevState) => [...prevState, { ...feature, _id, __typename: feature.featureCategory }]);
       }
     } catch (err) {
       console.error(err);
