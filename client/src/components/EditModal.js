@@ -67,6 +67,8 @@ const EditModal = (props) => {
         props.setFeatureList(
           props.featureList.map((obj) => {
             if (obj._id === _id) {
+              console.log('obj', obj);
+              console.log('feature', feature);
               return { ...obj, ...feature };
             }
             return obj;
