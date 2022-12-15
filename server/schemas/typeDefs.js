@@ -134,6 +134,7 @@ const typeDefs = gql`
       brandName: String
       room: String
       lastMaintenanceDate: String
+      nextMaintenanceDate: String
       itemCategory: String
       featureCategory: String!
     ): Home

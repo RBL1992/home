@@ -130,6 +130,7 @@ export const EDIT_FEATURE = gql`
     $brandName: String
     $room: String
     $lastMaintenanceDate: String
+    $nextMaintenanceDate: String
   ) {
     editFeature(
       _id: $_id
@@ -138,6 +139,7 @@ export const EDIT_FEATURE = gql`
       brandName: $brandName
       room: $room
       lastMaintenanceDate: $lastMaintenanceDate
+      nextMaintenanceDate: $nextMaintenanceDate
     ) {
       userId
       filter {
