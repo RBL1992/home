@@ -32,6 +32,7 @@ const FeatureModal = (props) => {
   // this updates the state of the feature form when user is typing in active input field
   const handleChange = (event) => {
     const { name, value } = event.target;
+    console.log(value);
 
     setFeatureState({
       ...feature,
@@ -63,6 +64,7 @@ const FeatureModal = (props) => {
       });
 
       if (data) {
+        console.log(data);
         const featureCategory = feature.featureCategory.toLowerCase();
         props.setFeatureList([...props.featureList, data.data.addFeatureToHome[featureCategory].pop()]);
       }

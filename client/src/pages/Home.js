@@ -9,7 +9,7 @@ import { QUERY_ME } from "../utils/queries";
 const Home = () => {
 
   const [featureList, setFeatureList] = useState([]);
-  const {loading, data, error} = useQuery(QUERY_ME, {onCompleted: (data) => setFeatureList([...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac, ...data.me.doorbell, ...data.me.outlet, ...data.me.ceilingFan, ...data.me.exhaustFan])});
+  const {loading, data, error} = useQuery(QUERY_ME, {onCompleted: (data) => setFeatureList([...data.me.filter, ...data.me.gutter, ...data.me.alarm, ...data.me.hvac, ...data.me.doorbell, ...data.me.outlet, ...data.me.ceilingfan, ...data.me.exhaustfan])});
 
   if (loading) {
     return <div> Loading ... </div>;
@@ -23,6 +23,7 @@ const Home = () => {
 
   return (
     <>
+    {console.log(data)};
       <div className="min-h-full">
 
 

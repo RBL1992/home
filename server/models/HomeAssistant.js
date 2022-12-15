@@ -15,8 +15,8 @@ const homeSchema = new Schema({
   filter: [filterSchema],
   doorbell: [doorbellSchema],
   outlet: [outletsSchema],
-  ceilingFan: [ceilingFanSchema],
-  exhaustFan: [exhaustFanSchema],
+  ceilingfan: [ceilingFanSchema],
+  exhaustfan: [exhaustFanSchema],
 
   userId: {
     type: Schema.Types.ObjectId,

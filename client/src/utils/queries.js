@@ -44,6 +44,14 @@ export const QUERY_ME = gql`
         nextMaintenanceDate
         room
       }
+      gutter {
+        _id
+        brandName
+        itemCategory
+        lastMaintenanceDate
+        nextMaintenanceDate
+        room
+      }
       doorbell {
         _id
         brandName
@@ -60,7 +68,7 @@ export const QUERY_ME = gql`
         nextMaintenanceDate
         room
       }
-      gutter {
+      ceilingfan {
         _id
         brandName
         itemCategory
@@ -68,15 +76,7 @@ export const QUERY_ME = gql`
         nextMaintenanceDate
         room
       }
-      ceilingFan {
-        _id
-        brandName
-        itemCategory
-        lastMaintenanceDate
-        nextMaintenanceDate
-        room
-      }
-      exhaustFan {
+      exhaustfan {
         _id
         brandName
         itemCategory

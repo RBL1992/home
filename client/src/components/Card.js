@@ -25,8 +25,8 @@ const icons = {
   Hvac: hvacIcon,
   Doorbell: doorbellIcon,
   Outlet: outletIcon,
-  CeilingFan: ceilingFanIcon,
-  ExhaustFan: exhaustFanIcon,
+  Ceilingfan: ceilingFanIcon,
+  Exhaustfan: exhaustFanIcon,
 };
 
 const styles = {

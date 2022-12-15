@@ -100,7 +100,7 @@ export const ADD_FEATURE = gql`
         itemCategory
         nextMaintenanceDate
       }
-      ceilingFan {
+      ceilingfan {
         _id
         brandName
         room
@@ -108,7 +108,7 @@ export const ADD_FEATURE = gql`
         itemCategory
         nextMaintenanceDate
       }
-      exhaustFan {
+      exhaustfan {
         _id
         brandName
         room
@@ -172,6 +172,38 @@ export const EDIT_FEATURE = gql`
         itemCategory
         nextMaintenanceDate
       }
+      doorbell {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      outlet {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      ceilingfan {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      exhaustfan {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
     }
   }
 `;
@@ -206,6 +238,38 @@ export const REMOVE_FEATURE = gql`
         nextMaintenanceDate
       }
       gutter {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      doorbell {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      outlet {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      ceilingfan {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      exhaustfan {
         _id
         brandName
         room

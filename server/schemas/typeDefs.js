@@ -90,8 +90,8 @@ const typeDefs = gql`
     gutter: [Gutter]
     doorbell: [Doorbell]
     outlet: [Outlet]
-    ceilingFan: [CeilingFan]
-    exhaustFan: [ExhaustFan]
+    ceilingfan: [CeilingFan]
+    exhaustfan: [ExhaustFan]
   }
 
   type Auth {
