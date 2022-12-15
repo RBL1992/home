@@ -3,6 +3,10 @@ import filterIcon from '../images/filter.svg';
 import gutterIcon from '../images/gutter.svg';
 import alarmIcon from '../images/fireAlarm.svg';
 import hvacIcon from '../images/fan.svg';
+import doorbellIcon from '../images/bell.svg';
+import outletIcon from '../images/outlet.svg';
+import ceilingFanIcon from '../images/ceilingFan.svg';
+import exhaustFanIcon from '../images/wind.svg';
 import deleteIcon from '../images/delete.svg';
 import EditModal from './EditModal';
 import { useQuery } from '@apollo/client';
@@ -19,6 +23,10 @@ const icons = {
   Gutter: gutterIcon,
   Alarm: alarmIcon,
   Hvac: hvacIcon,
+  Doorbell: doorbellIcon,
+  Outlet: outletIcon,
+  CeilingFan: ceilingFanIcon,
+  ExhaustFan: exhaustFanIcon,
 };
 
 const styles = {

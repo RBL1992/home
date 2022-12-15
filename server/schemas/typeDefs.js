@@ -45,6 +45,42 @@ const typeDefs = gql`
     nextMaintenanceDate: String
   }
 
+  type Doorbell {
+    _id: ID
+    brandName: String
+    room: String
+    lastMaintenanceDate: String
+    itemCategory: String
+    nextMaintenanceDate: String
+  }
+
+  type Outlet {
+    _id: ID
+    brandName: String
+    room: String
+    lastMaintenanceDate: String
+    itemCategory: String
+    nextMaintenanceDate: String
+  }
+
+  type CeilingFan {
+    _id: ID
+    brandName: String
+    room: String
+    lastMaintenanceDate: String
+    itemCategory: String
+    nextMaintenanceDate: String
+  }
+
+  type ExhaustFan {
+    _id: ID
+    brandName: String
+    room: String
+    lastMaintenanceDate: String
+    itemCategory: String
+    nextMaintenanceDate: String
+  }
+
   type Home {
     homeName: String
     userId: String
@@ -52,6 +88,10 @@ const typeDefs = gql`
     hvac: [Hvac]
     alarm: [Alarm]
     gutter: [Gutter]
+    doorbell: [Doorbell]
+    outlet: [Outlet]
+    ceilingFan: [CeilingFan]
+    exhaustFan: [ExhaustFan]
   }
 
   type Auth {

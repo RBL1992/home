@@ -10,7 +10,7 @@ import Auth from '../utils/auth';
 
 const FeatureModal = (props) => {
   // array of features for dropdown menu rendered in JSX - ADD NEW FEATURES DIRECTLY HERE
-  const featuresArr = ['Filter', 'Alarm', 'HVAC', 'Gutter'];
+  const featuresArr = ['Filter', 'Alarm', 'HVAC', 'Gutter', 'Doorbell', 'Outlet','CeilingFan','ExhaustFan'];
 
   // this is for tailwind modal ui
   const [open, setOpen] = useState(false);
