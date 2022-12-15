@@ -44,7 +44,39 @@ export const QUERY_ME = gql`
         nextMaintenanceDate
         room
       }
+      doorbell {
+        _id
+        brandName
+        itemCategory
+        lastMaintenanceDate
+        nextMaintenanceDate
+        room
+      }
+      outlet {
+        _id
+        brandName
+        itemCategory
+        lastMaintenanceDate
+        nextMaintenanceDate
+        room
+      }
       gutter {
+        _id
+        brandName
+        itemCategory
+        lastMaintenanceDate
+        nextMaintenanceDate
+        room
+      }
+      ceilingFan {
+        _id
+        brandName
+        itemCategory
+        lastMaintenanceDate
+        nextMaintenanceDate
+        room
+      }
+      exhaustFan {
         _id
         brandName
         itemCategory
