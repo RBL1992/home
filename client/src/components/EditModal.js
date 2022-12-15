@@ -69,7 +69,7 @@ const EditModal = (props) => {
             if (obj._id === _id) {
               console.log('obj', obj);
               console.log('feature', feature);
-              return { ...obj, ...feature };
+              return { ...obj, ...data.data.editFeature[featureCategory].filter((feature) => feature._id === _id)[0] }; //...feature
             }
             return obj;
           })
