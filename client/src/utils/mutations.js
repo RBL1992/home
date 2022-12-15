@@ -116,6 +116,166 @@ export const ADD_FEATURE = gql`
         itemCategory
         nextMaintenanceDate
       }
+      regrout {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      downspout {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      drains {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      waterheater {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      sumppump {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      roof {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      foundation {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      siding {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      paint {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      exteriorsurfacecracks {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      airconditioningunit {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      critter {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      trimming {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      hvacunit {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      disposal {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      coils {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      washingmachine {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      fireextinguisher {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      dryervent {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      seals {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
       homeName
       userId
     }
@@ -206,6 +366,166 @@ export const EDIT_FEATURE = gql`
         itemCategory
         nextMaintenanceDate
       }
+      regrout {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      downspout {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      drains {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      waterheater {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      sumppump {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      roof {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      foundation {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      siding {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      paint {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      exteriorsurfacecracks {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      airconditioningunit {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      critter {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      trimming {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      hvacunit {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      disposal {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      coils {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      washingmachine {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      fireextinguisher {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      dryervent {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      seals {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
     }
   }
 `;
@@ -272,6 +592,166 @@ export const REMOVE_FEATURE = gql`
         nextMaintenanceDate
       }
       exhaustfan {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      regrout {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      downspout {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      drains {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      waterheater {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      sumppump {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      roof {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      foundation {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      siding {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      paint {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      exteriorsurfacecracks {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      airconditioningunit {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      critter {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      trimming {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      hvacunit {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      disposal {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      coils {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      washingmachine {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      fireextinguisher {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      dryervent {
+        _id
+        brandName
+        room
+        lastMaintenanceDate
+        itemCategory
+        nextMaintenanceDate
+      }
+      seals {
         _id
         brandName
         room

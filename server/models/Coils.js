@@ -3,7 +3,7 @@ const dayjs = require('dayjs');
 var AdvancedFormat = require('dayjs/plugin/advancedFormat');
 dayjs.extend(AdvancedFormat);
 
-const ceilingFanSchema = new Schema(
+const coilsSchema = new Schema(
   {
     brandName: {
       type: String,
@@ -32,8 +32,8 @@ const ceilingFanSchema = new Schema(
 );
 
 // Create a virtual property `nextMaintenanceDate` that gets date the thing needs to be maintained
-ceilingFanSchema.virtual('nextMaintenanceDate').get(function () {
-  return dayjs(this.lastMaintenanceDate).add(182, 'day').format('MM/DD/YYYY');
+coilsSchema.virtual('nextMaintenanceDate').get(function () {
+  return dayjs(this.lastMaintenanceDate).add(180, 'day').format('MM/DD/YYYY');
 });
 
-module.exports = ceilingFanSchema;
+module.exports = coilsSchema;

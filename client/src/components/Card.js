@@ -7,6 +7,26 @@ import doorbellIcon from '../images/bell.svg';
 import outletIcon from '../images/outlet.svg';
 import ceilingFanIcon from '../images/ceilingFan.svg';
 import exhaustFanIcon from '../images/wind.svg';
+import regroutIcon from '../images/regrout.svg';
+import downspoutIcon from '../images/downspout.svg';
+import drainsIcon from '../images/drains.svg';
+import waterHeaterIcon from '../images/waterheater.svg';
+import sumpPumpIcon from '../images/sumpump.svg';
+import roofIcon from '../images/roof.svg';
+import foundationIcon from '../images/foundation.svg';
+import sidingIcon from '../images/siding.svg';
+import paintIcon from '../images/paint.svg';
+import exteriorSurfaceCracksIcon from '../images/exteriorSurfaceCracks.svg';
+import airconditioningunitIcon from '../images/airconditioningunit.svg';
+import critterIcon from '../images/critter.svg';
+import trimmingIcon from '../images/trimming.svg';
+import hvacUnitIcon from '../images/hvacUnit.svg';
+import disposalIcon from '../images/disposal.svg';
+import coilsIcon from '../images/coils.svg';
+import washingMachineIcon from '../images/washingMachine.svg';
+import fireExtinguisherIcon from '../images/fireExtinguisher.svg';
+import dryerVentIcon from '../images/dryerVent.svg';
+import sealsIcon from '../images/seals.svg';
 import deleteIcon from '../images/delete.svg';
 import EditModal from './EditModal';
 import { useQuery } from '@apollo/client';
@@ -25,8 +45,29 @@ const icons = {
   Hvac: hvacIcon,
   Doorbell: doorbellIcon,
   Outlet: outletIcon,
-  Ceilingfan: ceilingFanIcon,
-  Exhaustfan: exhaustFanIcon,
+  CeilingFan: ceilingFanIcon,
+  ExhaustFan: exhaustFanIcon,
+  Regrout: regroutIcon,
+  Downspout: downspoutIcon,
+  Drains: drainsIcon,
+  WaterHeater: waterHeaterIcon,
+  SumpPump: sumpPumpIcon,
+  Roof: roofIcon,
+  Foundation: foundationIcon,
+  Siding: sidingIcon,
+  Paint: paintIcon,
+  ExteriorSurfaceCracks: exteriorSurfaceCracksIcon,
+  AirConditioningUnit: airconditioningunitIcon,
+  Critter: critterIcon,
+  Trimming: trimmingIcon,
+  HvacUnit: hvacUnitIcon,
+  Disposal: disposalIcon,
+  Coils: coilsIcon,
+  WashingMachine: washingMachineIcon,
+  FireExtinguisher: fireExtinguisherIcon,
+  DryerVent: dryerVentIcon,
+  Seals: sealsIcon,
+  
 };
 
 const styles = {
