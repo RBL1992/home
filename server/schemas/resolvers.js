@@ -98,9 +98,9 @@ const resolvers = {
         itemCategory,
       };
       const editFeature = HomeAssistant.findOneAndUpdate(
-        { [lowCaseFeatureCategory._id]: _id },
+        { [`${lowCaseFeatureCategory}._id`]: _id },
         {
-          $set: { [lowCaseFeatureCategory]: { ...featureInfo } },
+          $set: { [`${lowCaseFeatureCategory}.$`]: { ...featureInfo } },
         },
         {
           new: true,
