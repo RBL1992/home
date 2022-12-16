@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "server.js",
+    "proxy":"http://0.0.0.0:3001",
     "scripts": {
         "start": "node server.js",
         "seed": "node seeds/seed.js",
