@@ -10,7 +10,36 @@ import Auth from '../utils/auth';
 
 const FeatureModal = (props) => {
   // array of features for dropdown menu rendered in JSX - ADD NEW FEATURES DIRECTLY HERE
-  const featuresArr = ['Filter', 'Alarm', 'HVAC', 'Gutter'];
+  const featuresArr = [
+    'Filter',
+    'Alarm',
+    'HVAC',
+    'Gutter',
+    'Doorbell',
+    'Outlet',
+    'CeilingFan',
+    'ExhaustFan',
+    'Regrout',
+    'Downspout',
+    'Drains',
+    'WaterHeater',
+    'SumpPump',
+    'Roof',
+    'Foundation',
+    'Siding',
+    'Paint',
+    'ExteriorSurfaceCracks',
+    'AirConditioningUnit',
+    'Critter',
+    'Trimming',
+    'HvacUnit',
+    'Disposal',
+    'Coils',
+    'WashingMachine',
+    'FireExtinguisher',
+    'DryerVent',
+    'Seals'
+  ];
 
   // this is for tailwind modal ui
   const [open, setOpen] = useState(false);
@@ -32,6 +61,7 @@ const FeatureModal = (props) => {
   // this updates the state of the feature form when user is typing in active input field
   const handleChange = (event) => {
     const { name, value } = event.target;
+    console.log(value);
 
     setFeatureState({
       ...feature,
@@ -63,6 +93,7 @@ const FeatureModal = (props) => {
       });
 
       if (data) {
+        console.log(data);
         const featureCategory = feature.featureCategory.toLowerCase();
         props.setFeatureList([...props.featureList, data.data.addFeatureToHome[featureCategory].pop()]);
       }
