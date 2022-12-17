@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { useMutation } from '@apollo/client';
 import { EDIT_FEATURE } from '../utils/mutations';
+import './Modal.css';
 
 import dayjs from 'dayjs';
 
@@ -69,13 +70,11 @@ const EditModal = (props) => {
             if (obj._id === _id) {
               console.log('obj', obj);
               console.log('feature', feature);
-              return { ...obj, ...data.data.editFeature[featureCategory].filter((feature) => feature._id === _id)[0] }; //...feature
+              return { ...obj, ...data.data.editFeature[featureCategory].filter((feature) => feature._id === _id)[0] };
             }
             return obj;
           })
         );
-        // props.setFeatureList((prevState) => prevState.filter((feature) => feature._id !== _id));
-        // props.setFeatureList((prevState) => [...prevState, { ...feature, _id, __typename: feature.featureCategory }]);
       }
     } catch (err) {
       console.error(err);
@@ -122,7 +121,7 @@ const EditModal = (props) => {
                 leave='ease-in duration-200'
                 leaveFrom='opacity-100 translate-y-0 sm:scale-100'
                 leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
-                <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6'>
+                <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:p-6'>
                   <div>
                     <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100'>
                       <CheckIcon
@@ -131,7 +130,7 @@ const EditModal = (props) => {
                       />
                     </div>
 
-                    <div className='mt-3 text-center sm:mt-5'>
+                    <div className='mt-3 text-center sm:mt-5 py-1'>
                       <Dialog.Title
                         as='h3'
                         className='text-lg font-medium leading-6 text-gray-900'>
@@ -141,59 +140,77 @@ const EditModal = (props) => {
                         <form
                           name={props.feature.__typename}
                           data-id={props.feature._id}
-                          className='space-y-6'
+                          className='space-y-6 mt-8 px-5 flex flex-col items-center'
                           action='#'
                           method='PUT'
                           onSubmit={handleFormSubmit}>
                           <h2 className='text-3xl font-semibold'>{dropdownOption(props.feature)}</h2>
-                          <label htmlFor='featureName'>Feature Name:</label>
-                          <input
-                            type='text'
-                            id='featureName'
-                            name='itemCategory'
-                            value={feature.itemCategory}
-                            onChange={handleChange}
-                            required
-                          />
-                          <br />
 
-                          <label htmlFor='room'>Room:</label>
-                          <input
-                            type='text'
-                            id='room'
-                            name='room'
-                            value={feature.room}
-                            onChange={handleChange}
-                            required
-                          />
-                          <br />
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='featureName'>Feature Name:</label>
+                            </div>
+                            <input
+                              type='text'
+                              id='featureName'
+                              name='itemCategory'
+                              className='inputSpacing'
+                              value={feature.itemCategory}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
 
-                          <label htmlFor='maintenanceDate'>Last Maintenance Date:</label>
-                          <input
-                            type='date'
-                            id='maintenance'
-                            name='lastMaintenanceDate'
-                            value={dayjs(feature.lastMaintenanceDate).format('YYYY-MM-DD')}
-                            onChange={handleChange}
-                            required
-                          />
-                          <br />
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='room'>Room:</label>
+                            </div>
+                            <input
+                              type='text'
+                              id='room'
+                              name='room'
+                              className='inputSpacing'
+                              value={feature.room}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
 
-                          <label htmlFor='brandName'>Brand Name:</label>
-                          <input
-                            type='text'
-                            id='brandName'
-                            name='brandName'
-                            value={feature.brandName}
-                            onChange={handleChange}
-                            required
-                          />
-                          <br />
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='maintenanceDate'>Last Maintenance Date:</label>
+                            </div>
+                            <input
+                              type='date'
+                              id='maintenance'
+                              name='lastMaintenanceDate'
+                              className='inputSpacing'
+                              value={dayjs(feature.lastMaintenanceDate).format('YYYY-MM-DD')}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='brandName'>Brand Name:</label>
+                            </div>
+                            <input
+                              type='text'
+                              id='brandName'
+                              name='brandName'
+                              className='inputSpacing'
+                              value={feature.brandName}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+
                           <div className='mt-5 sm:mt-6'>
                             <button
                               type='submit'
                               className='flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                              onClick={() => setOpen(false)}>
+                              onClick={() => !error && setOpen(false)}>
                               All Done
                             </button>
                           </div>
