@@ -4,12 +4,8 @@ import { CheckIcon } from '@heroicons/react/24/outline';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
-import { ADD_FEATURE, EARN_POINTS } from '../utils/mutations';
+import { ADD_FEATURE, EARN_POINTS, SEND_EMAIL_TRIAL } from '../utils/mutations';
 import Auth from '../utils/auth';
-import sgMail from '@sendgrid/mail';
-
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const FeatureModal = (props) => {
   // array of features for dropdown menu rendered in JSX - ADD NEW FEATURES DIRECTLY HERE
@@ -60,6 +56,7 @@ const FeatureModal = (props) => {
   //these are the mutations that will run based on which feature is selected
   const [addFeature, { error }] = useMutation(ADD_FEATURE);
   const [addPoints, { error5 }] = useMutation(EARN_POINTS);
+  const [sendEmailTrial, { error10}] = useMutation(SEND_EMAIL_TRIAL);
 
   // this updates the state of the feature form when user is typing in active input field
   const handleChange = (event) => {
@@ -99,23 +96,7 @@ const FeatureModal = (props) => {
         console.log(data);
         const featureCategory = feature.featureCategory.toLowerCase();
         props.setFeatureList([...props.featureList, data.data.addFeatureToHome[featureCategory].pop()]);
-
-        const msg = {
-          to: 'jaredsjohnson92@gmail.com', // Change to your recipient
-          from: 'jjohns3@tulane.edu', // Change to your verified sender
-          subject: 'New home feature',
-          text: `You just added a new feature`,
-          html: '<strong>Information about the feature</strong>',
-        }
-
-        sgMail
-          .send(msg)
-          .then(() => {
-            console.log('Email sent')
-          })
-          .catch((error) => {
-            console.error(error)
-          })
+        sendEmailTrial()
       }
       setFeatureState('');
     } catch (err) {

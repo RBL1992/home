@@ -2,7 +2,9 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config;
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -26,18 +28,39 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+
+app.put('/sendEmail', async (req, res) => {
+console.log(req);
+  const msg = {
+    to: req.body.to, // Change to your recipient
+    from: req.body.from, // Change to your verified sender
+    subject: req.body.subject,
+    html: `<strong>There is a month until your ${req.body.featureRoom} ${req.body.featureCategory} next maintenance date!</strong>`,
+  }
+  console.log(msg);
+
+  sgMail
+    .send(msg)
+    .then(() => {
+      res.status(201).json({ message: 'Email sent' })
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+})
+
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
-  
+
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     })
   })
-  };
-  
+};
+
 // Call the async function to start the server
-  startApolloServer(typeDefs, resolvers);
+startApolloServer(typeDefs, resolvers);

@@ -1,6 +1,9 @@
 const { User, HomeAssistant, Rewards } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const resolvers = {
   Query: {
@@ -156,6 +159,26 @@ const resolvers = {
       );
       return redeemPoints;
     },
+
+    // send email trial
+    sendEmailTrial: async (_, args) => {
+      const msg = {
+        to: 'jaredsjohnson92@gmail.com', // Change to your recipient
+        from: 'jjohns3@tulane.edu', // Change to your verified sender
+        subject: 'New home feature',
+        text: `You just added a new feature`,
+        html: '<strong>Information about the feature</strong>',
+      }
+
+      sgMail
+        .send(msg)
+        .then(() => {
+          console.log('Email sent')
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
   },
 };
 

@@ -304,6 +304,10 @@ const typeDefs = gql`
     homePointsCost: Int
   }
 
+  type Email {
+    status: String
+  }
+
   type Query {
     getAllUsers: [User]
     allUserFeatures(userId: String!): [Home]
@@ -344,6 +348,8 @@ const typeDefs = gql`
     earnPoints(userId: ID!): User
 
     redeemPoints(userId: ID!, redeemedPoints: Int): User
+
+    sendEmailTrial: Email
   }
 `;
 
