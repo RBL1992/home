@@ -4,7 +4,7 @@ import { CheckIcon } from '@heroicons/react/24/outline';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
-import { ADD_FEATURE, EARN_POINTS, SEND_EMAIL_TRIAL } from '../utils/mutations';
+import { ADD_FEATURE, EARN_POINTS } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const FeatureModal = (props) => {
@@ -56,7 +56,6 @@ const FeatureModal = (props) => {
   //these are the mutations that will run based on which feature is selected
   const [addFeature, { error }] = useMutation(ADD_FEATURE);
   const [addPoints, { error5 }] = useMutation(EARN_POINTS);
-  const [sendEmailTrial, { error10}] = useMutation(SEND_EMAIL_TRIAL);
 
   // this updates the state of the feature form when user is typing in active input field
   const handleChange = (event) => {
@@ -93,10 +92,22 @@ const FeatureModal = (props) => {
       });
 
       if (data) {
-        console.log(data);
         const featureCategory = feature.featureCategory.toLowerCase();
         props.setFeatureList([...props.featureList, data.data.addFeatureToHome[featureCategory].pop()]);
-        sendEmailTrial()
+
+        const testBody = {
+          to: "jaredsjohnson92@gmail.com",
+          from: "jjohns3@tulane.edu",
+          featureCategory,
+          featureRoom: "Garage"
+        };
+
+        fetch('/email/sendEmailTest', {
+          method: 'PUT',
+          body: JSON.stringify(testBody),
+          headers: { 'Content-Type': 'application/json' }
+        }
+        )
       }
       setFeatureState('');
     } catch (err) {

@@ -348,8 +348,6 @@ const typeDefs = gql`
     earnPoints(userId: ID!): User
 
     redeemPoints(userId: ID!, redeemedPoints: Int): User
-
-    sendEmailTrial: Email
   }
 `;
 

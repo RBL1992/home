@@ -8,9 +8,12 @@ router.put('/sendEmailTest', async (req, res) => {
     const msg = {
         to: req.body.to, // The email recepient
         from: req.body.from, // The app's verified sender (our email account)
-        subject: req.body.subject, // Subject of the email
-        html: `<strong>There is a month until your ${req.body.featureRoom} ${req.body.featureCategory} next maintenance date!</strong>`, // Content of the email
+        subject: `This is an email test`, // Subject of the email
+        html: `<strong>You just added a ${req.body.featureCategory} feature!</strong>`, // Content of the email
     }
+
+    console.log(`The req.body is ${JSON.stringify(req.body)}`);
+    console.log(`The msg is ${JSON.stringify(msg)}`);
 
     sgMail
         .send(msg)
@@ -18,6 +21,7 @@ router.put('/sendEmailTest', async (req, res) => {
             res.status(201).json({ message: 'Email sent' })
         })
         .catch((error) => {
+            console.error(error)
             res.status(500).json({
                 message: "Error sending email" // Add actual error content from the error param if possible
             })

@@ -794,11 +794,3 @@ export const REDEEM_POINTS = gql`
     }
   }
 `;
-
-export const SEND_EMAIL_TRIAL = gql`
-  mutation SendEmailTrial {
-    sendEmailTrial{
-      status
-    }
-  }
-`
