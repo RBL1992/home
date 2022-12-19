@@ -1,0 +1,19 @@
+.labelSpacing {
+  width: 130px;
+  max-width: 90%;
+}
+
+.inputSpacing {
+  width: 220px;
+  max-width: 90%;
+}
+
+.inputSpacing:focus {
+  box-shadow: 0 0 5px rgb(79 70 229);
+}
+
+@media screen and (max-width: 465px) {
+  .labelSpacing {
+    text-align: center;
+  }
+}

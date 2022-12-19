@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { ADD_FEATURE, EARN_POINTS } from '../utils/mutations';
+import './Modal.css';
 
 import Auth from '../utils/auth';
 
@@ -38,7 +39,7 @@ const FeatureModal = (props) => {
     'WashingMachine',
     'FireExtinguisher',
     'DryerVent',
-    'Seals'
+    'Seals',
   ];
 
   // this is for tailwind modal ui
@@ -69,6 +70,16 @@ const FeatureModal = (props) => {
     });
   };
 
+  const handleModalClose = () => {
+    if (
+      feature.itemCategory !== '' &&
+      feature.room !== '' &&
+      feature.lastMaintenanceDate !== '' &&
+      feature.brandName !== ''
+    )
+      setOpen(false);
+  };
+
   // querying the current user that is logged in
   const { loading, data } = useQuery(QUERY_ME);
   const userId = data.me.userId;
@@ -93,11 +104,17 @@ const FeatureModal = (props) => {
       });
 
       if (data) {
-        console.log(data);
         const featureCategory = feature.featureCategory.toLowerCase();
         props.setFeatureList([...props.featureList, data.data.addFeatureToHome[featureCategory].pop()]);
       }
-      setFeatureState('');
+      setFeatureState({
+        featureCategory: 'Filter',
+        itemCategory: '',
+        room: '',
+        lastMaintenanceDate: '',
+        nextMaintenanceDate: '',
+        brandName: '',
+      });
     } catch (err) {
       console.error(err);
     }
@@ -140,7 +157,7 @@ const FeatureModal = (props) => {
                 leave='ease-in duration-200'
                 leaveFrom='opacity-100 translate-y-0 sm:scale-100'
                 leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
-                <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6'>
+                <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:p-6'>
                   <div>
                     <div className='mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100'>
                       <CheckIcon
@@ -149,7 +166,7 @@ const FeatureModal = (props) => {
                       />
                     </div>
 
-                    <div className='mt-3 text-center sm:mt-5'>
+                    <div className='mt-3 text-center sm:mt-5 py-1'>
                       <Dialog.Title
                         as='h3'
                         className='text-lg font-medium leading-6 text-gray-900'>
@@ -157,65 +174,86 @@ const FeatureModal = (props) => {
                       </Dialog.Title>
                       <div className='mt-2'>
                         <form
-                          className='space-y-6'
+                          className='space-y-6 mt-8 px-5 flex flex-col items-center'
                           action='#'
                           method='PUT'
                           onSubmit={handleFormSubmit}>
-                          <label htmlFor='featureCategory'>Feature</label>
-                          <select
-                            id='featureCategory'
-                            name='featureCategory'
-                            onChange={handleChange}>
-                            {featuresArr.map((feature, i) => (
-                              <option key={`feature-modal-id: ${feature._id}, ${i}`}>{feature}</option>
-                            ))}
-                          </select>
-                          <br />
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='featureCategory'>Feature:</label>
+                            </div>
+                            <select
+                              id='featureCategory'
+                              name='featureCategory'
+                              className='inputSpacing'
+                              onChange={handleChange}>
+                              {featuresArr.map((feature, i) => (
+                                <option key={`feature-modal-id: ${feature._id}, ${i}`}>{feature}</option>
+                              ))}
+                            </select>
+                          </div>
 
-                          <label htmlFor='featureName'>Feature Name:</label>
-                          <input
-                            type='text'
-                            id='featureName'
-                            name='itemCategory'
-                            onChange={handleChange}
-                            required
-                          />
-                          <br />
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='featureName'>Feature Name:</label>
+                            </div>
+                            <input
+                              type='text'
+                              id='featureName'
+                              name='itemCategory'
+                              className='inputSpacing'
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
 
-                          <label htmlFor='room'>Room:</label>
-                          <input
-                            type='text'
-                            id='room'
-                            name='room'
-                            onChange={handleChange}
-                            required
-                          />
-                          <br />
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='room'>Room:</label>
+                            </div>
+                            <input
+                              type='text'
+                              id='room'
+                              name='room'
+                              className='inputSpacing'
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
 
-                          <label htmlFor='maintenanceDate'>Last Maintenance Date:</label>
-                          <input
-                            type='date'
-                            id='maintenance'
-                            name='lastMaintenanceDate'
-                            onChange={handleChange}
-                            required
-                          />
-                          <br />
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='maintenanceDate'>Last Maintenance Date:</label>
+                            </div>
+                            <input
+                              type='date'
+                              id='maintenance'
+                              name='lastMaintenanceDate'
+                              className='inputSpacing'
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
 
-                          <label htmlFor='brandName'>Brand Name:</label>
-                          <input
-                            type='text'
-                            id='brandName'
-                            name='brandName'
-                            onChange={handleChange}
-                            required
-                          />
-                          <br />
-                          <div className='mt-5 sm:mt-6'>
+                          <div className='flex items-center justify-center form-row flex-wrap gap-3'>
+                            <div className='labelSpacing text-right'>
+                              <label htmlFor='brandName'>Brand Name:</label>
+                            </div>
+                            <input
+                              type='text'
+                              id='brandName'
+                              name='brandName'
+                              className='inputSpacing'
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+
+                          <div>
                             <button
                               type='submit'
                               className='flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                              onClick={() => setOpen(false)}>
+                              onClick={() => handleModalClose()}>
                               All Done
                             </button>
                           </div>
