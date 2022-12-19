@@ -4,10 +4,12 @@ const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const dotenv = require('dotenv').config;
 const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const routes = require('./controllers/index')
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -24,30 +26,31 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
+app.use(routes)
 
-app.put('/sendEmail', async (req, res) => {
-console.log(req);
-  const msg = {
-    to: req.body.to, // Change to your recipient
-    from: req.body.from, // Change to your verified sender
-    subject: req.body.subject,
-    html: `<strong>There is a month until your ${req.body.featureRoom} ${req.body.featureCategory} next maintenance date!</strong>`,
-  }
-  console.log(msg);
+// app.put('/sendEmailTest', async (req, res) => {
+// console.log(req);
+//   const msg = {
+//     to: req.body.to, // Change to your recipient
+//     from: req.body.from, // Change to your verified sender
+//     subject: req.body.subject,
+//     html: `<strong>There is a month until your ${req.body.featureRoom} ${req.body.featureCategory} next maintenance date!</strong>`,
+//   }
+//   console.log(msg);
 
-  sgMail
-    .send(msg)
-    .then(() => {
-      res.status(201).json({ message: 'Email sent' })
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-})
+//   sgMail
+//     .send(msg)
+//     .then(() => {
+//       res.status(201).json({ message: 'Email sent' })
+//     })
+//     .catch((error) => {
+//       console.error(error)
+//     })
+// })
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
