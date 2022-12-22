@@ -17,6 +17,7 @@ const Signup = () => {
   });
 
   const [isErrorMessage, setIsErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -48,6 +49,9 @@ const Signup = () => {
       Auth.login(data.addUser.token);
     } catch (e) {
       setIsErrorMessage(true);
+      setErrorMessage(() =>
+        e.message.includes('E11000') ? `A user with the email address ${formState.email} already exists.` : e.message
+      );
       console.error(e);
     }
   };
@@ -64,12 +68,10 @@ const Signup = () => {
           <h2 className='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>Sign Up</h2>
           <p className='mt-2 text-center text-sm text-gray-600'>
             Or{' '}
-            <Link to={'/login'}>
-              <a
-                href='/login'
-                className='font-medium text-indigo-600 hover:text-indigo-500'>
-                Log In
-              </a>
+            <Link
+              className='font-medium text-indigo-600 hover:text-indigo-500'
+              to={'/login'}>
+              Log In
             </Link>
           </p>
         </div>
@@ -88,7 +90,7 @@ const Signup = () => {
                   <input
                     id='firstName'
                     name='firstName'
-                    type='firstName'
+                    type='text'
                     required
                     value={formState.firstName}
                     onChange={handleChange}
@@ -106,7 +108,7 @@ const Signup = () => {
                   <input
                     id='lastName'
                     name='lastName'
-                    type='lastName'
+                    type='text'
                     required
                     value={formState.lastName}
                     onChange={handleChange}
@@ -124,7 +126,7 @@ const Signup = () => {
                   <input
                     id='homeName'
                     name='homeName'
-                    type='homeName'
+                    type='text'
                     required
                     value={formState.homeName}
                     onChange={handleChange}
@@ -179,12 +181,7 @@ const Signup = () => {
                 </button>
               </div>
             </form>
-
-            {isErrorMessage && (
-              <div className='my-3 p-3 bg-danger text-indigo-600 text-center'>
-                A user with the email address {formState.email} already exists.
-              </div>
-            )}
+            {isErrorMessage && <div className='my-3 p-3 bg-danger text-indigo-600 text-center'>{errorMessage}</div>}
           </div>
         </div>
       </div>
