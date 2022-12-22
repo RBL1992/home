@@ -5,6 +5,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Auth from '../../utils/auth';
 import Logo from '../../images/home-logo-2.png';
+import { useQuery } from '@apollo/client';
+import { QUERY_PROFILE } from '../../utils/queries';
 
 const navigation = [
   !Auth.loggedIn()
@@ -18,6 +20,14 @@ function classNames(...classes) {
 const loginInfo = localStorage.getItem('id_token');
 
 const Header = () => {
+  const { loading, data } = useQuery(QUERY_PROFILE);
+  const profilePic = data?.profile.profilePic;
+  console.log(profilePic);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -96,7 +106,7 @@ const Header = () => {
                           <span className='sr-only'>Open user menu</span>
                           <img
                             className='h-8 w-8 rounded-full'
-                            src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+                            src={URL.createObjectURL(profilePic)}
                             alt=''
                           />
                         </Menu.Button>

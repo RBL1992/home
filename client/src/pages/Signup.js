@@ -14,24 +14,32 @@ const Signup = () => {
     homeName: '',
     email: '',
     password: '',
+    profilePic: '',
   });
 
   const [isErrorMessage, setIsErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
 
   // Attempting to add a home when a user is created
-  const [addHome, { e, homeData }] = useMutation(ADD_HOME);
+  const [addHome] = useMutation(ADD_HOME);
 
   // update state based on form input changes
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, files, validity } = event.target;
 
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+    if (name === 'profile-pic' && validity.valid) {
+      setFormState({
+        ...formState,
+        profilePic: files[0],
+      });
+    } else {
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    }
   };
 
   // submit form
@@ -168,6 +176,23 @@ const Signup = () => {
                     autoComplete='current-password'
                     required
                     value={formState.password}
+                    onChange={handleChange}
+                    className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor='profile-pic'
+                  className='block text-sm font-medium text-gray-700'>
+                  Add a profile picture
+                </label>
+                <div className='mt-1'>
+                  <input
+                    id='profile-pic'
+                    name='profile-pic'
+                    type='file'
+                    required
                     onChange={handleChange}
                     className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
                   />

@@ -1,8 +1,11 @@
 const { User, HomeAssistant, Rewards } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const graphQLUpload = require('graphql-upload');
 
 const resolvers = {
+  Upload: graphQLUpload, // Resolves the 'Upload' scalar
+
   Query: {
     getAllUsers: async () => {
       return User.find({});
@@ -34,8 +37,15 @@ const resolvers = {
   // all mutations to the databases
   Mutation: {
     //sign up
-    addUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
+    addUser: async (parent, { firstName, lastName, email, password, profilePic }) => {
+      const { filename, mimetype, encoding } = await profilePic.promise;
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        profilePic: { filename, mimetype, encoding },
+      });
       const token = signToken(user);
       return { token, user };
     },
