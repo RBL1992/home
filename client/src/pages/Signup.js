@@ -14,7 +14,7 @@ const Signup = () => {
     homeName: '',
     email: '',
     password: '',
-    profilePic: '',
+    pictureUrl: '',
   });
 
   const [isErrorMessage, setIsErrorMessage] = useState(false);
@@ -27,13 +27,28 @@ const Signup = () => {
 
   // update state based on form input changes
   const handleChange = (event) => {
-    const { name, value, files, validity } = event.target;
+    const { name, value, files } = event.target;
 
-    if (name === 'profile-pic' && validity.valid) {
-      setFormState({
-        ...formState,
-        profilePic: files[0],
-      });
+    if (name === 'profile-pic') {
+      // Creating new form data for File data type
+      const data = new FormData();
+      data.append('file', files[0]);
+      // Appending required fields for cloudinary upload
+      data.append('upload_preset', 'home-upload');
+      data.append('cloud_name', 'dkxi93m71');
+      // Posting request to cloudinary API
+      fetch(process.env.REACT_APP_CLOUDINARY_URL, {
+        method: 'POST',
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setFormState({
+            ...formState,
+            pictureUrl: data.url,
+          });
+        })
+        .catch((err) => console.error(err));
     } else {
       setFormState({
         ...formState,
@@ -192,11 +207,20 @@ const Signup = () => {
                     id='profile-pic'
                     name='profile-pic'
                     type='file'
+                    accept='image/*'
+                    multiple={false}
                     required
                     onChange={handleChange}
                     className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
                   />
                 </div>
+                {formState.pictureUrl !== '' && (
+                  <img
+                    src={formState.pictureUrl}
+                    className='rounded-full mt-5 w-72 h-72 mx-auto'
+                    alt='profile pic preview'
+                  />
+                )}
               </div>
               <div>
                 <button

@@ -19,13 +19,17 @@ function classNames(...classes) {
 }
 const loginInfo = localStorage.getItem('id_token');
 
+let pictureUrl = null;
+
 const Header = () => {
   const { loading, data } = useQuery(QUERY_PROFILE);
-  const profilePic = data?.profile.profilePic;
-  console.log(profilePic);
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (data?.profile?.pictureUrl) {
+    pictureUrl = data.profile.pictureUrl;
   }
 
   const logout = (event) => {
@@ -106,7 +110,7 @@ const Header = () => {
                           <span className='sr-only'>Open user menu</span>
                           <img
                             className='h-8 w-8 rounded-full'
-                            src={URL.createObjectURL(profilePic)}
+                            src={pictureUrl ? pictureUrl : ''}
                             alt=''
                           />
                         </Menu.Button>

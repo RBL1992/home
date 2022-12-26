@@ -3,10 +3,6 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const dotenv = require('dotenv');
-const makeDir = require('make-dir');
-const { graphqlUploadExpress } = require('graphql-upload');
-
-const UPLOAD_URL_DIRECTORY = require('./config/UPLOAD_URL_DIRECTORY');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -31,13 +27,6 @@ app.get('/', (req, res) => {
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
-  await makeDir(UPLOAD_URL_DIRECTORY);
-  app.use(
-    graphqlUploadExpress({
-      maxFileSize: 100000000,
-      maxFiles: 20,
-    })
-  );
   await server.start();
   server.applyMiddleware({ app });
 

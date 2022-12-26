@@ -41,7 +41,7 @@ const Profile = () => {
               <div className=" rounded-lg border-4 border-dashed border-gray-200  place-items-center">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 m-12">
                   {/* container 1 */}
-                  <div className=" rounded col-span-1 flex flex-col divide-y divide-gray-200 bg-white text-center drop-shadow-lg">
+                  <div className=" rounded col-span-1 flex flex-col divide-y divide-gray-200 bg-white text-center drop-shadow-lg justify-center">
                     <UserProfile profileInfo={profileInfo} />
                   </div>
 

@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const fileSchema = require('./file');
 
 const UserProfileSchema = new Schema({
   firstName: {
@@ -23,7 +22,10 @@ const UserProfileSchema = new Schema({
     type: String,
     required: true,
   },
-  profilePic: fileSchema,
+  pictureUrl: {
+    type: String,
+    required: true,
+  },
   phoneNumber: {
     type: String,
     required: false,

@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { createUploadLink } from 'apollo-upload-client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -14,7 +13,7 @@ import Profile from './pages/Profile.js';
 import RewardsMarket from './pages/RewardsMarket';
 
 // Construct our main GraphQL API endpoint
-const httpLink = createUploadLink({
+const httpLink = createHttpLink({
   uri: '/graphql',
 });
 

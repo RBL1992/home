@@ -256,7 +256,7 @@ export const QUERY_PROFILE = gql`
       firstName
       lastName
       phoneNumber
-      profilePic
+      pictureUrl
       currentHomePoints
       lifetimeHomePoints
     }
