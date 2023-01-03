@@ -1,4 +1,4 @@
-import {gql} from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const ALL_USER_FEATURES = gql`
   query AllUserFeatures($userId: String!) {
@@ -256,6 +256,7 @@ export const QUERY_PROFILE = gql`
       firstName
       lastName
       phoneNumber
+      pictureUrl
       currentHomePoints
       lifetimeHomePoints
     }

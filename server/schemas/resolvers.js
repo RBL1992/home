@@ -34,8 +34,14 @@ const resolvers = {
   // all mutations to the databases
   Mutation: {
     //sign up
-    addUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
+    addUser: async (parent, { firstName, lastName, email, password, pictureUrl }) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        pictureUrl,
+      });
       const token = signToken(user);
       return { token, user };
     },
