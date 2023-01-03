@@ -67,7 +67,7 @@ const MarketRewardCards = ({ rewardsList }) => {
   const newRewardsList = rewardsList.map(reward => ({ ...reward, styles: cardStyle(reward.homePointsCost) }));
 
   if (!rewardsList.length) {
-    return <h3>No rewards availabile right now.</h3>;
+    return <h3>No rewards available right now.</h3>;
   }
   return (
     <div>
