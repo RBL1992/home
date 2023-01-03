@@ -7,7 +7,7 @@ const UserProfile = (props) => {
       <div className='pr-0 place-self-auto'>
         <img
           src={props.profileInfo.pictureUrl ? props.profileInfo.pictureUrl : ''}
-          className='text-violet-700 w-32 rounded-full'
+          className='text-violet-700 w-32 h-32 rounded-full'
           alt='profile picture'
         />
       </div>
