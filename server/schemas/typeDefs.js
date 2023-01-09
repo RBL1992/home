@@ -7,6 +7,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     password: String
+    pictureUrl: String
     phoneNumber: String
     referralLink: String
     currentHomePoints: String
@@ -318,7 +319,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!, pictureUrl: String!): Auth
 
     login(email: String!, password: String!): Auth
 

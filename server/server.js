@@ -2,9 +2,9 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-const dotenv = require('dotenv').config;
 const sgMail = require('@sendgrid/mail')
 const routes = require('./controllers/index')
+const dotenv = require('dotenv');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -37,8 +37,8 @@ const startApolloServer = async (typeDefs, resolvers) => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    })
-  })
+    });
+  });
 };
 
 // Call the async function to start the server

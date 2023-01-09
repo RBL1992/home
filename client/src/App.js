@@ -1,21 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Home from "./pages/Home";
-import Landingpage from "./pages/Landingpage";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import Home from './pages/Home';
+import Landingpage from './pages/Landingpage';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 // import Friends from './pages/Friends';
-import Profile from "./pages/Profile.js";
-import RewardsMarket from "./pages/RewardsMarket"
+import Profile from './pages/Profile.js';
+import RewardsMarket from './pages/RewardsMarket';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -41,24 +36,41 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex flex-col">
+        <div className='flex flex-col'>
           <Header />
-          <div className="container min-h-screen self-center mx-12">
+          <div className='container min-h-screen self-center mx-12'>
             <Routes>
-              {localStorage.getItem("id_token") ? (
-                <Route path="/" element={<Home />} />
+              {localStorage.getItem('id_token') ? (
+                <Route
+                  path='/'
+                  element={<Home />}
+                />
               ) : (
-                <Route path="/" element={<Landingpage />} />
+                <Route
+                  path='/'
+                  element={<Landingpage />}
+                />
               )}
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/rewards-market" element={<RewardsMarket />} />
+              <Route
+                path='/signup'
+                element={<Signup />}
+              />
+              <Route
+                path='/login'
+                element={<Login />}
+              />
+              <Route
+                path='/profile'
+                element={<Profile />}
+              />
+              <Route
+                path='/rewards-market'
+                element={<RewardsMarket />}
+              />
             </Routes>
           </div>
           <Footer />
