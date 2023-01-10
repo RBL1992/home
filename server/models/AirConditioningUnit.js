@@ -31,9 +31,15 @@ const airConditioningUnitSchema = new Schema(
   }
 );
 
+
+
 // Create a virtual property `nextMaintenanceDate` that gets date the thing needs to be maintained
 airConditioningUnitSchema.virtual('nextMaintenanceDate').get(function () {
   return dayjs(this.lastMaintenanceDate).add(365, 'day').format('MM/DD/YYYY');
 });
+
+airConditioningUnitSchema.virtual('daysUntilNextMaintenanceDate').get(function () {
+  return "nextMaintenanceDate.diff(dayjs(), 'day')"
+})
 
 module.exports = airConditioningUnitSchema;
